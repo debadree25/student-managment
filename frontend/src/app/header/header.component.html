@@ -1,13 +1,35 @@
 <mat-sidenav-container>
     <mat-sidenav #sidenav mode="push">
         <mat-nav-list>
-            <mat-list-item class="mat-title">Student's Corner
-            </mat-list-item>
-            <a mat-list-item href="/profile">User Profile</a>
-            <a mat-list-item href="/dashboard">Dashboard</a>
-            <a mat-list-item href="/students">Students</a>
-            <a mat-list-item href="/setting">Settings</a>
-            <a mat-list-item href="/help">Help</a>
+            <div class="details">
+                <mat-list-item>
+                    <img matListAvatar style="display: block;"  src="https://wprdea.org/image/img_avatar.png" alt="img of a man">
+                    <div mat-line>Sristi Chowdhury </div>
+                    <div mat-line>It~2022</div>
+                </mat-list-item>
+            </div>
+            <mat-divider></mat-divider>
+            <div></div>
+            <a mat-list-item href="/profile">
+                <mat-icon matListIcon>account_circle</mat-icon>
+                <div mat-line><button mat-button>User Profile</button></div>
+            </a>
+            <a mat-list-item href="/dashboard" [routerLinkActive]>
+                <mat-icon matListIcon>dashboard</mat-icon>
+                <div mat-line><button mat-button>Dashboard</button></div>
+            </a>
+            <a mat-list-item href="/students">
+                <mat-icon matListIcon>group</mat-icon>
+                <div mat-line><button mat-button>Students</button></div>
+            </a>
+            <a mat-list-item href="/setting">
+                <mat-icon matListIcon>settings</mat-icon>
+                <div mat-line><button mat-button>Settings</button></div>
+            </a>
+            <a mat-list-item href="/help">
+                <mat-icon matListIcon>help</mat-icon>
+                <div mat-line><button mat-button>Help</button></div>
+            </a>
         </mat-nav-list>
 
     </mat-sidenav>
@@ -22,11 +44,12 @@
 
             <mat-form-field>
                 <span matPrefix><button mat-icon-button>
-                    <mat-icon>search</mat-icon></button>
+                        <mat-icon>search</mat-icon>
+                    </button>
                 </span>
                 <input matInput placeholder="search" type="text" class="example-right-align">
-               
-              </mat-form-field>
+
+            </mat-form-field>
 
 
             <button style="float: right;position:absolute;right:50px" mat-icon-button class="example-icon"
