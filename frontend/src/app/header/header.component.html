@@ -18,14 +18,24 @@
                 <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
             </button>
             <span>Dashboard</span>
-            <span class="example-spacer"></span>
+
+
+            <mat-form-field>
+                <span matPrefix><button mat-icon-button>
+                    <mat-icon>search</mat-icon></button>
+                </span>
+                <input matInput placeholder="search" type="text" class="example-right-align">
+               
+              </mat-form-field>
+
+
             <button style="float: right;position:absolute;right:50px" mat-icon-button class="example-icon"
                 aria-label="Example icon-button with notification icon">
                 <mat-icon>notification_important</mat-icon>
             </button>
             <button style="float: right;position:absolute;right:20px" mat-icon-button class="example-icon"
-                aria-label="Example icon-button with share icon">
-                <mat-icon>share</mat-icon>
+                aria-label="Example icon-button with more icon">
+                <mat-icon>more_vert</mat-icon>
             </button>
         </mat-toolbar>
 

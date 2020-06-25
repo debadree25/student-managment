@@ -9,6 +9,15 @@ mat-sidenav-container{
     background-color: aqua;
     width:30%;
   }
+  mat-form-field{
+   display:block;
+   margin:0 auto;
+   width:20%;
+   
+  }
+  ::-webkit-input-placeholder{
+    font-size: 5px;
+  }
   
   @media only screen and (max-width: 600px) {
     mat-sidenav{
