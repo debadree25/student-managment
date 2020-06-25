@@ -1,4 +1,4 @@
-<mat-sidenav-container>
+<mat-sidenav-container style="position: fixed;width: 100%;">
     <mat-sidenav #sidenav mode="push">
         <mat-nav-list>
             <div class="details">
@@ -35,7 +35,7 @@
     </mat-sidenav>
     <mat-sidenav-content>
 
-        <mat-toolbar style="position: fixed;width: 100%;" color="primary">
+        <mat-toolbar  color="primary">
             <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
                 <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
             </button>
@@ -61,6 +61,8 @@
                 <mat-icon>more_vert</mat-icon>
             </button>
         </mat-toolbar>
+        <app-dashboard></app-dashboard>
+        <app-footer></app-footer>
 
 
     </mat-sidenav-content>
