@@ -1,0 +1,34 @@
+<mat-sidenav-container>
+    <mat-sidenav #sidenav mode="push">
+        <mat-nav-list>
+            <mat-list-item class="mat-title">Student's Corner
+            </mat-list-item>
+            <a mat-list-item href="/profile">User Profile</a>
+            <a mat-list-item href="/dashboard">Dashboard</a>
+            <a mat-list-item href="/students">Students</a>
+            <a mat-list-item href="/setting">Settings</a>
+            <a mat-list-item href="/help">Help</a>
+        </mat-nav-list>
+
+    </mat-sidenav>
+    <mat-sidenav-content>
+
+        <mat-toolbar color="primary">
+            <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+                <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+            </button>
+            <span>Dashboard</span>
+            <span class="example-spacer"></span>
+            <button style="float: right;position:absolute;right:50px" mat-icon-button class="example-icon"
+                aria-label="Example icon-button with notification icon">
+                <mat-icon>notification_important</mat-icon>
+            </button>
+            <button style="float: right;position:absolute;right:20px" mat-icon-button class="example-icon"
+                aria-label="Example icon-button with share icon">
+                <mat-icon>share</mat-icon>
+            </button>
+        </mat-toolbar>
+
+
+    </mat-sidenav-content>
+</mat-sidenav-container>

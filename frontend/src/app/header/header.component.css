@@ -1,0 +1,17 @@
+
+mat-sidenav-container{
+    height:100%;
+  }
+  mat-sidenav,mat-sidenav-content{
+    padding:5px;
+  }
+  mat-sidenav{
+    background-color: aqua;
+    width:30%;
+  }
+  
+  @media only screen and (max-width: 600px) {
+    mat-sidenav{
+        width:50%;
+    }
+  }
