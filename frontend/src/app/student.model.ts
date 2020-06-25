@@ -2,8 +2,8 @@ export interface Student{
     imgUrl:string;
     name:string;
     stream:string;
-    passoutYear:number;
-    contact:number;
+    passoutYear:string;
+    contact:string;
     address:string;
 
 }

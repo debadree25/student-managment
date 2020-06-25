@@ -1,0 +1,17 @@
+.findStudents{
+    float:right;
+}
+
+.example-card{
+    width:60%;
+    display:block;
+    margin:10px auto;
+}
+
+mat-card{
+    background-color: peachpuff;
+}
+
+.example-card:hover{
+    box-shadow: 0 0 15px rgba(33,33,33,.2); 
+}
