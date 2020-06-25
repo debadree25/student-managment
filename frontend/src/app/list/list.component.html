@@ -1,7 +1,12 @@
 <!--For list of students-->
- <mat-nav-list *ngFor="let student of students">
-    <mat-list-item>
-{{student.name}}
+<mat-list>
+    <div  mat-subheader><h2> Student-List</h2></div>
+    <mat-list-item *ngFor="let student of students">
+       <img matListAvatar  [src]="student.imgUrl" alt="img of {{student.name}}">
+      <div mat-line>{{student.name}}</div>
+      <div mat-line> {{student.stream | uppercase}} </div>
+      <div mat-line> {{student.year}} </div>
+      <mat-divider></mat-divider>
     </mat-list-item>
-
-</mat-nav-list> 
+   
+    </mat-list>

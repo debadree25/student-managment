@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
@@ -13,5 +14,6 @@ newMode=false;
   }
  onAdd(){
 this.newMode=true;
+//this.router.navigate()
  }
 }
