@@ -1,5 +1,5 @@
 <mat-card class="mat-elevation-z8">
-    <form #f="ngForm" name="form" (ngSubmit)="onSubmit(f)" *ngIf="f.form.valid">
+    <form #f="ngForm" name="form" (ngSubmit)="onSubmit(f)" >
         <mat-form-field >
 
             <input matInput placeholder="Name" type="text" ngModel name="name" required>
