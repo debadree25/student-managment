@@ -5,7 +5,7 @@
 </div>
 
 <mat-card *ngFor="let student of students" class="detail" style="display: flex;flex-direction: row;">
-  <mat-card-content>
+  <mat-card-content style="width: 100%;">
     <mat-list>
       <mat-list-item>
         <img matListAvatar [src]="student.imgUrl" alt="img of {{student.name}}">
