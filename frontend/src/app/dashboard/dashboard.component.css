@@ -4,8 +4,7 @@
 
 .example-card{
     width:60%;
-    display:block;
-    margin:10px auto;
+    margin: 20px;
 }
 
 mat-card{
@@ -14,4 +13,8 @@ mat-card{
 
 .example-card:hover{
     box-shadow: 0 0 15px rgba(33,33,33,.2); 
+}
+
+.container {
+    display: flex;
 }
