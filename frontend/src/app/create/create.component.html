@@ -1,14 +1,15 @@
-<mat-card class="mat-elevation-z8">
+<div class="newForm"><mat-card class="mat-elevation-z8">
     <mat-card-subtitle>*All Fields Are Required</mat-card-subtitle>
     <form #f="ngForm" name="form" (ngSubmit)="onSubmit(f)">
         <mat-form-field>
 
-            <input matInput placeholder="Name" type="text" ngModel name="name" required>
+            <input matInput placeholder="Name" type="text" #name=ngModel ngModel name="name" required>
 
+            <mat-error *ngIf="name.invalid && name.touched">This field is required!</mat-error>
         </mat-form-field>
-        <div style="margin: 1.5% 0;">
+        <div style="margin-top: 1% ;">
             <span>Year:</span>
-            <mat-radio-group aria-label="Select an option" ngModel name="year">
+            <mat-radio-group aria-label="Select an option"  #year=ngModel ngModel name="year">
                 <mat-radio-button value="1" style="padding: 2%;">1</mat-radio-button>
                 <mat-radio-button value="2" style="padding: 2%;">2</mat-radio-button>
                 <mat-radio-button value="3" style="padding: 2%;">3</mat-radio-button>
@@ -17,9 +18,9 @@
         </div>
         <br>
 
-        <div style="margin: 1.5% 0;">
+        <div style="margin-bottom: 1%;">
             <span>Stream:</span>
-            <mat-radio-group aria-label="Select an option" ngModel required name="stream">
+            <mat-radio-group aria-label="Select an option"  #stream=ngModel ngModel required name="stream">
                 <mat-radio-button value="1" style="padding: 2%;">IT</mat-radio-button>
                 <mat-radio-button value="2" style="padding: 2%;">CSE</mat-radio-button>
                 <mat-radio-button value="3" style="padding: 2%;">ME</mat-radio-button>
@@ -29,24 +30,28 @@
         </div>
 
         <mat-form-field>
-            <textarea matInput placeholder="Address" type="text" rows="2" ngModel required name="address"></textarea>
+            <textarea matInput placeholder="Address" type="text" rows="2" #add=ngModel ngModel required name="address"></textarea>
+            <mat-error *ngIf="add.invalid && add.touched">This field is required!</mat-error>
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Contact No." type="number" ngModel name="contactNo" required>
+            <input matInput placeholder="Contact No." type="number" #phone=ngModel ngModel name="contactNo" required>
+            <mat-error *ngIf="phone.invalid && phone.touched">This field is required!</mat-error>
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Email" type="email" name="email" ngModel required>
+            <input matInput placeholder="Email" type="email"  name="email"  #email=ngModel ngModel required>
+            <mat-error *ngIf="email.invalid && email.touched">This field is required!</mat-error>
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Graduation Year</mat-label>
-            <mat-select ngModel required name="passoutYear">
+            <mat-select #pass=ngModel ngModel required name="passoutYear">
                 <mat-option value="2020">2020</mat-option>
                 <mat-option value="2021">2021</mat-option>
                 <mat-option value="2022">2022</mat-option>
                 <mat-option value="2023">2023</mat-option>
                 <mat-option value="2024">2024</mat-option>
             </mat-select>
+            <mat-error *ngIf="pass.invalid && pass.touched">This field is required!</mat-error>
         </mat-form-field>
         <label>Upload your image:</label>
         <br>
@@ -61,8 +66,9 @@
     
 
         <mat-card-actions align="end">
-            <button type="submit" mat-raised-button color="primary">Save</button>
+            <button type="submit" [disabled]="!f.valid"  mat-raised-button color="primary">Save</button>
 
         </mat-card-actions>
     </form>
 </mat-card>
+</div>
