@@ -1,32 +1,35 @@
 <mat-sidenav-container style="position: fixed;width: 100%;">
     <mat-sidenav #sidenav mode="push">
-        <mat-nav-list>
+        <mat-nav-list (click)="isActive()">
             <div class="details">
                 <mat-list-item>
-                    <img matListAvatar style="display: block;"  src="https://wprdea.org/image/img_avatar.png" alt="img of a man">
+                    <img matListAvatar style="display: block;" src="https://wprdea.org/image/img_avatar.png"
+                        alt="img of a man">
                     <div mat-line class="mat-title">Sristi Chowdhury </div>
                     <div mat-line>It~2022</div>
                 </mat-list-item>
             </div>
             <mat-divider></mat-divider>
             <div></div>
-            <a mat-list-item href="/profile" routerLinkActive="active">
+
+            <a mat-list-item [routerLink]="['/user']" routerLinkActive="active">
                 <mat-icon matListIcon>account_circle</mat-icon>
                 <div mat-line><button mat-button>User Profile</button></div>
             </a>
-            <a mat-list-item href="/dashboard" routerLinkActive="active">
+
+            <a mat-list-item [routerLink]="['']" routerLinkActive="active">
                 <mat-icon matListIcon>dashboard</mat-icon>
                 <div mat-line><button mat-button>Dashboard</button></div>
             </a>
-            <a mat-list-item routerLink="/list" routerLinkActive="active">
+            <a mat-list-item [routerLink]="['/list']" routerLinkActive="active">
                 <mat-icon matListIcon>group</mat-icon>
                 <div mat-line><button mat-button>Students</button></div>
             </a>
-            <a mat-list-item href="/setting" routerLinkActive="active">
+            <a mat-list-item [routerLink]="['/settings']" routerLinkActive="active">
                 <mat-icon matListIcon>settings</mat-icon>
                 <div mat-line><button mat-button>Settings</button></div>
             </a>
-            <a mat-list-item href="/help" routerLinkActive="active">
+            <a mat-list-item [routerLink]="['/help']" routerLinkActive="active">
                 <mat-icon matListIcon>help</mat-icon>
                 <div mat-line><button mat-button>Help</button></div>
             </a>
@@ -35,12 +38,18 @@
     </mat-sidenav>
     <mat-sidenav-content>
 
-        <mat-toolbar  color="primary">
+        <mat-toolbar color="primary">
             <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
                 <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
             </button>
-            <span>Dashboard</span>
+            <div>
+                <span *ngIf="href=='/'">Dashboard</span>
+                <span *ngIf="href=='/user'">User Profile</span>
+                <span *ngIf="href=='/list'">Students List</span>
+                <span *ngIf="href=='/settings'">Settings</span>
+                <span *ngIf="href=='/help'">Help</span>
 
+            </div>
 
             <mat-form-field>
                 <span matPrefix><button mat-icon-button>
@@ -56,12 +65,25 @@
                 aria-label="Example icon-button with notification icon">
                 <mat-icon>notification_important</mat-icon>
             </button>
-            <button style="float: right;position:absolute;right:20px" mat-icon-button class="example-icon"
-                aria-label="Example icon-button with more icon">
+
+            <button style="float: right;position:absolute;right:20px" mat-icon-button [matMenuTriggerFor]="menu"
+                aria-label="Example icon-button with a menu">
                 <mat-icon>more_vert</mat-icon>
             </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>
+                    <mat-icon>login</mat-icon>
+                    <span>Login</span>
+                </button>
+                <button mat-menu-item>
+                    <mat-icon>how_to_reg</mat-icon>
+                    <span>Register</span>
+                </button>
+                
+            </mat-menu>
         </mat-toolbar>
-        <app-dashboard></app-dashboard>
+
+
         <app-footer></app-footer>
 
 

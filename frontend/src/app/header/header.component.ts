@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MaterialModule} from '../material/material.module';
-
+import { ActivatedRoute, Router} from '@angular/router';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -8,9 +8,15 @@ import {MaterialModule} from '../material/material.module';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  href:string;
+  constructor(private route:ActivatedRoute,private router:Router) { }
 
   ngOnInit(): void {
+    
+    this.href="/";
   }
 
+  isActive(){
+    this.href=this.router.url;
+  }
 }

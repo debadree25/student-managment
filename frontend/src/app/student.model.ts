@@ -1,11 +1,13 @@
-export interface Student{
+import { ImageSnippet } from './image.model';
+
+export interface Student {
     imgUrl:string;
-    name:string;
-    stream:string;
-    year:string;
-    email:string;
-    contactNo:string;
-    address:string;
-    graduateYear:string;
+    name: string;
+    stream: string;
+    year: string;
+    email: string;
+    contactNo: string;
+    address: string;
+    graduateYear: string;
 
 }

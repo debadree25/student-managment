@@ -1,6 +1,7 @@
 <mat-card class="mat-elevation-z8">
-    <form #f="ngForm" name="form" (ngSubmit)="onSubmit(f)" >
-        <mat-form-field >
+    <mat-card-subtitle>*All Fields Are Required</mat-card-subtitle>
+    <form #f="ngForm" name="form" (ngSubmit)="onSubmit(f)">
+        <mat-form-field>
 
             <input matInput placeholder="Name" type="text" ngModel name="name" required>
 
@@ -40,16 +41,28 @@
         <mat-form-field>
             <mat-label>Graduation Year</mat-label>
             <mat-select ngModel required name="passoutYear">
-              <mat-option value="2020">2020</mat-option>
-              <mat-option value="2021">2021</mat-option>
-              <mat-option value="2022">2022</mat-option>
-              <mat-option value="2023">2023</mat-option>
-              <mat-option value="2024">2024</mat-option>
+                <mat-option value="2020">2020</mat-option>
+                <mat-option value="2021">2021</mat-option>
+                <mat-option value="2022">2022</mat-option>
+                <mat-option value="2023">2023</mat-option>
+                <mat-option value="2024">2024</mat-option>
             </mat-select>
-          </mat-form-field>
-        <mat-card-actions  align="end">
+        </mat-form-field>
+        <label>Upload your image:</label>
+        <br>
+        <div style="margin-top:2%;">
+            <input #imageInput type="file" name="img" accept="image/*" onchange="func()" (change)="processFile(imageInput)">
+            <br>
+            <div  style="margin-top:2%;">
+                <img src="" height="200" alt="Image preview...">
+            </div>
+           
+        </div>
+    
+
+        <mat-card-actions align="end">
             <button type="submit" mat-raised-button color="primary">Save</button>
-            
+
         </mat-card-actions>
     </form>
 </mat-card>

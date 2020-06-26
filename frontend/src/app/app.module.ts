@@ -13,6 +13,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListComponent } from './list/list.component';
 import { CreateComponent } from './create/create.component';
+import { StudentDetailComponent } from './student-detail/student-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +21,8 @@ import { CreateComponent } from './create/create.component';
     FooterComponent,
     DashboardComponent,
     ListComponent,
-    CreateComponent
+    CreateComponent,
+    StudentDetailComponent
   ],
   imports: [
     BrowserModule,
