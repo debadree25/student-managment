@@ -18,7 +18,17 @@ export class StudentService {
         },
         {
             name: 'Srist Chowdhury',
-            imgUrl: "https://wprdea.org/image/img_avatar.png",
+            imgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQNU6thkHYg_NEpP2n3JBwK8CfWbGtvLTba-Q&usqp=CAU",
+            contactNo: "9845678",
+            email:"sristi2705@gmail.com",
+            address: "Barrackpore",
+            year: "3rd",
+            stream: "IT",
+            graduateYear: "2022"
+        },
+        {
+            name: 'Srist Chowdhury',
+            imgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQNU6thkHYg_NEpP2n3JBwK8CfWbGtvLTba-Q&usqp=CAU",
             contactNo: "9845678",
             email:"sristi2705@gmail.com",
             address: "Barrackpore",

@@ -1,12 +1,22 @@
 <!--For list of students-->
-<mat-list>
-    <div  mat-subheader><h2> Student-List</h2></div>
-    <mat-list-item *ngFor="let student of students">
-       <img matListAvatar  [src]="student.imgUrl" alt="img of {{student.name}}">
-      <div mat-line>{{student.name}}</div>
-      <div mat-line> {{student.stream | uppercase}} </div>
-      <div mat-line> {{student.year +" Year" }}</div>
-      <mat-divider></mat-divider>
-    </mat-list-item>
-   
-    </mat-list>
+
+<div mat-subheader>
+  <h2> Student-List</h2>
+</div>
+    <mat-card *ngFor="let student of students" class="detail" >
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item>
+            <img matListAvatar [src]="student.imgUrl" alt="img of {{student.name}}">
+            <div mat-line>{{student.name}}</div>
+            <div mat-line> {{student.stream | uppercase}} </div>
+            <div mat-line> {{student.year +" Year" }}</div>
+          </mat-list-item>
+
+        </mat-list>
+
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-button color="primary">Click </button>
+      </mat-card-actions>
+    </mat-card>
