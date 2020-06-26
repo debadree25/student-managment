@@ -11,10 +11,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatSelectModule} from '@angular/material/select';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 const materialComponents = [MatButtonModule, MatButtonToggleModule, MatIconModule,
-  MatToolbarModule, MatSidenavModule,MatListModule,MatMenuModule,MatSelectModule,MatFormFieldModule,MatInputModule,MatCardModule,MatRadioModule];
+  MatToolbarModule, MatSidenavModule,MatGridListModule, MatListModule,MatMenuModule,MatSelectModule,MatFormFieldModule,MatInputModule,MatCardModule,MatRadioModule];
 @NgModule({
 
   imports: [materialComponents],
