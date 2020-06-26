@@ -12,7 +12,7 @@ export class StudentService {
             contactNo: "9845678",
             email:"sristi2705@gmail.com",
             address: "Barrackpore",
-            year: "2nd Year",
+            year: "2nd",
             stream: "IT", 
             graduateYear: "2023"
         },
@@ -22,7 +22,7 @@ export class StudentService {
             contactNo: "9845678",
             email:"sristi2705@gmail.com",
             address: "Barrackpore",
-            year: "3rd Year",
+            year: "3rd",
             stream: "IT",
             graduateYear: "2022"
         }

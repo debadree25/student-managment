@@ -13,7 +13,9 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     
-    this.href="/";
+    this.href=this.router.url;
+    console.log(this.href)
+    
   }
 
   isActive(){
