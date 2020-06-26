@@ -1,9 +1,8 @@
 mat-list{
-    margin-top: 2%;
+    margin-top: 1%;
 }
 
 .detail{
-    width:25%;
     margin:2%;
     display:flex;
     flex-direction: row;

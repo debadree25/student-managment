@@ -17,7 +17,7 @@ export class StudentService {
             graduateYear: "2023"
         },
         {
-            name: 'Srist Chowdhury',
+            name: 'Sristi Chowdhury',
             imgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQNU6thkHYg_NEpP2n3JBwK8CfWbGtvLTba-Q&usqp=CAU",
             contactNo: "9845678",
             email:"sristi2705@gmail.com",
@@ -27,7 +27,7 @@ export class StudentService {
             graduateYear: "2022"
         },
         {
-            name: 'Srist Chowdhury',
+            name: 'Sristi Chowdhury',
             imgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQNU6thkHYg_NEpP2n3JBwK8CfWbGtvLTba-Q&usqp=CAU",
             contactNo: "9845678",
             email:"sristi2705@gmail.com",
