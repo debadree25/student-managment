@@ -1,20 +1,13 @@
-.findStudents{
-    float:right;
-}
-
-.example-card{
+.student-card{
     width:60%;
-    margin: 20px;
+    display: block;
+    margin: 20px auto;
 }
 
 mat-card{
     background-color: peachpuff;
 }
 
-.example-card:hover{
+.student-card:hover{
     box-shadow: 0 0 15px rgba(33,33,33,.2); 
-}
-
-.container {
-    display: flex;
 }

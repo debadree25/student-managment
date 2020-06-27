@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
 import { Student } from '../student.model'
 import { StudentService } from '../students.service';
 
@@ -9,7 +10,7 @@ import { StudentService } from '../students.service';
 })
 export class ListComponent implements OnInit {
 
-  constructor(private studentService: StudentService) { }
+  constructor(private studentService: StudentService,public dialog: MatDialog) { }
 
   students: Student[];
   ngOnInit(): void {
@@ -19,4 +20,20 @@ export class ListComponent implements OnInit {
   }
 
 
+  openDialog() {
+    const dialogRef = this.dialog.open( DialogElementsExampleDialog);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 }
+  @Component({
+    selector: 'dialog-elements-example-dialog',
+  templateUrl: 'dialog-elements-example-dialog.html',
+  })
+  export class DialogElementsExampleDialog {}
+
+  
+
+

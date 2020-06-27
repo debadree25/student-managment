@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListComponent } from './list/list.component';
 import { CreateComponent } from './create/create.component';
 import { StudentDetailComponent } from './student-detail/student-detail.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +23,7 @@ import { StudentDetailComponent } from './student-detail/student-detail.componen
     DashboardComponent,
     ListComponent,
     CreateComponent,
-    StudentDetailComponent
+    StudentDetailComponent,
   ],
   imports: [
     BrowserModule,
