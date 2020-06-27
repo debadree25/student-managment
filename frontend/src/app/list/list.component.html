@@ -1,11 +1,11 @@
 <!--For list of students-->
 
-<div mat-subheader>
-  <h2> Student-List</h2>
+<div mat-subheader >
+  <h2>Student-List</h2>
 </div>
 <div class="container">
-<mat-card *ngFor="let student of students" class="detail" style="display: flex;flex-direction: row;">
-  <mat-card-content style="width: 100%;">
+<mat-card *ngFor="let student of students" class="detail"  (click)="openDialog(student)">
+  <mat-card-content >
     <mat-list>
       <mat-list-item>
         <img matListAvatar [src]="student.imgUrl" alt="img of {{student.name}}">
@@ -17,9 +17,5 @@
     </mat-list>
 
   </mat-card-content>
-  <mat-card-actions align="end">
-    
-  <button mat-button color="primary" (click)="openDialog()" style="position: absolute;bottom: 5px;">Click </button>
-  </mat-card-actions>
 </mat-card>
 </div>

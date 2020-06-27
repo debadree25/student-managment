@@ -31,6 +31,7 @@ import { StudentDetailComponent } from './student-detail/student-detail.componen
     BrowserAnimationsModule,RouterModule,FormsModule,ReactiveFormsModule
   ],
   providers: [],
+  entryComponents:[StudentDetailComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
