@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { StudentService } from '../students.service';
-import { Student } from '../student.model';
+import { Student } from '../models/student.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ImageSnippet } from '../image.model';
+import { RestService } from '../services/rest.service';
 
 declare var previewFile: any;
 
@@ -13,7 +13,7 @@ declare var previewFile: any;
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent implements OnInit {
-  constructor(private studentService: StudentService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private router: Router, private route: ActivatedRoute, private rest: RestService) { }
 
   url: ArrayBuffer;
   student: Student;
@@ -46,30 +46,34 @@ export class CreateComponent implements OnInit {
       //console.log(event.target.result);
       //console.log(this.selectedFile.file);
 
-      this.studentService.uploadImage(this.selectedFile.file);
+      //this.studentService.uploadImage(this.selectedFile.file);
     });
 
     console.log(reader.readAsDataURL(file));
   }
 
-  onSubmit(f: NgForm) {
+  async onSubmit(f: NgForm) {
     const value = f.value;
-    console.log(value.name);
-    this.studentService.addStudents(
-      {
-        name: value.name,
-        imgUrl: value.img,
-        address: value.address,
-        graduateYear: value.passoutYear,
-        stream: value.stream,
-        year: value.year,
-        email: value.email,
-        contactNo: value.contactNo
-
-
-      })
+    console.log(value);
+    const { name, department, address, joining_year, year, passing_year, email, phone } = value;
+    const student: Student = {
+      name,
+      department,
+      address,
+      joining_year: parseInt(joining_year),
+      year: parseInt(year),
+      passing_year: parseInt(passing_year),
+      email,
+      phone
+    };
+    console.log(student);
+    const resp = await this.rest.addStudent(student);
+    if (resp.status) {
+      alert('New student added');
+    }
+    else {
+      alert('New student not added');
+    }
     this.router.navigate([''], { relativeTo: this.route });
-
-
   }
 }

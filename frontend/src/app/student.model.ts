@@ -1,4 +1,4 @@
-import { ImageSnippet } from './image.model';
+import { ImageSnippet } from './models/image.model';
 
 export interface Student {
     imgUrl:string;
