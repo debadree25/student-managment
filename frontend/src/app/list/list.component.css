@@ -1,27 +1,28 @@
-mat-list{
-    margin-top: 1%;
+mat-list {
+  margin-top: 1%;
 }
-.container{
+.container {
+  display: flex;
+  margin-top: 0;
+}
+
+.detail {
+  margin: 1.2%;
+  width: 30%;
+}
+
+.detail:hover {
+  box-shadow: 0 0 15px rgba(33, 33, 33, 0.2);
+}
+
+@media only screen and (max-width: 800px) {
+  .container {
     display: flex;
-    margin-top:0;
-}
+    flex-direction: column;
+  }
 
-.detail{
-    margin:1.2%;
-    width:30%;
-}
-
-@media only screen and (max-width:800px){
-
-    .container{
-        display: flex;
-        flex-direction: column;
-    }
-
-    .detail{
-        width: 80%;
-        margin:2% auto;
-    }
-
-
+  .detail {
+    width: 80%;
+    margin: 2% auto;
+  }
 }

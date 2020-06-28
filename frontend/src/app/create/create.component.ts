@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Student } from '../models/student.model';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ImageSnippet } from '../image.model';
+import { ImageSnippet } from '../models/image.model';
 import { RestService } from '../services/rest.service';
 
 declare var previewFile: any;
@@ -19,12 +19,12 @@ export class CreateComponent implements OnInit {
   student: Student;
 
 
-  ngOnInit(): void {
-  }
-
-
 
   selectedFile: ImageSnippet;
+
+
+  ngOnInit(): void {
+  }
 
   func() {
     new previewFile();
@@ -32,7 +32,7 @@ export class CreateComponent implements OnInit {
   processFile(imageInput: any) {
     const file: File = imageInput.files[0];
     console.log(imageInput.files[0]);
-    //console.log(imageInput.files[1]);
+    // console.log(imageInput.files[1]);
 
     const reader = new FileReader();
 
@@ -42,10 +42,10 @@ export class CreateComponent implements OnInit {
         src: event.target.result,
         file: file
       };
-      //console.log(event.target.result);
-      //console.log(this.selectedFile.file);
+      // console.log(event.target.result);
+      // console.log(this.selectedFile.file);
 
-      //this.studentService.uploadImage(this.selectedFile.file);
+      // this.studentService.uploadImage(this.selectedFile.file);
     });
 
     console.log(reader.readAsDataURL(file));
@@ -59,9 +59,9 @@ export class CreateComponent implements OnInit {
       name,
       department,
       address,
-      joining_year: parseInt(joining_year),
-      year: parseInt(year),
-      passing_year: parseInt(passing_year),
+      joining_year: parseInt(joining_year, 10),
+      year: parseInt(year, 10),
+      passing_year: parseInt(passing_year, 10),
       email,
       phone
     };

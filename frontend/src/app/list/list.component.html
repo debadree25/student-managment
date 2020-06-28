@@ -1,45 +1,24 @@
 <!--For list of students-->
-
-<<<<<<< HEAD
-<div>
-  <h1 style="padding-left: 8px;">Students</h1>
-</div>
 <div class="container">
-  <mat-card *ngFor="let student of students" class="detail" style="display: flex;flex-direction: row;">
-    <mat-card-content style="width: 100%;">
+  <mat-card *ngFor="let student of students" class="detail" appMaterialElevation>
+    <mat-card-content>
       <mat-list>
         <mat-list-item>
           <img matListAvatar src="https://wprdea.org/image/img_avatar.png" alt="img of {{student.name}}">
-          <div mat-line>{{student.name}}</div>
+          <div mat-line><strong>{{student.name}}</strong></div>
           <div mat-line> {{student.department | uppercase}} </div>
+          <div mat-line>{{student.year}}</div>
           <div mat-line> {{student.passing_year +" Batch" }}</div>
         </mat-list-item>
-
       </mat-list>
     </mat-card-content>
-    <mat-card-actions align="end">
-      <button mat-button color="primary" (click)="openDialog(student)" style="position: absolute;bottom: 5px;">Details</button>
+    <mat-card-actions>
+      <button mat-button (click)="openDialog(student)">Details</button>
+      <button mat-button>Edit</button>
     </mat-card-actions>
+    <!-- <mat-card-actions align="end">
+      <button mat-button color="primary" (click)="openDialog(student)">Details</button>
+      <button mat-raised-button color="secondary">Edit</button>
+    </mat-card-actions> -->
   </mat-card>
 </div>
-=======
-<div mat-subheader >
-  <h2>Student-List</h2>
-</div>
-<div class="container">
-<mat-card *ngFor="let student of students" class="detail"  (click)="openDialog(student)">
-  <mat-card-content >
-    <mat-list>
-      <mat-list-item>
-        <img matListAvatar [src]="student.imgUrl" alt="img of {{student.name}}">
-        <div mat-line>{{student.name}}</div>
-        <div mat-line> {{student.stream | uppercase}} </div>
-        <div mat-line> {{student.year +" Year" }}</div>
-      </mat-list-item>
-
-    </mat-list>
-
-  </mat-card-content>
-</mat-card>
-</div>
->>>>>>> 56dd0db02cc15813f76e312ed99bcfe2dd7dc744
