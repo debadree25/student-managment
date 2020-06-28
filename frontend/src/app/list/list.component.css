@@ -3,9 +3,25 @@ mat-list{
 }
 .container{
     display: flex;
+    margin-top:0;
 }
 
 .detail{
     margin:1.2%;
     width:30%;
+}
+
+@media only screen and (max-width:800px){
+
+    .container{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .detail{
+        width: 80%;
+        margin:2% auto;
+    }
+
+
 }

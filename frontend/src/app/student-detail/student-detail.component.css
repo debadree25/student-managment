@@ -1,0 +1,33 @@
+.icon{
+    
+   float:right;
+}
+button{
+    padding:0;
+    margin:0;
+}
+.icon mat-icon{
+    margin:5px;
+}
+button{
+    background: transparent;
+    outline: none;
+    border:none;
+    margin:1px;
+}
+.container{
+    width:400px;
+    
+}
+#profile{
+    height:150px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:50%;
+}
+.content{
+
+    display:block;
+    margin:15px auto;
+}

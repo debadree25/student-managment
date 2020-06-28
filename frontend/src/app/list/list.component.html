@@ -1,5 +1,6 @@
 <!--For list of students-->
 
+<<<<<<< HEAD
 <div>
   <h1 style="padding-left: 8px;">Students</h1>
 </div>
@@ -21,3 +22,24 @@
     </mat-card-actions>
   </mat-card>
 </div>
+=======
+<div mat-subheader >
+  <h2>Student-List</h2>
+</div>
+<div class="container">
+<mat-card *ngFor="let student of students" class="detail"  (click)="openDialog(student)">
+  <mat-card-content >
+    <mat-list>
+      <mat-list-item>
+        <img matListAvatar [src]="student.imgUrl" alt="img of {{student.name}}">
+        <div mat-line>{{student.name}}</div>
+        <div mat-line> {{student.stream | uppercase}} </div>
+        <div mat-line> {{student.year +" Year" }}</div>
+      </mat-list-item>
+
+    </mat-list>
+
+  </mat-card-content>
+</mat-card>
+</div>
+>>>>>>> 56dd0db02cc15813f76e312ed99bcfe2dd7dc744
