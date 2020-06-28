@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
-import { Student } from '../student.model'
-import { StudentService } from '../students.service';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Student } from '../models/student.model';
+import { RestService } from '../services/rest.service';
 
 @Component({
   selector: 'app-list',
@@ -10,30 +10,41 @@ import { StudentService } from '../students.service';
 })
 export class ListComponent implements OnInit {
 
-  constructor(private studentService: StudentService,public dialog: MatDialog) { }
-
-  students: Student[];
-  ngOnInit(): void {
-
-    this.students=this.studentService.getStudents();
-
+  constructor(
+              public dialog: MatDialog,
+              private rest: RestService) {
+    this.fetchData();
   }
 
+  students: Student[];
 
-  openDialog() {
-    const dialogRef = this.dialog.open( DialogElementsExampleDialog);
+  ngOnInit(): void {
+  }
+
+  async fetchData() {
+    const resp = await this.rest.getAllStudents();
+    this.students = resp.data;
+  }
+
+  openDialog(student: Student) {
+    const dialogRef = this.dialog.open(AppListDialogComponent, {
+      data: student
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
   }
 }
-  @Component({
-    selector: 'dialog-elements-example-dialog',
-  templateUrl: 'dialog-elements-example-dialog.html',
-  })
-  export class DialogElementsExampleDialog {}
+@Component({
+  selector: 'app-list-dialog',
+  templateUrl: 'list-dialog.component.html',
+})
+export class AppListDialogComponent {
+  constructor(public dialogRef: MatDialogRef<AppListDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: Student) {
+  }
+}
 
-  
+
 
 

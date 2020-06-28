@@ -11,9 +11,10 @@ import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ListComponent } from './list/list.component';
+import { ListComponent, AppListDialogComponent } from './list/list.component';
 import { CreateComponent } from './create/create.component';
 import { StudentDetailComponent } from './student-detail/student-detail.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,11 +25,13 @@ import { StudentDetailComponent } from './student-detail/student-detail.componen
     ListComponent,
     CreateComponent,
     StudentDetailComponent,
+    AppListDialogComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,MaterialModule,
-    BrowserAnimationsModule,RouterModule,FormsModule,ReactiveFormsModule
+    AppRoutingModule, MaterialModule,
+    BrowserAnimationsModule, RouterModule, FormsModule, ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
