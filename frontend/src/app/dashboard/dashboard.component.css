@@ -4,9 +4,9 @@
     margin: 20px auto;
 }
 
-mat-card{
+/* mat-card{
     background-color: peachpuff;
-}
+} */
 
 .student-card:hover{
     box-shadow: 0 0 15px rgba(33,33,33,.2); 

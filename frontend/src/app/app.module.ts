@@ -8,13 +8,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router, RouterEvent, NavigationEnd } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListComponent, AppListDialogComponent } from './list/list.component';
 import { CreateComponent } from './create/create.component';
 import { StudentDetailComponent } from './student-detail/student-detail.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RoutesService } from './services/routes.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,19 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule
   ],
   providers: [],
-  entryComponents:[StudentDetailComponent],
+  entryComponents: [StudentDetailComponent],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(
+    private readonly router: Router,
+    private routes: RoutesService
+  ) {
+    router.events
+      .subscribe((event: RouterEvent) => {
+        if (event instanceof NavigationEnd) {
+          this.routes.setRoute(event.url);
+        }
+      });
+  }
+}

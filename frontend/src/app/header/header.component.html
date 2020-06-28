@@ -43,13 +43,12 @@
                 <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
             </button>
             <div>
-                <span *ngIf="href=='/'">Dashboard</span>
-                <span *ngIf="href=='/user'">User Profile</span>
-                <span *ngIf="href=='/list'">Students List</span>
-                <span *ngIf="href=='/settings'">Settings</span>
-                <span *ngIf="href=='/help'">Help</span>
-                <span *ngIf="href=='/newStudent'"></span>
-
+                <span *ngIf="routes.route=='/'">Dashboard</span>
+                <span *ngIf="routes.route=='/user'">User Profile</span>
+                <span *ngIf="routes.route=='/list'">Students List</span>
+                <span *ngIf="routes.route=='/settings'">Settings</span>
+                <span *ngIf="routes.route=='/help'">Help</span>
+                <span *ngIf="routes.route=='/newStudent'"></span>
             </div>
 
             <mat-form-field>

@@ -1,5 +1,5 @@
 
-  <mat-card class="student-card" appMaterialElevation>
+   <mat-card class="student-card" appMaterialElevation>
     <mat-card-header>
       <mat-card-title>Total Students</mat-card-title>
       <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
@@ -7,45 +7,10 @@
     <img mat-card-image src="" alt="">
     <mat-card-content>
       <p>
-        Total Students
+        Total Students: {{len}}
       </p>
     </mat-card-content>
     <mat-card-actions align="end">
-      <button mat-raised-button color="primary" (click)="onClick()">Click</button>
-    </mat-card-actions>
-  </mat-card>
-  
-  <mat-card class="student-card" appMaterialElevation>
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Total Students</mat-card-title>
-      <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
-    </mat-card-header>
-    <img mat-card-image src="" alt="">
-    <mat-card-content>
-      <p>
-        Total Students
-      </p>
-    </mat-card-content>
-    <mat-card-actions align="end">
-      <button mat-raised-button color="primary" (click)="onClick()">Click</button>
-    </mat-card-actions>
-  </mat-card>
-  
-  
-  <mat-card class="student-card" appMaterialElevation>
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Total Students</mat-card-title>
-      <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
-    </mat-card-header>
-    <img mat-card-image src="" alt="">
-    <mat-card-content>
-      <p>
-        Total Students
-      </p>
-    </mat-card-content>
-    <mat-card-actions align="end">
-      <button mat-raised-button color="primary" (click)="onClick()">Click</button>
+      <button mat-raised-button color="primary" [routerLink]="['/list']">View All</button>
     </mat-card-actions>
   </mat-card>

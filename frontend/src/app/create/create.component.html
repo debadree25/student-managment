@@ -1,4 +1,4 @@
-<div class="newForm">
+<<div class="newForm">
     <mat-card class="mat-elevation-z8">
         <mat-card-subtitle>*All Fields Are Required</mat-card-subtitle>
         <form #f="ngForm" name="form" (ngSubmit)="onSubmit(f)">
@@ -78,11 +78,6 @@
 
             </div>
 
-<<<<<<< HEAD
-        <mat-card-actions align="end">
-            <button type="submit" [disabled]="!f.valid"  mat-raised-button color="primary">{{editmode ? 'Update And Save' : 'Save' }}</button>
-=======
->>>>>>> b8172b3e7d973d8c90ebf0422458c98610ade61c
 
             <mat-card-actions align="end">
                 <button type="submit" [disabled]="!f.valid" mat-raised-button color="primary">Save</button>

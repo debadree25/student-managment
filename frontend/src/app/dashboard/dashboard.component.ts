@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { StudentService } from '../students.service';
-import { Student } from '../student.model';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { Student } from '../models/student.model';
+import { RestService } from '../services/rest.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,20 +9,28 @@ import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  students: Student[];
+  len = 0;
+  constructor(private rest: RestService) {
+    this.fetchData();
+  }
 
-  constructor(private studentService:StudentService) { }
-
-  students:Student[];
-  buttonClickd=false;
+  // students:Student[];
+  // buttonClickd=false;
 
   ngOnInit(): void {
   }
 
-  onClick(){
-    this.buttonClickd=true;
-    this.students=this.studentService.getStudents();
-    console.log(this.students);
-    
+  async fetchData() {
+    const resp = await this.rest.getAllStudents();
+    this.students = resp.data;
+    this.len = this.students.length;
   }
+
+  // onClick(){
+  //   this.buttonClickd=true;
+  //   this.students=this.studentService.getStudents();
+  //   console.log(this.students);
+  // }
 
 }

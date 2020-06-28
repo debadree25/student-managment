@@ -8,7 +8,7 @@ export class StudentService {
 
     studentsUpdated = new Subject<Student[]>();
     startedEditing = new Subject<number>();
-    
+
     private students: Student[] = [
         {
             name: 'Debadree Chatterjee',
@@ -50,10 +50,7 @@ export class StudentService {
     }
 
     addStudents(student: Student) {
-<<<<<<< HEAD
 
-=======
->>>>>>> b8172b3e7d973d8c90ebf0422458c98610ade61c
         this.students.push({
             name: student.name,
             imgUrl: student.imgUrl,
@@ -79,20 +76,13 @@ export class StudentService {
 
     }
 
-<<<<<<< HEAD
     deleteStudent(id: number) {
 
         this.students.splice(id, 1);
         this.studentsUpdated.next(this.students.slice());
 
     }
-=======
-    uploadImage(file: File) {
-        console.log("compiled");
 
-    }
-
->>>>>>> b8172b3e7d973d8c90ebf0422458c98610ade61c
 
 }
 
