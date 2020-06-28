@@ -17,6 +17,7 @@ export class CreateComponent implements OnInit {
 
   url: ArrayBuffer;
   student: Student;
+  editmode=false;
 
 
   ngOnInit(): void {
@@ -37,7 +38,7 @@ export class CreateComponent implements OnInit {
     const reader = new FileReader();
 
     reader.addEventListener('load', (event: any) => {
-
+      
       this.selectedFile = {
         src: event.target.result,
         file: file

@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { StudentService } from '../students.service';
+import { Student } from '../student.model';
 
 
 
@@ -15,8 +16,9 @@ import { StudentService } from '../students.service';
 
 export class StudentDetailComponent implements OnInit {
 
-editmode=false;
-id:number;
+  editmode = false;
+  id: number;
+  student: Student;
   name: string = ""
   stream: string = ""
   year: string = ""
@@ -27,7 +29,7 @@ id:number;
   graduateYear: string = ""
   constructor(
 
-    private dialogRef: MatDialogRef<StudentDetailComponent>,private route:Router,private router:ActivatedRoute,  private studentService:StudentService,
+    private dialogRef: MatDialogRef<StudentDetailComponent>, private route: Router, private router: ActivatedRoute, private studentService: StudentService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
 
     if (data) {
@@ -57,19 +59,34 @@ id:number;
     this.dialogRef.close();
   }
 
-  onEdit(){
-    this.editmode=true;
-    this.route.navigate(['/newStudent']);
+  onEdit() {
+    this.editmode = true;
+    this.student = {
+      imgUrl: this.imgUrl,
+      name: this.name,
+      stream: this.stream,
+      year:this.year,
+      email: this.email,
+      contactNo:this.phone,
+      address:this.address,
+      graduateYear:this.graduateYear
+
+
+    }
+
+    if(this.editmode){
+    this.studentService.updateStudents(this.id,this.student);
+    }
     this.onClose();
   }
 
-  onCopy(){
+  onCopy() {
     console.log("copied");
   }
-  onDelete(){  
-    
-    this.studentService.deletePost(this.id);
-    this.route.navigate(['./'],{relativeTo:this.router});
+  onDelete() {
+
+    this.studentService.deleteStudent(this.id);
+    this.route.navigate(['./'], { relativeTo: this.router });
     this.onClose();
   }
 }

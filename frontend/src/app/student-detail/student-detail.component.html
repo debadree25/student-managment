@@ -1,6 +1,6 @@
 <mat-dialog-content class="container">
     <div class="icon">
-        <button><mat-icon style="cursor:pointer;" (click)="onEdit()">create</mat-icon></button>
+        <button [routerLink]="['/editStudent',id]"><mat-icon style="cursor:pointer;" (click)="onEdit()">create</mat-icon></button>
         <button><mat-icon style="cursor:pointer;" (click)="onCopy()">content_copy</mat-icon></button>
         <button><mat-icon style="cursor:pointer;" (click)="onDelete()">delete</mat-icon></button>
     </div>

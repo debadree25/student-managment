@@ -6,7 +6,9 @@ import { Subject } from 'rxjs';
 
 export class StudentService {
 
-
+    studentsUpdated = new Subject<Student[]>();
+    startedEditing = new Subject<number>();
+    
     private students: Student[] = [
         {
             name: 'Debadree Chatterjee',
@@ -41,13 +43,14 @@ export class StudentService {
 
     ];
 
-    studentsUpdated = new Subject<Student[]>();
+
 
     getStudents() {
         return [...this.students];
     }
 
     addStudents(student: Student) {
+
         this.students.push({
             name: student.name,
             imgUrl: student.imgUrl,
@@ -63,12 +66,17 @@ export class StudentService {
         this.studentsUpdated.next([...this.students]);
     }
 
+    updateStudents(index: number, student: Student) {
+        console.log("edited");
+
+    }
+
     uploadImage(file: File) {
         console.log("compiled");
 
     }
 
-    deletePost(id: number) {
+    deleteStudent(id: number) {
 
         this.students.splice(id, 1);
         this.studentsUpdated.next(this.students.slice());
