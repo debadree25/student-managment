@@ -66,12 +66,14 @@ router.delete("/:id", async (req, res) => {
 });
 
 router.post("/create", async (req, res) => {
-    console.log(req.body);
-    const { name, department, joining_year, passing_year, email, phone, socials } = req.body;
+    //console.log(req.body);
+    const { name, department, address, joining_year, year, passing_year, email, phone, socials } = req.body;
     const student = Student({
         name,
         department,
+        address,
         joining_year,
+        year,
         passing_year,
         email,
         phone,
