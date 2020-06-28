@@ -2,7 +2,8 @@ import { Component, OnInit, Inject } from '@angular/core';
 
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { StudentService } from '../students.service';
 
 
 
@@ -14,7 +15,8 @@ import { Router } from '@angular/router';
 
 export class StudentDetailComponent implements OnInit {
 
-
+editmode=false;
+id:number;
   name: string = ""
   stream: string = ""
   year: string = ""
@@ -25,7 +27,7 @@ export class StudentDetailComponent implements OnInit {
   graduateYear: string = ""
   constructor(
 
-    private dialogRef: MatDialogRef<StudentDetailComponent>,private route:Router,
+    private dialogRef: MatDialogRef<StudentDetailComponent>,private route:Router,private router:ActivatedRoute,  private studentService:StudentService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
 
     if (data) {
@@ -56,7 +58,18 @@ export class StudentDetailComponent implements OnInit {
   }
 
   onEdit(){
+    this.editmode=true;
     this.route.navigate(['/newStudent']);
-    this.dialogRef.close();
+    this.onClose();
+  }
+
+  onCopy(){
+    console.log("copied");
+  }
+  onDelete(){  
+    
+    this.studentService.deletePost(this.id);
+    this.route.navigate(['./'],{relativeTo:this.router});
+    this.onClose();
   }
 }
