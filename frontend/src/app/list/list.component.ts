@@ -2,7 +2,8 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Student } from '../models/student.model';
 import { RestService } from '../services/rest.service';
-
+import { StudentDetailComponent } from '../student-detail/student-detail.component';
+  
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -27,7 +28,7 @@ export class ListComponent implements OnInit {
   }
 
   openDialog(student: Student) {
-    const dialogRef = this.dialog.open(AppListDialogComponent, {
+    const dialogRef = this.dialog.open(StudentDetailComponent, {
       data: student
     });
 
@@ -36,14 +37,14 @@ export class ListComponent implements OnInit {
     });
   }
 }
-@Component({
-  selector: 'app-list-dialog',
-  templateUrl: 'list-dialog.component.html',
-})
-export class AppListDialogComponent {
-  constructor(public dialogRef: MatDialogRef<AppListDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: Student) {
-  }
-}
+// @Component({
+//   selector: 'app-list-dialog',
+//   templateUrl: 'list-dialog.component.html',
+// })
+// export class AppListDialogComponent {
+//   constructor(public dialogRef: MatDialogRef<AppListDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: Student) {
+//   }
+// }
 
 
     // const dialogRef = this.dialog.open(StudentDetailComponent, {

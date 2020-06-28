@@ -1,5 +1,5 @@
 
-   <mat-card class="student-card" appMaterialElevation>
+   <mat-card class="student-card" appMaterialElevation [routerLink]="['/list']">
     <mat-card-header>
       <mat-card-title>Total Students</mat-card-title>
       <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
@@ -11,6 +11,6 @@
       </p>
     </mat-card-content>
     <mat-card-actions align="end">
-      <button mat-raised-button color="primary" [routerLink]="['/list']">View All</button>
+      <button mat-raised-button color="primary" >View All</button>
     </mat-card-actions>
   </mat-card>

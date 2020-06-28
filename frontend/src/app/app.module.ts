@@ -11,7 +11,7 @@ import { FooterComponent } from './footer/footer.component';
 import { RouterModule, Router, RouterEvent, NavigationEnd } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ListComponent, AppListDialogComponent } from './list/list.component';
+import { ListComponent} from './list/list.component';
 import { CreateComponent } from './create/create.component';
 import { StudentDetailComponent } from './student-detail/student-detail.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -26,7 +26,6 @@ import { RoutesService } from './services/routes.service';
     ListComponent,
     CreateComponent,
     StudentDetailComponent,
-    AppListDialogComponent
   ],
   imports: [
     BrowserModule,
