@@ -10,6 +10,9 @@ import { RestService } from '../services/rest.service';
 })
 export class DashboardComponent implements OnInit {
   students: Student[];
+  years = ['1st Year', '2nd Year', '3rd Year', '4th Year'];
+  streams = ['IT', 'CSE', 'ME', 'ECE' , 'EE'];
+
   len = 0;
   constructor(private rest: RestService) {
     this.fetchData();

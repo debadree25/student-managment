@@ -17,6 +17,8 @@ import { StudentDetailComponent } from './student-detail/student-detail.componen
 import { HttpClientModule } from '@angular/common/http';
 import { RoutesService } from './services/routes.service';
 
+import { MaterialElevationDirective } from './material-elevation.directive';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +28,7 @@ import { RoutesService } from './services/routes.service';
     ListComponent,
     CreateComponent,
     StudentDetailComponent,
+    MaterialElevationDirective
   ],
   imports: [
     BrowserModule,

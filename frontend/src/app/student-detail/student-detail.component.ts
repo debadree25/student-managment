@@ -1,11 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
-
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { StudentService } from '../students.service';
 //import { Student } from '../student.model';
-import {Student} from '../models/student.model';
+import { Student } from '../models/student.model';
 
 
 
@@ -18,27 +17,33 @@ import {Student} from '../models/student.model';
 export class StudentDetailComponent implements OnInit {
 
   editmode = false;
+  student: Student;
   id: number;
-  
+
   constructor(
 
-    private dialogRef: MatDialogRef<StudentDetailComponent>, private route: Router, private router: ActivatedRoute, private studentService: StudentService,
-    @Inject(MAT_DIALOG_DATA) public data: Student) {
+    private dialogRef: MatDialogRef<StudentDetailComponent>,
+    private route: Router, private router: ActivatedRoute,
+    private studentService: StudentService,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
 
-    
+    this.student = data.studentData;
+    this.id = data.id;
+
+
   }
 
   ngOnInit() {
-
+console.log(this.student,this.id)
   }
 
   save() {
-    //console.log(this.description)
-    console.log("saved");
+    //console.log(this.descriptFion)
+    console.log('saved');
   }
 
   onClose() {
-    console.log("closed")
+    console.log('closed');
     this.dialogRef.close();
   }
 
@@ -46,8 +51,8 @@ export class StudentDetailComponent implements OnInit {
     this.editmode = true;
   }
 
-  onCopy(){
-    console.log("copied")
+  onCopy() {
+    console.log('copied');
   }
 
   onDelete() {

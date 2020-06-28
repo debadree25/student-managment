@@ -1,13 +1,32 @@
 .student-card{
-    width:60%;
-    display: block;
-    margin: 20px auto;
+    width:30%;
+    display:block;
+    cursor: pointer;
+    margin:2% auto;
 }
+.content{
+    display:block;
+    margin:5px auto;
+}
+.year{
 
+    width:20%;
+    display:inline-block;
+    cursor: pointer;
+    margin:1%;
+
+}
+.stream{
+    width:23%;
+    display:inline-block;
+    cursor: pointer;
+    margin:1.5% ;
+
+}
 /* mat-card{
     background-color: peachpuff;
 } */
 
-.student-card:hover{
+/* .student-card:hover{
     box-shadow: 0 0 15px rgba(33,33,33,.2); 
-}
+} */

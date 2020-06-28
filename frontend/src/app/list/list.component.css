@@ -1,28 +1,63 @@
 mat-list {
-    margin-top: 1%;
+  margin-top: 1%;
   }
-  .container {
-    display: flex;
+  /* .container {
     margin-top: 0;
+    cursor: pointer;
+  } */
+  
+  .list {
+   
+    width:100%;
+   }
+   
+   .grid{
+     width:30%;
+   }
+.content{
+  margin:2%;
+}
+  .icon{
+    float:right;
+    position: relative;
+    top:8px;
+    right:20px;
+  }
+
+  .icon button{
+    outline: none;
+    cursor: pointer;
+    border: none;
+    background: transparent;
   }
   
-  .detail {
-    margin: 1.2%;
-    width: 30%;
+  
+  mat-list-item{
+    display: inline;
+    cursor: pointer;
   }
   
-  .detail:hover {
+  /* .detail:hover {
     box-shadow: 0 0 15px rgba(33, 33, 33, 0.2);
-  }
+  } */
   
-  @media only screen and (max-width: 800px) {
-    .container {
-      display: flex;
-      flex-direction: column;
+  @media only screen and (max-width: 600px) {
+    
+    .content{
+      margin-top: 40px;
     }
   
-    .detail {
-      width: 80%;
-      margin: 2% auto;
+    .grid{
+      width:100%;
+    }
+  }
+
+  @media only screen and (max-width: 800px) {
+    
+  .content{
+    margin-top:40px;
+  }
+    .grid{
+      width:40%;
     }
   }

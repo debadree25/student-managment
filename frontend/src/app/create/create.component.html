@@ -1,6 +1,6 @@
-<<div class="newForm">
+<div class="newForm">
     <mat-card class="mat-elevation-z8">
-        <mat-card-subtitle>*All Fields Are Required</mat-card-subtitle>
+        <mat-card-subtitle>*All fields are required</mat-card-subtitle>
         <form #f="ngForm" name="form" (ngSubmit)="onSubmit(f)">
             <mat-form-field>
 
@@ -8,43 +8,33 @@
 
                 <mat-error *ngIf="name.invalid && name.touched">This field is required!</mat-error>
             </mat-form-field>
-            <div style="margin-top: 1% ;">
-                <span>Year:</span>
-                <mat-radio-group aria-label="Select an option" #year=ngModel ngModel name="year">
-                    <mat-radio-button value="1" style="padding: 2%;">1</mat-radio-button>
-                    <mat-radio-button value="2" style="padding: 2%;">2</mat-radio-button>
-                    <mat-radio-button value="3" style="padding: 2%;">3</mat-radio-button>
-                    <mat-radio-button value="4" style="padding: 2%;">4</mat-radio-button>
-                </mat-radio-group>
-            </div>
-            <br>
 
-            <div style="margin-bottom: 1%;">
-                <span>Department:</span>
-                <mat-radio-group aria-label="Select an option" #stream=ngModel ngModel required name="department">
-                    <mat-radio-button value="IT" style="padding: 2%;">IT</mat-radio-button>
-                    <mat-radio-button value="CSE" style="padding: 2%;">CSE</mat-radio-button>
-                    <mat-radio-button value="ME" style="padding: 2%;">ME</mat-radio-button>
-                    <mat-radio-button value="ECE" style="padding: 2%;">ECE</mat-radio-button>
-                    <mat-radio-button value="EE" style="padding: 2%;">EE</mat-radio-button>
-                </mat-radio-group>
-            </div>
+            <div style="display: flex;">
+            <mat-form-field style="margin-right:3%;width:20%">
+                <mat-label>Year:</mat-label>
+                <mat-select #year=ngModel ngModel name="year">
+                    <mat-option value="1">1</mat-option>
+                    <mat-option value="2">2</mat-option>
+                    <mat-option value="3">3</mat-option>
+                    <mat-option value="4">4</mat-option>
+                </mat-select>
+            </mat-form-field>
 
-            <mat-form-field>
-                <textarea matInput placeholder="Address" type="text" rows="2" #add=ngModel ngModel required
-                    name="address"></textarea>
-                <mat-error *ngIf="add.invalid && add.touched">This field is required!</mat-error>
+            <mat-form-field style="width: 20%;">
+                <mat-label>Department:</mat-label>
+
+                <mat-select #stream=ngModel ngModel required name="department">
+                    <mat-option value="IT">IT</mat-option>
+                    <mat-option value="CSE">CSE</mat-option>
+                    <mat-option value="ECE">ECE</mat-option>
+                    <mat-option value="EE">EE</mat-option>
+                    <mat-option value="ME">ME</mat-option>
+                </mat-select>
             </mat-form-field>
-            <mat-form-field>
-                <input matInput placeholder="Contact No." type="number" #phone=ngModel ngModel name="phone"
-                    required>
-                <mat-error *ngIf="phone.invalid && phone.touched">This field is required!</mat-error>
-            </mat-form-field>
-            <mat-form-field>
-                <input matInput placeholder="Email" type="email" name="email" #email=ngModel ngModel required>
-                <mat-error *ngIf="email.invalid && email.touched">This field is required!</mat-error>
-            </mat-form-field>
-            <mat-form-field>
+        </div>
+
+        <div style="display:flex">
+            <mat-form-field style="margin-right:3%;width:25%">
                 <mat-label>Joining Year</mat-label>
                 <mat-select #pass=ngModel ngModel required name="joining_year">
                     <mat-option value="2016">2016</mat-option>
@@ -55,7 +45,9 @@
                 </mat-select>
                 <mat-error *ngIf="pass.invalid && pass.touched">This field is required!</mat-error>
             </mat-form-field>
-            <mat-form-field>
+
+
+            <mat-form-field style="width: 25%;" >
                 <mat-label>Graduation Year</mat-label>
                 <mat-select #pass=ngModel ngModel required name="passing_year">
                     <mat-option value="2020">2020</mat-option>
@@ -66,6 +58,28 @@
                 </mat-select>
                 <mat-error *ngIf="pass.invalid && pass.touched">This field is required!</mat-error>
             </mat-form-field>
+        </div>
+
+
+            <mat-form-field>
+                <textarea matInput placeholder="Address" type="text" rows="2" #add=ngModel ngModel required
+                    name="address"></textarea>
+                <mat-error *ngIf="add.invalid && add.touched">This field is required!</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="Contact No." type="number" #phone=ngModel ngModel name="phone" required>
+                <mat-error *ngIf="phone.invalid && phone.touched">This field is required!</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="Email" type="email" name="email" #email=ngModel ngModel required>
+                <mat-error *ngIf="email.invalid && email.touched">This field is required!</mat-error>
+            </mat-form-field>
+
+
+            
+
             <label>Upload your image:</label>
             <br>
             <div style="margin-top:2%;">

@@ -1,16 +1,60 @@
+<mat-card class="student-card" appMaterialElevation [routerLink]="['/list']">
+  <mat-card-header style="display: block;margin:0 30%;position: relative;">
+    <mat-card-title>Total Students</mat-card-title>
+    <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+  </mat-card-header>
+  <!-- <img mat-card-image src="" alt=""> -->
+  <mat-card-content style="display: block;margin:0 30%;position: relative;">
+    <p>
+      Count: <span class="mat-display-1">
+        {{len}}
+      </span>
+    </p>
+  </mat-card-content>
+  <!-- <mat-card-actions align="end">
+      <button mat-raised-button color="primary" >View All</button>
+    </mat-card-actions> -->
+</mat-card>
+<hr>
 
-   <mat-card class="student-card" appMaterialElevation [routerLink]="['/list']">
-    <mat-card-header>
-      <mat-card-title>Total Students</mat-card-title>
+<div class="content">
+  <mat-card class="stream" *ngFor="let stream of streams" appMaterialElevation [routerLink]="['/list/:stream']">
+    <mat-card-header style="display:block;margin:0 2.5%;position: relative;">
+      <mat-card-title>Total Students in {{stream}}</mat-card-title>
       <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
     </mat-card-header>
-    <img mat-card-image src="" alt="">
-    <mat-card-content>
+    <!-- <img mat-card-image src="" alt=""> -->
+    <mat-card-content style="display: block;margin:0 29%;position: relative;">
       <p>
-        Total Students: {{len}}
+        Count: <span class="mat-display-1">
+          {{len}}
+        </span>
       </p>
     </mat-card-content>
-    <mat-card-actions align="end">
+    <!-- <mat-card-actions align="end">
       <button mat-raised-button color="primary" >View All</button>
-    </mat-card-actions>
+    </mat-card-actions> -->
   </mat-card>
+</div>
+<hr>
+
+<div class="content">
+
+  <mat-card class="year" *ngFor="let year of years" appMaterialElevation [routerLink]="['/list/:year']">
+    <mat-card-header style="display: block;margin:0 0.4%;position: relative;">
+      <mat-card-title>Total Students in {{year}}</mat-card-title>
+      <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+    </mat-card-header>
+    <!-- <img mat-card-image src="" alt=""> -->
+    <mat-card-content style="display: block;margin:0 33%;position: relative;">
+      <p>
+        Count: <span class="mat-display-1">
+          {{len}}
+        </span>
+      </p>
+    </mat-card-content>
+    <!-- <mat-card-actions align="end">
+      <button mat-raised-button color="primary" >View All</button>
+    </mat-card-actions> -->
+  </mat-card>
+</div>

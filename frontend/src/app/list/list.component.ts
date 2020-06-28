@@ -3,7 +3,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { Student } from '../models/student.model';
 import { RestService } from '../services/rest.service';
 import { StudentDetailComponent } from '../student-detail/student-detail.component';
-  
+
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -12,12 +12,13 @@ import { StudentDetailComponent } from '../student-detail/student-detail.compone
 export class ListComponent implements OnInit {
 
   constructor(
-              public dialog: MatDialog,
-              private rest: RestService) {
+    public dialog: MatDialog,
+    private rest: RestService) {
     this.fetchData();
   }
 
   students: Student[];
+  listView: boolean = true;
 
   ngOnInit(): void {
   }
@@ -27,9 +28,13 @@ export class ListComponent implements OnInit {
     this.students = resp.data;
   }
 
-  openDialog(student: Student) {
+  openDialog(student: Student, index: number) {
+    console.log(index);
     const dialogRef = this.dialog.open(StudentDetailComponent, {
-      data: student
+      data: {
+        studentData: student,
+        id: index,
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -64,4 +69,3 @@ export class ListComponent implements OnInit {
       // dialogRef.afterClosed().subscribe(result => {
       //   console.log(`Dialog result: ${result}`);
       // });
-    

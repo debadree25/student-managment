@@ -13,10 +13,12 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import {MatRippleModule} from '@angular/material/core';
 
 
 const materialComponents = [
   MatButtonModule,
+  MatRippleModule,
   MatButtonToggleModule,
   MatIconModule,
   MatDialogModule,
