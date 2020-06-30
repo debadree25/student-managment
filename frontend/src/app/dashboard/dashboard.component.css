@@ -1,3 +1,10 @@
+#chart{
+display:block;
+width:400px;
+height:200px;
+}
+
+
 .student-card{
     width:30%;
     display:block;

@@ -96,5 +96,8 @@ export class ActionComponent {
   onYes(){
     this.dialogRef.close({data:"editing"})
   }
+  onDelete(){
+    console.log("deleted")
+  }
  }
 
