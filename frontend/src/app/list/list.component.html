@@ -26,8 +26,9 @@
       <mat-list>
         <mat-list-item>
           <img matListAvatar src="https://wprdea.org/image/img_avatar.png" alt="img of {{student.name}}">
-          <div mat-line>{{student.name}}</div>
+          <div mat-line><strong>{{student.name}}</strong></div>
           <div mat-line> {{student.department | uppercase}} </div>
+          <div mat-line>{{student.year}}</div>
           <div mat-line> {{student.passing_year +" Batch" }}</div>
         </mat-list-item>
       </mat-list>

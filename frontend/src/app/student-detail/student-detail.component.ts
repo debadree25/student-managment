@@ -34,7 +34,7 @@ export class StudentDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-console.log(this.student,this.id)
+    console.log(this.student, this.id)
   }
 
   save() {
@@ -56,6 +56,6 @@ console.log(this.student,this.id)
   }
 
   onDelete() {
-    this.studentService.deleteStudent(this.id);
+    //this.studentService.deleteStudent(this.id);
   }
 }
