@@ -21,7 +21,9 @@ router.get("", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
+    console.log(req.params.id)
     const student = await Student.findById(req.params.id);
+    console.log(student)
     if (student) {
         res.status(200).json({
             status: true,

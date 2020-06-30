@@ -1,17 +1,17 @@
-<mat-dialog-content class="container">
+<div class="container">
     <div style="display: flex;position:relative;right:5px;font-size:30px;float:right">
-        <button [routerLink]="['/editStudent',id]">
-            <mat-icon style="cursor:pointer;margin-right: 5px;" matRipple matRippleColor="light-grey" class="ripple" (click)="onEdit()">create</mat-icon>
+        <button >
+            <mat-icon style="cursor:pointer;margin-right: 5px;" matTooltip="Edit Details" matRipple matRippleColor="light-grey" class="ripple" (click)="openDialog('Edit')">create</mat-icon>
         </button>
         <button>
-            <mat-icon style="cursor:pointer;margin-right: 5px" matRipple matRippleColor="light-grey" (click)="onCopy()">content_copy</mat-icon>
+            <mat-icon style="cursor:pointer;margin-right: 5px" matTooltip="Copy Details"  matRipple matRippleColor="light-grey" (click)="onCopy()">content_copy</mat-icon>
         </button>
         <button>
-            <mat-icon style="cursor:pointer;margin-right: 5px" matRipple matRippleColor="light-grey" (click)="onDelete()">delete</mat-icon>
+            <mat-icon style="cursor:pointer;margin-right: 5px" matTooltip="Delete Details" matRipple matRippleColor="light-grey" (click)="openDialog('Delete')">delete</mat-icon>
         </button>
 
         <button>
-            <mat-icon style="cursor:pointer;margin-right: 5px" matRipple matRippleColor="light-grey" (click)="onClose()">close</mat-icon>
+            <mat-icon style="cursor:pointer;margin-right: 5px" matTooltip="Close" matRipple matRippleColor="light-grey" (click)="onClose()">close</mat-icon>
         </button>
         
     </div>
@@ -91,7 +91,7 @@
         </mat-list>
 
     </div>
-</mat-dialog-content>
+</div>
 <!-- <mat-dialog-actions align="center">
     <button mat-raised-button color="primary" (click)="onClose()" tabindex="1">Close</button>
 </mat-dialog-actions> -->

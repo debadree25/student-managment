@@ -4,15 +4,15 @@
         <form #f="ngForm" name="form" (ngSubmit)="onSubmit(f)">
             <mat-form-field>
 
-                <input matInput placeholder="Name" type="text" #name=ngModel ngModel name="name" required>
+                <input matInput placeholder="Name" type="text" #name=ngModel [ngModel]="student?.name" name="name" required>
 
                 <mat-error *ngIf="name.invalid && name.touched">This field is required!</mat-error>
             </mat-form-field>
 
             <div style="display: flex;">
             <mat-form-field style="margin-right:3%;width:20%">
-                <mat-label>Year:</mat-label>
-                <mat-select #year=ngModel ngModel name="year">
+                <mat-label>Year</mat-label>
+                <mat-select required #year=ngModel [ngModel]="student?.year" name="year">
                     <mat-option value="1">1</mat-option>
                     <mat-option value="2">2</mat-option>
                     <mat-option value="3">3</mat-option>
@@ -21,9 +21,9 @@
             </mat-form-field>
 
             <mat-form-field style="width: 20%;">
-                <mat-label>Department:</mat-label>
+                <mat-label>Department</mat-label>
 
-                <mat-select #stream=ngModel ngModel required name="department">
+                <mat-select #stream=ngModel [ngModel]="student?.department" required name="department">
                     <mat-option value="IT">IT</mat-option>
                     <mat-option value="CSE">CSE</mat-option>
                     <mat-option value="ECE">ECE</mat-option>
@@ -36,7 +36,7 @@
         <div style="display:flex">
             <mat-form-field style="margin-right:3%;width:25%">
                 <mat-label>Joining Year</mat-label>
-                <mat-select #pass=ngModel ngModel required name="joining_year">
+                <mat-select #pass=ngModel [ngModel]="student?.joining_year" required name="joining_year">
                     <mat-option value="2016">2016</mat-option>
                     <mat-option value="2017">2017</mat-option>
                     <mat-option value="2018">2018</mat-option>
@@ -47,9 +47,9 @@
             </mat-form-field>
 
 
-            <mat-form-field style="width: 25%;" >
-                <mat-label>Graduation Year</mat-label>
-                <mat-select #pass=ngModel ngModel required name="passing_year">
+            <mat-form-field style="width: 30%;" >
+                <mat-label>Expected Year Of Graduation</mat-label>
+                <mat-select #pass=ngModel [ngModel]="student?.passing_year" required name="passing_year">
                     <mat-option value="2020">2020</mat-option>
                     <mat-option value="2021">2021</mat-option>
                     <mat-option value="2022">2022</mat-option>
@@ -62,18 +62,18 @@
 
 
             <mat-form-field>
-                <textarea matInput placeholder="Address" type="text" rows="2" #add=ngModel ngModel required
+                <textarea matInput placeholder="Address" type="text" rows="2" #add=ngModel [ngModel]="student?.address" required
                     name="address"></textarea>
                 <mat-error *ngIf="add.invalid && add.touched">This field is required!</mat-error>
             </mat-form-field>
 
             <mat-form-field>
-                <input matInput placeholder="Contact No." type="number" #phone=ngModel ngModel name="phone" required>
+                <input matInput placeholder="Contact No." type="number" #phone=ngModel [ngModel]="student?.phone" name="phone" required>
                 <mat-error *ngIf="phone.invalid && phone.touched">This field is required!</mat-error>
             </mat-form-field>
 
             <mat-form-field>
-                <input matInput placeholder="Email" type="email" name="email" #email=ngModel ngModel required>
+                <input matInput placeholder="Email" type="email" name="email" #email=ngModel [ngModel]="student?.email" required>
                 <mat-error *ngIf="email.invalid && email.touched">This field is required!</mat-error>
             </mat-form-field>
 
@@ -83,7 +83,7 @@
             <label>Upload your image:</label>
             <br>
             <div style="margin-top:2%;">
-                <input #imageInput type="file" name="img" accept="image/*" onchange="func()"
+                <input #imageInput type="file" name="img" accept="image/*" onchange="func()" [ngModel]="student?.image"
                     (change)="processFile(imageInput)">
                 <br>
                 <div style="margin-top:2%;">
@@ -94,7 +94,7 @@
 
 
             <mat-card-actions align="end">
-                <button type="submit" [disabled]="!f.valid" mat-raised-button color="primary">Save</button>
+                <button type="submit" [disabled]="!f.valid" mat-raised-button color="primary">{{mode}}</button>
 
             </mat-card-actions>
         </form>

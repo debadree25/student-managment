@@ -13,7 +13,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListComponent} from './list/list.component';
 import { CreateComponent } from './create/create.component';
-import { StudentDetailComponent } from './student-detail/student-detail.component';
+import { StudentDetailComponent, ActionComponent } from './student-detail/student-detail.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RoutesService } from './services/routes.service';
 
@@ -26,6 +26,7 @@ import { MaterialElevationDirective } from './material-elevation.directive';
     FooterComponent,
     DashboardComponent,
     ListComponent,
+    ActionComponent,
     CreateComponent,
     StudentDetailComponent,
     MaterialElevationDirective

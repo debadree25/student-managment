@@ -14,10 +14,12 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import {MatRippleModule} from '@angular/material/core';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 const materialComponents = [
   MatButtonModule,
+  MatTooltipModule,
   MatRippleModule,
   MatButtonToggleModule,
   MatIconModule,
