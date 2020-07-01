@@ -1,15 +1,23 @@
 
-mat-sidenav-container{
+heeader{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position:fixed;
+  right:0;
+  top:0;
+  z-index: 15;
+}
+  mat-sidenav-container{
     height:100%;
   }
   mat-sidenav,mat-sidenav-content{
     padding:5px;
   }
   mat-sidenav{
-    background-color: aqua;
-    width:30%;
+    width:20%;
   }
-  mat-form-field{
+  mat-form-field.search{
    display:block;
    margin:0 auto;
    width:20%;
@@ -19,10 +27,28 @@ mat-sidenav-container{
   .details{
     height:50%;
   }
+  button a{
+    text-decoration:none;
+    color:black;
+    font-weight: normal;
+  }
+  .manage{
+
+    border-radius:15px;
+    display:block;
+    margin:5px auto;
+  }
   
   
   @media only screen and (max-width: 600px) {
     mat-sidenav{
-        width:50%;
+        width:40%;
     }
+    mat-form-field.search{
+      display:block;
+      margin:0 auto;
+      width:30%;
+      font-size: 14px;
+      
+     }
   }

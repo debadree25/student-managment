@@ -1,25 +1,97 @@
-<mat-dialog-content class="container">
-    <div class="icon">
-        <button><mat-icon style="cursor:pointer;" (click)="onEdit()">create</mat-icon></button>
-        <button><mat-icon style="cursor:pointer;" (click)="onEdit()">content_copy</mat-icon></button>
-        <button><mat-icon style="cursor:pointer;" (click)="onEdit()">delete</mat-icon></button>
+<div class="container">
+    <div style="display: flex;position:relative;right:5px;font-size:30px;float:right">
+        <button >
+            <mat-icon style="cursor:pointer;margin-right: 5px;" matTooltip="Edit Details" matRipple matRippleColor="light-grey" class="ripple" (click)="openDialog('Edit')">create</mat-icon>
+        </button>
+        <button>
+            <mat-icon style="cursor:pointer;margin-right: 5px" matTooltip="Copy Details"  matRipple matRippleColor="light-grey" (click)="onCopy()">content_copy</mat-icon>
+        </button>
+        <button>
+            <mat-icon style="cursor:pointer;margin-right: 5px" matTooltip="Delete Details" matRipple matRippleColor="light-grey" (click)="openDialog('Delete')">delete</mat-icon>
+        </button>
+
+        <button>
+            <mat-icon style="cursor:pointer;margin-right: 5px" matTooltip="Close" matRipple matRippleColor="light-grey" (click)="onClose()">close</mat-icon>
+        </button>
+        
     </div>
 
     <div class="content">
         <mat-list>
-            <img matListAvatar [src]="imgUrl" alt="Image of {{name}}" id="profile">
-            <mat-list-item>Name:{{name}}</mat-list-item>
-            <mat-list-item>Year:{{year}}</mat-list-item>
-            <mat-list-item>Stream:{{stream}}</mat-list-item>
-            <mat-list-item>graduateYear:{{graduateYear}}</mat-list-item>
-            <mat-list-item><mat-icon>email</mat-icon>{{email}}</mat-list-item>
-            <mat-list-item><mat-icon>home</mat-icon>{{address}}</mat-list-item>
-            <mat-list-item><mat-icon>phone</mat-icon>{{phone}}</mat-list-item>
+            <img matListAvatar [src]="data.image" alt="Image of {{student.name}}" id="profile">
+            <mat-list-item>
+                <div>
+                    <span class="mat-body-strong" style="color:grey;display:inline-block;">Name:</span>
+                    <span class="mat-h2">{{student.name}}</span>
+                </div>
+            </mat-list-item>
+            <mat-list-item style="display: flex;">
+                <div style="margin-right: 25px;">
+                    <span class="mat-body-strong" style="color:grey;display:inline-block;">Year:</span>
+                    <span class="mat-h3" *ngIf="data.year===1">{{student.year+"st"}}</span>
+                    <span class="mat-h3" *ngIf="data.year===2">{{student.year+"nd"}}</span>
+                    <span class="mat-h3" *ngIf="data.year===3">{{student.year+"rd"}}</span>
+                    <span class="mat-h3" *ngIf="data.year===4">{{student.year+"th"}}</span>
+                </div>
+                <div>
+                    <span class="mat-body-strong" style="color:grey;display:inline-block;">Department:</span>
+                    <span class="mat-h3">{{student.department}}</span>
+
+                </div>
+            </mat-list-item>
+
+            <mat-list-item style="display: flex;">
+                <div style="margin-right: 25px;">
+                    <span class="mat-body-strong" style="color:grey;display:inline-block;">Expected Year Of
+                        Joining:</span>
+                    <span class="mat-h3">{{student.joining_year}}</span>
+                </div>
+                <div>
+                    <span class="mat-body-strong" style="color:grey;display:inline-block;">Expected Year Of
+                        Passing:</span>
+                    <span class="mat-h3">{{student.passing_year}}</span>
+
+                </div>
+            </mat-list-item>
+
+            <mat-list-item>
+                <div style="display: flex;">
+                    <span>
+                        <mat-icon  style="font-size: 20px;">email</mat-icon>
+                    </span>
+                    <span class="mat-h4">
+                        {{student.email}}
+                    </span>
+                </div>
+
+            </mat-list-item>
+            <mat-list-item>
+                <div style="display: flex;">
+                    <span>
+                        <mat-icon  style="font-size: 20px;">home</mat-icon>
+                    </span>
+                    <span class="mat-h4">
+                        {{student.address}}
+                    </span>
+                </div>
+
+            </mat-list-item>
+
+            <mat-list-item>
+                <div style="display: flex;">
+                    <span>
+                        <mat-icon  style="font-size: 20px;">phone</mat-icon>
+                    </span>
+                    <span class="mat-h4">
+                        {{student.phone}}
+                    </span>
+                </div>
+
+            </mat-list-item>
         </mat-list>
 
-
     </div>
-</mat-dialog-content>
-<mat-dialog-actions align="center">
+</div>
+<!-- <mat-dialog-actions align="center">
     <button mat-raised-button color="primary" (click)="onClose()" tabindex="1">Close</button>
-</mat-dialog-actions>
+</mat-dialog-actions> -->

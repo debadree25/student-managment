@@ -1,8 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
-
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig,MatDialog } from "@angular/material/dialog";
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { StudentService } from '../students.service';
+//import { Student } from '../student.model';
+import { Student } from '../models/student.model';
 
 
 
@@ -14,49 +16,88 @@ import { Router } from '@angular/router';
 
 export class StudentDetailComponent implements OnInit {
 
+  editmode = false;
+  student: Student;
+  id: number;
 
-  name: string = ""
-  stream: string = ""
-  year: string = ""
-  imgUrl: string = ""
-  email: string = ""
-  phone: string = ""
-  address: string = ""
-  graduateYear: string = ""
   constructor(
-
-    private dialogRef: MatDialogRef<StudentDetailComponent>,private route:Router,
+    public dialog: MatDialog,
+    private dialogRef: MatDialogRef<StudentDetailComponent>,
+    private route: Router, private router: ActivatedRoute,
+    private studentService: StudentService,
+    
     @Inject(MAT_DIALOG_DATA) public data: any) {
 
-    if (data) {
-      this.name = data.name || this.name;
-      this.stream = data.stream || this.stream;
-      this.year = data.year || this.year;
-      this.imgUrl = data.url || this.imgUrl;
-      this.address = data.address || this.address;
-      this.phone = data.phone || this.phone;
-      this.graduateYear = data.graduateYear || this.graduateYear;
-      this.email = data.email || this.email;
+    this.student = data.studentData;
+    this.id = data.id;
 
-    }
+
   }
 
   ngOnInit() {
-
+   // console.log(this.student, this.id)
   }
 
   save() {
-    //console.log(this.description)
-    console.log("saved");
+    //console.log(this.descriptFion)
+    console.log('saved');
+    
   }
 
   onClose() {
-    console.log("closed")
+    console.log('closed');
     this.dialogRef.close();
   }
 
-  onEdit(){
-    this.route.navigate(['/newStudent']);
-    this.dialogRef.close();
+  onEdit() {
+    this.editmode = true;
+    ///this.openDialog("Edit");
+    //this.onClose();
+    
+  }
+
+  onCopy() {
+    console.log('copied');
+    //this.onClose();
+  }
+
+  onDelete() {
+    //this.studentService.deleteStudent(this.id);
+    //this.openDialog("Delete");
+    this.onClose();
+    
+  }
+  
+  openDialog(message:string) {
+    
+    let dialogRef = this.dialog.open(ActionComponent, {
+      data: {
+        message:message,
+        index:this.id
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.dialogRef.close()
+    });
   }
 }
+@Component({
+    selector: 'app-action',
+ templateUrl: 'action.component.html',
+})
+export class ActionComponent {
+  id:number;
+ constructor(public dialogRef: MatDialogRef<ActionComponent>, @Inject(MAT_DIALOG_DATA) public data:any) {
+   
+  this.id=data.index;
+  }
+
+  onYes(){
+    this.dialogRef.close({data:"editing"})
+  }
+  onDelete(){
+    console.log("deleted")
+  }
+ }
+

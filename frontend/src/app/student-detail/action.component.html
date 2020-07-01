@@ -1,0 +1,10 @@
+<div class="content">
+        <p>Are you sure you want to {{data.message}}?</p>
+        <mat-dialog-actions>
+
+            <button *ngIf="data.message==='Edit'" mat-button [routerLink]="['/editStudent',id]" mat-dialog-close>Yes,sure</button>
+            <button *ngIf="data.message==='Delete'" mat-button [routerLink]="['/list']" mat-dialog-close (click)="onDelete()">Yes,sure</button>
+            <button mat-button mat-dialog-close>Close</button>
+
+        </mat-dialog-actions>
+</div>

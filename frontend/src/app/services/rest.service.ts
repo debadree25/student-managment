@@ -19,4 +19,12 @@ export class RestService {
     const url = `${this.baseUrl}students/create`;
     return this.http.post<ServerResponse<Student>>(url, student).toPromise();
   }
+
+  public getStudentById(id: number){
+    const url = `${this.baseUrl}students/:id`;
+    //console.log(id)
+   return this.http.get<ServerResponse<Student>>(url);
+    }
+  
+  
 }

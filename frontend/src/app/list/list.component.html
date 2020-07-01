@@ -1,6 +1,27 @@
 <!--For list of students-->
-<div class="container">
-  <mat-card *ngFor="let student of students" class="detail" appMaterialElevation>
+<span class="icon">
+  <button *ngIf="!listView" (click)="listView=!listView">
+    <mat-icon appMaterialElevation fontSet="material-icons-outlined">view_list</mat-icon>
+  </button>
+  <button *ngIf="listView" (click)="listView=!listView">
+    <mat-icon appMaterialElevation fontSet="material-icons-outlined">view_module</mat-icon>
+  </button>
+</span>
+<div class="content" *ngIf="listView">
+  <mat-list *ngFor="let student of students;let i=index" class="list" (click)="openDialog(student,i)">
+    <mat-list-item>
+      <img matListAvatar src="https://wprdea.org/image/img_avatar.png" alt="img of {{student.name}}">
+      <div mat-line>{{student.name}}</div>
+      <div mat-line> {{student.department | uppercase}} </div>
+      <div mat-line> {{student.passing_year +" Batch" }}</div>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+
+  </mat-list>
+</div>
+
+<div class="content" *ngIf="!listView">
+  <mat-card *ngFor="let student of students;let i=index" class="grid" (click)="openDialog(student,i)">
     <mat-card-content>
       <mat-list>
         <mat-list-item>
@@ -12,13 +33,10 @@
         </mat-list-item>
       </mat-list>
     </mat-card-content>
-    <mat-card-actions>
-      <button mat-button (click)="openDialog(student)">Details</button>
-      <button mat-button>Edit</button>
-    </mat-card-actions>
-    <!-- <mat-card-actions align="end">
-      <button mat-button color="primary" (click)="openDialog(student)">Details</button>
-      <button mat-raised-button color="secondary">Edit</button>
-    </mat-card-actions> -->
   </mat-card>
+
 </div>
+
+<!-- <mat-card-actions align="end">
+      <button mat-button color="primary" (click)="openDialog(student,i)" style="position: absolute;bottom: 5px;">Details</button>
+    </mat-card-actions> -->
