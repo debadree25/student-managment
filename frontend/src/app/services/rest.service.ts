@@ -20,12 +20,19 @@ export class RestService {
     return this.http.post<ServerResponse<Student>>(url, student).toPromise();
   }
 
-  public getStudentById(id: number){
+  async getStudentById(id: number){
     const index=id.toString();
-    const url = `${this.baseUrl}students/:${index}`;
-   //console.log(url)
-   return this.http.get<ServerResponse<Student>>(url);
-    }
+    const url = `${this.baseUrl}students/${index}`;
+   console.log(url)
+   const resp=await this.http.get<ServerResponse<Student>>(url).toPromise();
+    console.log(resp)
+  }
   
+    public deleteStudentById(id:number){
+      const index=id.toString();
+    const url = `${this.baseUrl}students/${index}`;
+   console.log(url)
+   return  this.http.get<ServerResponse<Student>>(url);
+    }
   
 }
