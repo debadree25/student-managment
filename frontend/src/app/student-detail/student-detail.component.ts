@@ -1,9 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig,MatDialog } from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { StudentService } from '../students.service';
-//import { Student } from '../student.model';
+// import { Student } from '../student.model';
 import { Student } from '../models/student.model';
 
 
@@ -25,7 +25,7 @@ export class StudentDetailComponent implements OnInit {
     private dialogRef: MatDialogRef<StudentDetailComponent>,
     private route: Router, private router: ActivatedRoute,
     private studentService: StudentService,
-    
+
     @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.student = data.studentData;
@@ -35,13 +35,13 @@ export class StudentDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-   // console.log(this.student, this.id)
+    // console.log(this.student, this.id)
   }
 
   save() {
-    //console.log(this.descriptFion)
+    // console.log(this.descriptFion)
     console.log('saved');
-    
+
   }
 
   onClose() {
@@ -51,53 +51,53 @@ export class StudentDetailComponent implements OnInit {
 
   onEdit() {
     this.editmode = true;
-    ///this.openDialog("Edit");
-    //this.onClose();
-    
+    /// this.openDialog("Edit");
+    // this.onClose();
+
   }
 
   onCopy() {
     console.log('copied');
-    //this.onClose();
+    // this.onClose();
   }
 
   onDelete() {
-    //this.studentService.deleteStudent(this.id);
-    //this.openDialog("Delete");
+    // this.studentService.deleteStudent(this.id);
+    // this.openDialog("Delete");
     this.onClose();
-    
+
   }
-  
-  openDialog(message:string) {
-    
-    let dialogRef = this.dialog.open(ActionComponent, {
+
+  openDialog(message: string) {
+
+    const dialogRef = this.dialog.open(ActionComponent, {
       data: {
-        message:message,
-        index:this.id
+        message,
+        index: this.id
       }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.dialogRef.close()
+      this.dialogRef.close();
     });
   }
 }
 @Component({
-    selector: 'app-action',
- templateUrl: 'action.component.html',
+  selector: 'app-action',
+  templateUrl: 'action.component.html',
 })
 export class ActionComponent {
-  id:number;
- constructor(public dialogRef: MatDialogRef<ActionComponent>, @Inject(MAT_DIALOG_DATA) public data:any) {
-   
-  this.id=data.index;
+  id: number;
+  constructor(public dialogRef: MatDialogRef<ActionComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+
+    this.id = data.index;
   }
 
-  onYes(){
-    this.dialogRef.close({data:"editing"})
+  onYes() {
+    this.dialogRef.close({ data: 'editing' });
   }
-  onDelete(){
-    console.log("deleted")
+  onDelete() {
+    console.log('deleted');
   }
- }
+}
 
