@@ -1,10 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig,MatDialog } from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig, MatDialog } from "@angular/material/dialog";
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { StudentService } from '../students.service';
 //import { Student } from '../student.model';
 import { Student } from '../models/student.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 
@@ -25,7 +26,8 @@ export class StudentDetailComponent implements OnInit {
     private dialogRef: MatDialogRef<StudentDetailComponent>,
     private route: Router, private router: ActivatedRoute,
     private studentService: StudentService,
-    
+    private _snackbar: MatSnackBar,
+
     @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.student = data.studentData;
@@ -35,13 +37,13 @@ export class StudentDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-   // console.log(this.student, this.id)
+    // console.log(this.student, this.id)
   }
 
   save() {
     //console.log(this.descriptFion)
     console.log('saved');
-    
+
   }
 
   onClose() {
@@ -53,7 +55,7 @@ export class StudentDetailComponent implements OnInit {
     this.editmode = true;
     ///this.openDialog("Edit");
     //this.onClose();
-    
+
   }
 
   onCopy() {
@@ -64,16 +66,22 @@ export class StudentDetailComponent implements OnInit {
   onDelete() {
     //this.studentService.deleteStudent(this.id);
     //this.openDialog("Delete");
+
+    const message = "Student Deleted";
+    const action = "Undo";
+    this._snackbar.open(message, action, {
+      duration: 2000,
+    });
     this.onClose();
-    
+
   }
-  
-  openDialog(message:string) {
-    
+
+  openDialog(message: string) {
+
     let dialogRef = this.dialog.open(ActionComponent, {
       data: {
-        message:message,
-        index:this.id
+        message: message,
+        index: this.id
       }
     });
 
@@ -84,21 +92,21 @@ export class StudentDetailComponent implements OnInit {
   }
 }
 @Component({
-    selector: 'app-action',
- templateUrl: 'action.component.html',
+  selector: 'app-action',
+  templateUrl: 'action.component.html',
 })
 export class ActionComponent {
-  id:number;
- constructor(public dialogRef: MatDialogRef<ActionComponent>, @Inject(MAT_DIALOG_DATA) public data:any) {
-   
-  this.id=data.index;
+  id: number;
+  constructor(public dialogRef: MatDialogRef<ActionComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+
+    this.id = data.index;
   }
 
-  onYes(){
-    this.dialogRef.close({data:"editing"})
+  onYes() {
+    this.dialogRef.close({ data: "editing" })
   }
-  onDelete(){
+  onDelete() {
     console.log("deleted")
   }
- }
+}
 

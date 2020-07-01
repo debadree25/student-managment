@@ -1,5 +1,5 @@
 <!--For list of students-->
-<span class="icon">
+<span class="icon" style="z-index: 5;">
   <button *ngIf="!listView" (click)="listView=!listView">
     <mat-icon appMaterialElevation fontSet="material-icons-outlined">view_list</mat-icon>
   </button>
@@ -20,8 +20,10 @@
   </mat-list>
 </div>
 
-<div class="content" *ngIf="!listView">
-  <mat-card *ngFor="let student of students;let i=index" class="grid" (click)="openDialog(student,i)">
+<div class="contentGrid">
+<div  fxLayout="row wrap" *ngIf="!listView" fxLayoutGap="10px grid">
+  <div class="grid" fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let student of students;let i=index" >
+  <mat-card  (click)="openDialog(student,i)">
     <mat-card-content>
       <mat-list>
         <mat-list-item>
@@ -34,7 +36,9 @@
       </mat-list>
     </mat-card-content>
   </mat-card>
+</div>
 
+</div>
 </div>
 
 <!-- <mat-card-actions align="end">

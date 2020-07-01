@@ -9,14 +9,22 @@ mat-list {
   .list {
    
     width:100%;
+   
    }
    
-   .grid{
+   /* .grid{
+    
      width:30%;
-   }
-.content{
+     margin:5px;
+   } */
+   
+.content,.contentGrid{
   margin:2%;
+  width:100%;
 }
+/* .contentGrid{
+  width: 100%; */
+
   .icon{
     float:right;
     position: relative;

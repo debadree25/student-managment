@@ -124,6 +124,6 @@ export class CreateComponent implements OnInit {
         //       form.value.content
         //     );
         //   }
-        this.router.navigate([''], { relativeTo: this.route });
+        this.router.navigate(['/dashboard'], { relativeTo: this.route });
     }
 }

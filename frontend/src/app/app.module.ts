@@ -16,11 +16,12 @@ import { CreateComponent } from './create/create.component';
 import { StudentDetailComponent, ActionComponent } from './student-detail/student-detail.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RoutesService } from './services/routes.service';
-
 import { MaterialElevationDirective } from './material-elevation.directive';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './services/auth.service';
 import { RestService } from './services/rest.service';
+import { FlexLayoutModule } from "@angular/flex-layout";
+
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { RestService } from './services/rest.service';
     BrowserModule,
     AppRoutingModule, MaterialModule,
     BrowserAnimationsModule, RouterModule, FormsModule, ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,FlexLayoutModule
   ],
   providers: [AuthService,RestService,RoutesService],
   entryComponents: [StudentDetailComponent],
