@@ -20,12 +20,8 @@ export class RestService {
     return this.http.post<ServerResponse<Student>>(url, student).toPromise();
   }
 
-  public getStudentById(id: number){
-    const index=id.toString();
-    const url = `${this.baseUrl}students/:${index}`;
-   //console.log(url)
-   return this.http.get<ServerResponse<Student>>(url);
-    }
-  
-  
+  public getStudentById(id: string): Promise<ServerResponse<Student>> {
+    const url = `${this.baseUrl}students/${id}`;
+    return this.http.get<ServerResponse<Student>>(url).toPromise();
+  }
 }

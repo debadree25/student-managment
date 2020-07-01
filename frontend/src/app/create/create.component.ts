@@ -14,51 +14,22 @@ declare var previewFile: any;
     styleUrls: ['./create.component.css']
 })
 export class CreateComponent implements OnInit {
-    constructor(private router: Router,
-        private route: ActivatedRoute,
-        private _snackBar: MatSnackBar,
-        private rest: RestService) { }
-
     url: ArrayBuffer;
     student: Student;
     studentId = null;
-    mode = "Create"
-
-
-
+    mode = 'Create';
     selectedFile: ImageSnippet;
-
+    constructor(private router: Router,
+                private route: ActivatedRoute,
+                private _snackBar: MatSnackBar,
+                private rest: RestService) {
+        if (this.router.getCurrentNavigation().extras.state != undefined) {
+            this.student = this.router.getCurrentNavigation().extras.state.data;
+        }
+        console.log(this.student);
+    }
 
     ngOnInit(): void {
-        this.route.paramMap.subscribe((paramMap: ParamMap) => {
-            //console.log(paramMap)
-            if (paramMap.has("id")) {
-                this.mode = "Update";
-                this.studentId = paramMap.get("id")
-                //console.log(this.studentId)
-                this.rest.getStudentById(this.studentId).subscribe(resp => {
-                    console.log(resp.data);
-                    this.student = {
-                        name: resp.data.name,
-                        address: resp.data.address,
-                        year: resp.data.year,
-                        joining_year: resp.data.joining_year,
-                        passing_year: resp.data.passing_year,
-                        email: resp.data.email,
-                        phone: resp.data.phone,
-                        department: resp.data.department,
-
-                    }
-                    console.log(this.student)
-
-                })
-            }
-            else {
-                this.mode = "Create"
-                this.studentId = null;
-            }
-        }
-        )
     }
 
 
@@ -77,7 +48,7 @@ export class CreateComponent implements OnInit {
 
             this.selectedFile = {
                 src: event.target.result,
-                file: file
+                file
             };
             // console.log(event.target.result);
             // console.log(this.selectedFile.file);
@@ -106,9 +77,9 @@ export class CreateComponent implements OnInit {
         const resp = await this.rest.addStudent(student);
         if (resp.status) {
             alert('New student added');
-            //snackbar
-            const message = "Student Added";
-            const action = "Undo";
+            // snackbar
+            const message = 'Student Added';
+            const action = 'Undo';
             this._snackBar.open(message, action, {
                 duration: 2000,
             });

@@ -11,7 +11,7 @@ import { FooterComponent } from './footer/footer.component';
 import { RouterModule, Router, RouterEvent, NavigationEnd } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ListComponent} from './list/list.component';
+import { ListComponent } from './list/list.component';
 import { CreateComponent } from './create/create.component';
 import { StudentDetailComponent, ActionComponent } from './student-detail/student-detail.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -41,7 +41,7 @@ import { RestService } from './services/rest.service';
     BrowserAnimationsModule, RouterModule, FormsModule, ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [AuthService,RestService,RoutesService],
+  providers: [AuthService, RestService, RoutesService],
   entryComponents: [StudentDetailComponent],
   bootstrap: [AppComponent]
 })

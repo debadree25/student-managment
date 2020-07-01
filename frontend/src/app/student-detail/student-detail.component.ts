@@ -73,7 +73,7 @@ export class StudentDetailComponent implements OnInit {
     const dialogRef = this.dialog.open(ActionComponent, {
       data: {
         message,
-        index: this.id
+        student: this.student
       }
     });
 
@@ -88,10 +88,10 @@ export class StudentDetailComponent implements OnInit {
   templateUrl: 'action.component.html',
 })
 export class ActionComponent {
-  id: number;
-  constructor(public dialogRef: MatDialogRef<ActionComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+  student: Student;
+  constructor(public dialogRef: MatDialogRef<ActionComponent>, @Inject(MAT_DIALOG_DATA) public data: any, public router: Router) {
 
-    this.id = data.index;
+    this.student = data.student;
   }
 
   onYes() {
