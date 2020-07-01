@@ -4,7 +4,8 @@ const mongoose = require("mongoose");
 const Student = require("../models/Student");
 
 router.get("", async (req, res) => {
-    const students = await Student.find();
+    //console.log(req.query);
+    const students = await Student.find(req.query);
     if (students) {
         console.log(students);
         res.status(200).json({
