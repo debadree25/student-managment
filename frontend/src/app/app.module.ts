@@ -18,6 +18,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { RoutesService } from './services/routes.service';
 
 import { MaterialElevationDirective } from './material-elevation.directive';
+import { LoginComponent } from './login/login.component';
+import { AuthService } from './services/auth.service';
+import { RestService } from './services/rest.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,8 @@ import { MaterialElevationDirective } from './material-elevation.directive';
     ActionComponent,
     CreateComponent,
     StudentDetailComponent,
-    MaterialElevationDirective
+    MaterialElevationDirective,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +41,7 @@ import { MaterialElevationDirective } from './material-elevation.directive';
     BrowserAnimationsModule, RouterModule, FormsModule, ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AuthService,RestService,RoutesService],
   entryComponents: [StudentDetailComponent],
   bootstrap: [AppComponent]
 })

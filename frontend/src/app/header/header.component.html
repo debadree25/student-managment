@@ -1,12 +1,12 @@
-<mat-sidenav-container class="header">
+<mat-sidenav-container class="header" >
     <mat-sidenav #sidenav mode="over">
         <mat-list>
             <div class="details">
                 <mat-list-item>
                     <img matListAvatar style="display: block;" src="https://wprdea.org/image/img_avatar.png"
                         alt="img of a man">
-                    <div mat-line class="mat-title">Sristi Chowdhury </div>
-                    <div mat-line>It~2022</div>
+                    <div mat-line class="mat-title">{{name}}</div>
+                    <div mat-line>{{email}}</div>
 
 
                 </mat-list-item>
@@ -25,7 +25,7 @@
                 <div mat-line><button mat-button>User Profile</button></div>
             </a> -->
 
-            <a mat-list-item [routerLink]="['']" routerLinkActive="active">
+            <a mat-list-item [routerLink]="['/']" routerLinkActive="active">
                 <mat-icon matListIcon>dashboard</mat-icon>
                 <div mat-line><button mat-button>Dashboard</button></div>
             </a>
@@ -51,7 +51,7 @@
                 <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
             </button>
             <div>
-                <span *ngIf="routes.route=='/'">Dashboard</span>
+                <span *ngIf="routes.route=='/dashboard'">Dashboard</span>
                 <span *ngIf="routes.route=='/user'">User Profile</span>
                 <span *ngIf="routes.route=='/list'">Students</span>
                 <span *ngIf="routes.route=='/settings'">Settings</span>
@@ -81,11 +81,7 @@
             <mat-menu #menu="matMenu">
                 <button mat-menu-item>
                     <mat-icon>login</mat-icon>
-                    <span>Login</span>
-                </button>
-                <button mat-menu-item>
-                    <mat-icon>how_to_reg</mat-icon>
-                    <span>Register</span>
+                    <span>Logout</span>
                 </button>
 
             </mat-menu>

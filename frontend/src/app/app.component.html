@@ -1,2 +1,3 @@
-<app-header></app-header>
+<app-login></app-login>
+<app-header *ngIf="(route.route!=='/') && (route.route!=='/register')"></app-header>
 <router-outlet></router-outlet>

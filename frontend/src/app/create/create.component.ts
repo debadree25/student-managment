@@ -4,6 +4,7 @@ import { Student } from '../models/student.model';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { ImageSnippet } from '../models/image.model';
 import { RestService } from '../services/rest.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 declare var previewFile: any;
 
@@ -13,7 +14,10 @@ declare var previewFile: any;
     styleUrls: ['./create.component.css']
 })
 export class CreateComponent implements OnInit {
-    constructor(private router: Router, private route: ActivatedRoute, private rest: RestService) { }
+    constructor(private router: Router,
+        private route: ActivatedRoute,
+        private _snackBar: MatSnackBar,
+        private rest: RestService) { }
 
     url: ArrayBuffer;
     student: Student;
@@ -33,7 +37,7 @@ export class CreateComponent implements OnInit {
                 this.studentId = paramMap.get("id")
                 //console.log(this.studentId)
                 this.rest.getStudentById(this.studentId).subscribe(resp => {
-                    console.log(resp)
+                    console.log(resp.data);
                     this.student = {
                         name: resp.data.name,
                         address: resp.data.address,
@@ -43,9 +47,10 @@ export class CreateComponent implements OnInit {
                         email: resp.data.email,
                         phone: resp.data.phone,
                         department: resp.data.department,
-                       
+
                     }
-                    
+                    console.log(this.student)
+
                 })
             }
             else {
@@ -101,6 +106,12 @@ export class CreateComponent implements OnInit {
         const resp = await this.rest.addStudent(student);
         if (resp.status) {
             alert('New student added');
+            //snackbar
+            const message = "Student Added";
+            const action = "Undo";
+            this._snackBar.open(message, action, {
+                duration: 2000,
+            });
         }
         else {
             alert('New student not added');

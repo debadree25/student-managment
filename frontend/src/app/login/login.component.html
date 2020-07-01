@@ -1,0 +1,56 @@
+<div *ngIf="(route.route=='/') && (login==true)" class="login">
+    <mat-card class="mat-elevation-z6">
+        <mat-card-title style="text-align: center;margin-top: 20px;">Login</mat-card-title>
+        <form (ngSubmit)="Login(f)" #f="ngForm">
+            <mat-form-field>
+                <input matInput placeholder="Email" type="email" required name="name" required
+                ngModel #email="ngModel">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Password" type="password" required name="name" required
+                ngModel #password="ngModel">
+            </mat-form-field>
+
+            <div class="options">
+                <mat-checkbox class="example-margin">Remember Me?</mat-checkbox>
+                <a class="forgotPwd">Forgot your password?</a>
+            </div>
+            <mat-card-actions><button [disabled]="!f.valid" mat-raised-button style="margin-top: 10px;" color="primary"
+                    type="submit">Login</button></mat-card-actions>
+            <mat-card-actions><button (click)="LogToReg()" color="primary" type="button"
+                    style="outline: none;border:none;background-color: transparent;"><a class="signup">New User?Sign
+                        Up</a></button></mat-card-actions>
+        </form>
+
+    </mat-card>
+</div>
+
+<div *ngIf="(route.route=='/register') && (login==false) && (register==true)" class="register">
+    <mat-card class="mat-elevation-z6">
+        <mat-card-title style="text-align: center;margin-top: 20px;">Register</mat-card-title>
+        <form (ngSubmit)="Register(f)" #f="ngForm">
+
+            <mat-form-field>
+                <input matInput placeholder="Name" type="name" name="name" required
+                ngModel #name="ngModel">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Email" type="email" name="email" required ngModel #email="ngModel">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Password" name="password" type="password" ngModel #password="ngModel" required>
+            </mat-form-field>
+
+            <div class="options">
+                <mat-checkbox class="example-margin">Remember Me?</mat-checkbox>
+                <!-- <a class="forgotPwd">Forgot your password?</a> -->
+            </div>
+            <mat-card-actions style="margin-top: 10px;"><button [disabled]="!f.valid" mat-raised-button color="primary"
+                    type="submit">Register</button></mat-card-actions>
+            <mat-card-actions><button (click)="RegToLog()" color="primary" type="button"
+                    style="outline: none;border:none;background-color: transparent;margin: none;"><a
+                        class="signup">Already have an account?</a></button></mat-card-actions>
+        </form>
+
+    </mat-card>
+</div>

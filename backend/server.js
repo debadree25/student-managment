@@ -6,7 +6,8 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 
 mongoose.connect(
-    "mongodb+srv://app-user:9883362850@cluster0-5meyd.mongodb.net/students?retryWrites=true&w=majority",
+    // "mongodb+srv://app-user:9883362850@cluster0-5meyd.mongodb.net/students?retryWrites=true&w=majority",
+    'mongodb://localhost/studentsdb',
     { useNewUrlParser: true, useUnifiedTopology: true, dbName: "students" },
     (err) => {
         if (!err) {

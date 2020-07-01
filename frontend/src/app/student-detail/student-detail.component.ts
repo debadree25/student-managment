@@ -78,6 +78,7 @@ export class StudentDetailComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
       this.dialogRef.close();
     });
   }
