@@ -33,7 +33,7 @@ export class CreateComponent implements OnInit {
                 this.studentId = paramMap.get("id")
                 //console.log(this.studentId)
                 this.rest.getStudentById(this.studentId).subscribe(resp => {
-                    console.log(resp)
+                    console.log(resp.data);
                     this.student = {
                         name: resp.data.name,
                         address: resp.data.address,
@@ -45,6 +45,7 @@ export class CreateComponent implements OnInit {
                         department: resp.data.department,
                        
                     }
+                    console.log(this.student)
                     
                 })
             }
@@ -101,6 +102,7 @@ export class CreateComponent implements OnInit {
         const resp = await this.rest.addStudent(student);
         if (resp.status) {
             alert('New student added');
+            //snackbar
         }
         else {
             alert('New student not added');

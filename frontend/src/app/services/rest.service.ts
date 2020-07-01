@@ -21,8 +21,9 @@ export class RestService {
   }
 
   public getStudentById(id: number){
-    const url = `${this.baseUrl}students/:id`;
-    //console.log(id)
+    const index=id.toString();
+    const url = `${this.baseUrl}students/:${index}`;
+   //console.log(url)
    return this.http.get<ServerResponse<Student>>(url);
     }
   

@@ -15,10 +15,11 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import {MatRippleModule} from '@angular/material/core';
 import {MatTooltipModule} from '@angular/material/tooltip';
-
+import {MatCheckboxModule} from '@angular/material/checkbox'
 
 const materialComponents = [
   MatButtonModule,
+  MatCheckboxModule,
   MatTooltipModule,
   MatRippleModule,
   MatButtonToggleModule,

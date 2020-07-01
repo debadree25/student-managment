@@ -10,6 +10,8 @@ import { RoutesService } from '../services/routes.service';
 export class HeaderComponent implements OnInit {
 
   href: string;
+  name:string="";
+  email="";
   constructor(private route: ActivatedRoute, private router: Router, public routes: RoutesService) { }
 
   ngOnInit(): void {
