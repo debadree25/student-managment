@@ -91,9 +91,10 @@ export class CreateComponent implements OnInit {
     async onSubmit(f: NgForm) {
         const value = f.value;
         console.log(value);
-        const { name, department, address, joining_year, year, passing_year, email, phone } = value;
+        const { _id,name, department, address, joining_year, year, passing_year, email, phone } = value;
         const student: Student = {
-            name,
+        
+            name,_id,
             department,
             address,
             joining_year: parseInt(joining_year, 10),

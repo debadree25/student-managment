@@ -1,9 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-<<<<<<< HEAD
-import { MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig, MatDialog } from "@angular/material/dialog";
-=======
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig, MatDialog } from '@angular/material/dialog';
->>>>>>> e829185262e10af63df7d211341550613a719873
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { StudentService } from '../students.service';
@@ -107,17 +103,10 @@ export class ActionComponent {
   }
 
   onYes() {
-<<<<<<< HEAD
     this.dialogRef.close({ data: "editing" })
   }
   onDelete() {
     console.log("deleted")
-=======
-    this.dialogRef.close({ data: 'editing' });
-  }
-  onDelete() {
-    console.log('deleted');
->>>>>>> e829185262e10af63df7d211341550613a719873
   }
 }
 
