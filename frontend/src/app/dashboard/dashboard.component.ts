@@ -11,6 +11,7 @@ import { Chart } from 'node_modules/chart.js'
 })
 export class DashboardComponent implements OnInit {
   students: Student[];
+  toggle=true;
   years = ['1st Year', '2nd Year', '3rd Year', '4th Year'];
   streams = ['IT', 'CSE', 'ME', 'ECE', 'EE'];
 
@@ -28,7 +29,7 @@ export class DashboardComponent implements OnInit {
       data: {
         labels: ['IT', 'CSE', 'EE', 'ME', 'ECE'],
         datasets: [{
-          label: '# of students',
+          label: 'Division wrt Stream',
           data: [12, 19, 3, 5, 2, 3],
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
@@ -59,7 +60,27 @@ export class DashboardComponent implements OnInit {
         }
       }
     });
+
+    var chart1=new Chart("myPChart", {
+      type: 'pie',
+    data: {
+      labels: ["1", "2", "3", "4"],
+      datasets: [{
+        label: "Division By Year",
+        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9"],
+        data: [500,300,450,600]
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Division of students wrt year'
+      }
+    }
+    });
   }
+
+  
 
  
 

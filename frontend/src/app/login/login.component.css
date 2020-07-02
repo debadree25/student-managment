@@ -7,9 +7,6 @@ mat-form-field,mat-card-actions,.options{
     width:80%;
     margin:0 auto;
 }
-input{
-    margin-left: 18px;
-}
 .options{
     font-size:13px;
 }
