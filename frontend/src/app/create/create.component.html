@@ -1,89 +1,96 @@
 <div class="newForm">
     <mat-card class="mat-elevation-z8">
         <mat-card-subtitle>*All fields are required</mat-card-subtitle>
-        <form #f="ngForm" name="form" (ngSubmit)="onSubmit(f)">
+        <form [formGroup]="form" name="form" (ngSubmit)="onSubmit()">
+
             <mat-form-field>
-
-                <input matInput placeholder="Name" type="text" #name=ngModel [ngModel]="student?.name" name="name"
-                    required>
-
-                <mat-error *ngIf="name.invalid && name.touched">This field is required!</mat-error>
+                <input matInput placeholder="Name" formControlName="name" type="text">
+                <mat-error *ngIf="form.get('name').invalid && form.get('name').touched">This field is required!
+                </mat-error>
             </mat-form-field>
 
             <div style="display: flex;">
                 <mat-form-field style="margin-right:3%;width:20%">
                     <mat-label>Year</mat-label>
-                    <mat-select required #year=ngModel [ngModel]="student?.year" name="year">
+                    <mat-select formControlName="year">
                         <mat-option [value]="1">1</mat-option>
                         <mat-option [value]="2">2</mat-option>
                         <mat-option [value]="3">3</mat-option>
                         <mat-option [value]="4">4</mat-option>
                     </mat-select>
+                    <mat-error *ngIf="form.get('year').invalid && form.get('year').touched">
+                        This field is required!</mat-error>
                 </mat-form-field>
 
                 <mat-form-field style="width: 20%;">
                     <mat-label>Department</mat-label>
-
-                    <mat-select #stream=ngModel [ngModel]="student?.department" required name="department">
+                    <mat-select formControlName="department">
                         <mat-option value="IT">IT</mat-option>
                         <mat-option value="CSE">CSE</mat-option>
                         <mat-option value="ECE">ECE</mat-option>
                         <mat-option value="EE">EE</mat-option>
                         <mat-option value="ME">ME</mat-option>
                     </mat-select>
+                    <mat-error *ngIf="form.get('department').invalid && form.get('department').touched">
+                        This field is required!</mat-error>
                 </mat-form-field>
             </div>
 
             <div style="display:flex">
                 <mat-form-field style="margin-right:3%;width:25%">
                     <mat-label>Joining Year</mat-label>
-                    <mat-select #pass=ngModel [ngModel]="student?.joining_year" required name="joining_year">
+                    <mat-select formControlName="joining_year">
                         <mat-option [value]="2016">2016</mat-option>
                         <mat-option [value]="2017">2017</mat-option>
                         <mat-option [value]="2018">2018</mat-option>
                         <mat-option [value]="2019">2019</mat-option>
                         <mat-option [value]="2020">2020</mat-option>
                     </mat-select>
-                    <mat-error *ngIf="pass.invalid && pass.touched">This field is required!</mat-error>
+                    <mat-error *ngIf="form.get('joining_year').invalid && form.get('joining_year').touched">
+                        This field is required!</mat-error>
                 </mat-form-field>
 
 
                 <mat-form-field style="width: 30%;">
                     <mat-label>Expected Year Of Graduation</mat-label>
-                    <mat-select #pass=ngModel [ngModel]="student?.passing_year" required name="passing_year">
+                    <mat-select formControlName="passing_year">
                         <mat-option [value]="2020">2020</mat-option>
                         <mat-option [value]="2021">2021</mat-option>
                         <mat-option [value]="2022">2022</mat-option>
                         <mat-option [value]="2023">2023</mat-option>
                         <mat-option [value]="2024">2024</mat-option>
                     </mat-select>
-                    <mat-error *ngIf="pass.invalid && pass.touched">This field is required!</mat-error>
+                    <mat-error *ngIf="form.get('passing_year').invalid && form.get('passing_year').touched">
+                        This field is required!</mat-error>
                 </mat-form-field>
             </div>
 
 
             <mat-form-field>
-                <textarea matInput placeholder="Address" type="text" rows="2" #add=ngModel [ngModel]="student?.address"
-                    required name="address"></textarea>
-                <mat-error *ngIf="add.invalid && add.touched">This field is required!</mat-error>
+                <textarea matInput placeholder="Address" formControlName="address" type="text" rows="2"></textarea>
+                <mat-error *ngIf="form.get('address').invalid && form.get('address').touched">
+                    This field is required!
+                </mat-error>
             </mat-form-field>
 
             <mat-form-field>
-                <input matInput placeholder="Contact No." type="number" #phone=ngModel [ngModel]="student?.phone"
-                    name="phone" required>
-                <mat-error *ngIf="phone.invalid && phone.touched">This field is required!</mat-error>
+                <input formControlName="phone" matInput placeholder="Contact No." type="number">
+                <mat-error *ngIf="form.get('phone').invalid && form.get('phone').touched">
+                    This field is required!
+                </mat-error>
             </mat-form-field>
 
             <mat-form-field>
-                <input matInput placeholder="Email" type="email" name="email" #email=ngModel [ngModel]="student?.email"
-                    required>
-                <mat-error *ngIf="email.invalid && email.touched">This field is required!</mat-error>
+                <input formControlName="email" matInput placeholder="Email" type="email">
+                <mat-error *ngIf="form.get('email').invalid && form.get('email').touched">
+                    This field is required!
+                </mat-error>
             </mat-form-field>
 
 
 
 
-            <label>Upload your image:</label>
+            <!-- <label>Upload your image:</label>
             <br>
             <div style="margin-top:2%;">
                 <input #imageInput type="file" name="img" accept="image/*" onchange="func()" [ngModel]="student?.image"
@@ -93,11 +100,19 @@
                     <img src="" height="200" alt="Image preview...">
                 </div>
 
+            </div> -->
+            <div>
+                <button mat-stroke-button type="button" (click)="filePicker.click()">Pick Image</button>
+                <input type="file" #filePicker (change)="onImagePicked($event)">
+            </div>
+            <div class="image-preview" *ngIf="imgPreview">
+                <img [src]="imgPreview" [alt]="form.value.name">
             </div>
 
 
             <mat-card-actions align="end">
-                <button type="submit" [disabled]="!f.valid" mat-raised-button color="primary">{{mode}}</button>
+                <button type="submit"  mat-raised-button color="primary">{{mode}}</button>
+                <!-- [disabled]="!form.valid" -->
 
             </mat-card-actions>
         </form>

@@ -1,4 +1,4 @@
-<mat-sidenav-container class="header" >
+<mat-sidenav-container class="header">
     <mat-sidenav #sidenav mode="over">
         <mat-list>
             <div class="details">
@@ -68,23 +68,24 @@
 
             </mat-form-field>
 
-
-            <button style="float: right;position:absolute;right:50px" mat-icon-button class="example-icon"
-                aria-label="Example icon-button with notification icon">
-                <mat-icon>notification_important</mat-icon>
-            </button>
-
-            <button style="float: right;position:absolute;right:20px" mat-icon-button [matMenuTriggerFor]="menu"
-                aria-label="Example icon-button with a menu">
-                <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu">
-                <button mat-menu-item>
-                    <mat-icon>login</mat-icon>
-                    <span>Logout</span>
+            
+                <button style="float: right;position:absolute;right:50px" mat-icon-button class="example-icon"
+                    aria-label="Example icon-button with notification icon">
+                    <mat-icon>notification_important</mat-icon>
                 </button>
 
-            </mat-menu>
+                <button style="float: right;position:absolute;right:20px" class="example-icon2" mat-icon-button [matMenuTriggerFor]="menu"
+                    aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item>
+                        <mat-icon>login</mat-icon>
+                        <span>Logout</span>
+                    </button>
+                </mat-menu>
+            
         </mat-toolbar>
 
 

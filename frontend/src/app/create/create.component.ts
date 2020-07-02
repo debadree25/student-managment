@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Student } from '../models/student.model';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { ImageSnippet } from '../models/image.model';
@@ -17,12 +17,14 @@ export class CreateComponent implements OnInit {
     url: ArrayBuffer;
     student: Student;
     studentId = null;
+    imgPreview: string;
+    form: FormGroup
     mode = 'Create';
     selectedFile: ImageSnippet;
     constructor(private router: Router,
-                private route: ActivatedRoute,
-                private _snackBar: MatSnackBar,
-                private rest: RestService) {
+        private route: ActivatedRoute,
+        private _snackBar: MatSnackBar,
+        private rest: RestService) {
         if (this.router.getCurrentNavigation().extras.state != undefined) {
             this.student = this.router.getCurrentNavigation().extras.state.data;
         }
@@ -30,42 +32,46 @@ export class CreateComponent implements OnInit {
     }
 
     ngOnInit(): void {
+
+        this.form = new FormGroup({
+            _id: new FormControl(null, { validators: [Validators.required] }),
+            name: new FormControl(null, { validators: [Validators.required] }),
+            department: new FormControl(null, { validators: [Validators.required] }),
+            address: new FormControl(null, { validators: [Validators.required] }),
+            joining_year: new FormControl(null, { validators: [Validators.required] }),
+            year: new FormControl(null, { validators: [Validators.required] }),
+            passing_year: new FormControl(null, { validators: [Validators.required] }),
+            email: new FormControl(null, { validators: [Validators.required] }),
+            phone: new FormControl(null, { validators: [Validators.required] }),
+            socials: new FormControl(null, { validators: [Validators.required] }),
+            image: new FormControl(null, { validators: [Validators.required] })
+        })
     }
 
 
+    onImagePicked($event: Event) {
 
-    func() {
-        new previewFile();
-    }
-    processFile(imageInput: any) {
-        const file: File = imageInput.files[0];
-        console.log(imageInput.files[0]);
-        // console.log(imageInput.files[1]);
-
+        const file = (event.target as HTMLInputElement).files[0];
+        this.form.patchValue({ image: file }); //for single control
+        this.form.get('image').updateValueAndValidity();
+        //asks angular to store and update value;
         const reader = new FileReader();
+        reader.onload = () => {
+            this.imgPreview = reader.result as string;
+        };
 
-        reader.addEventListener('load', (event: any) => {
+        reader.readAsDataURL(file);
 
-            this.selectedFile = {
-                src: event.target.result,
-                file
-            };
-            // console.log(event.target.result);
-            // console.log(this.selectedFile.file);
 
-            // this.studentService.uploadImage(this.selectedFile.file);
-        });
-
-        console.log(reader.readAsDataURL(file));
     }
 
-    async onSubmit(f: NgForm) {
-        const value = f.value;
+    async onSubmit() {
+        const value = this.form.value;
         console.log(value);
-        const { _id,name, department, address, joining_year, year, passing_year, email, phone } = value;
+        const { _id, name, department, address, joining_year, year, passing_year, email, phone } = value;
         const student: Student = {
-        
-            name,_id,
+
+            name, _id,
             department,
             address,
             joining_year: parseInt(joining_year, 10),
@@ -88,14 +94,6 @@ export class CreateComponent implements OnInit {
         else {
             alert('New student not added');
         }
-
-        // else {
-        //     this.rest.updateStudent(
-        //       this.postId,
-        //       form.value.title,
-        //       form.value.content
-        //     );
-        //   }
         this.router.navigate(['/dashboard'], { relativeTo: this.route });
     }
 }

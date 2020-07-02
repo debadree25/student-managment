@@ -18,7 +18,11 @@ mat-list {
      margin:5px;
    } */
    
-.content,.contentGrid{
+.content{
+  width:100%;
+  margin-top:2px;
+}
+.contentGrid{
   margin:2%;
   width:100%;
 }
