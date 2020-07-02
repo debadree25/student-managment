@@ -18,7 +18,7 @@ export class ListComponent implements OnInit {
   }
 
   students: Student[];
-  listView: boolean = true;
+  listView = true;
 
   ngOnInit(): void {
   }

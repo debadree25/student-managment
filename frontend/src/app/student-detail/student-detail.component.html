@@ -1,19 +1,23 @@
 <div class="container">
     <div style="display: flex;position:relative;right:5px;font-size:30px;float:right">
-        <button >
-            <mat-icon style="cursor:pointer;margin-right: 5px;" matTooltip="Edit Details" matRipple matRippleColor="light-grey" class="ripple" (click)="openDialog('Edit')">create</mat-icon>
+        <button>
+            <mat-icon style="cursor:pointer;margin-right: 5px;" matTooltip="Edit Details" matRipple
+                matRippleColor="light-grey" class="ripple" (click)="openDialog('Edit')">create</mat-icon>
         </button>
         <button>
-            <mat-icon style="cursor:pointer;margin-right: 5px" matTooltip="Copy Details"  matRipple matRippleColor="light-grey" (click)="onCopy()">content_copy</mat-icon>
+            <mat-icon style="cursor:pointer;margin-right: 5px" matTooltip="Copy Details" matRipple
+                matRippleColor="light-grey" (click)="onCopy()">content_copy</mat-icon>
         </button>
         <button>
-            <mat-icon style="cursor:pointer;margin-right: 5px" matTooltip="Delete Details" matRipple matRippleColor="light-grey" (click)="openDialog('Delete')">delete</mat-icon>
+            <mat-icon style="cursor:pointer;margin-right: 5px" matTooltip="Delete Details" matRipple
+                matRippleColor="light-grey" (click)="openDialog('Delete')">delete</mat-icon>
         </button>
 
         <button>
-            <mat-icon style="cursor:pointer;margin-right: 5px" matTooltip="Close" matRipple matRippleColor="light-grey" (click)="onClose()">close</mat-icon>
+            <mat-icon style="cursor:pointer;margin-right: 5px" matTooltip="Close" matRipple matRippleColor="light-grey"
+                (click)="onClose()">close</mat-icon>
         </button>
-        
+
     </div>
 
     <div class="content">
@@ -28,10 +32,10 @@
             <mat-list-item style="display: flex;">
                 <div style="margin-right: 25px;">
                     <span class="mat-body-strong" style="color:grey;display:inline-block;">Year:</span>
-                    <span class="mat-h3" *ngIf="data.year===1">{{student.year+"st"}}</span>
-                    <span class="mat-h3" *ngIf="data.year===2">{{student.year+"nd"}}</span>
-                    <span class="mat-h3" *ngIf="data.year===3">{{student.year+"rd"}}</span>
-                    <span class="mat-h3" *ngIf="data.year===4">{{student.year+"th"}}</span>
+                    <span class="mat-h3" *ngIf="student.year==1">{{student.year+"st"}}</span>
+                    <span class="mat-h3" *ngIf="student.year==2">{{student.year+"nd"}}</span>
+                    <span class="mat-h3" *ngIf="student.year==3">{{student.year+"rd"}}</span>
+                    <span class="mat-h3" *ngIf="student.year==4">{{student.year+"th"}}</span>
                 </div>
                 <div>
                     <span class="mat-body-strong" style="color:grey;display:inline-block;">Department:</span>
@@ -57,7 +61,7 @@
             <mat-list-item>
                 <div style="display: flex;">
                     <span>
-                        <mat-icon  style="font-size: 20px;">email</mat-icon>
+                        <mat-icon style="font-size: 20px;">email</mat-icon>
                     </span>
                     <span class="mat-h4">
                         {{student.email}}
@@ -68,7 +72,7 @@
             <mat-list-item>
                 <div style="display: flex;">
                     <span>
-                        <mat-icon  style="font-size: 20px;">home</mat-icon>
+                        <mat-icon style="font-size: 20px;">home</mat-icon>
                     </span>
                     <span class="mat-h4">
                         {{student.address}}
@@ -80,7 +84,7 @@
             <mat-list-item>
                 <div style="display: flex;">
                     <span>
-                        <mat-icon  style="font-size: 20px;">phone</mat-icon>
+                        <mat-icon style="font-size: 20px;">phone</mat-icon>
                     </span>
                     <span class="mat-h4">
                         {{student.phone}}
