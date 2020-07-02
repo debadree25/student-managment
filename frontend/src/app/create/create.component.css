@@ -22,3 +22,11 @@ input[type="file"]{
 .image-preview img{
     height:100%;
 }
+
+@media screen and (max-width:600px){
+    mat-card{
+        display:block;
+        width:80%;
+        margin:15px auto;
+    }
+}

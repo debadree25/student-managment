@@ -16,8 +16,20 @@ export class RestService {
   }
 
   public addStudent(student: Student): Promise<ServerResponse<Student>> {
+    // const postData = new FormData();
+    // postData.append('name', student.name);
+    // postData.append('department', student.department);
+    // postData.append('year', student.year);
+    // postData.append('passing_year', student.passing_year);
+    // postData.append('address', student.address);
+    // postData.append('joining_year', student.joining_year);
+    // postData.append('phone', student.phone.toString());
+    // postData.append('image', student.image,student.name);
+    // postData.append('email', student.email);
+    // console.log(postData)
+
     const url = `${this.baseUrl}students/create`;
-    return this.http.post<ServerResponse<Student>>(url, student).toPromise();
+    return this.http.post<ServerResponse<Student>>(url,student).toPromise();
   }
 
   public getStudentById(id: string): Promise<ServerResponse<Student>> {

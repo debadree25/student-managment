@@ -7,7 +7,9 @@ mat-form-field,mat-card-actions,.options{
     width:80%;
     margin:0 auto;
 }
-
+input{
+    margin-left: 18px;
+}
 .options{
     font-size:13px;
 }
@@ -47,7 +49,33 @@ mat-form-field,mat-card-actions,.options{
   .forgotPwd:hover{
       text-decoration: underline;
   }
+  /* .cust{
+      position: absolute;
+      background: #fff;
+      margin-right: 18px;
+      margin-top: 1px;
+      width:10px;
+      height:7px;
+   
+      padding-top: 8px;
+  }
+  .password{
+      height: 44px;
+    padding-left: 50px;
+}
   
+  form .input-icon::after {
+    content: '';
+    position: absolute;
+    right: -11px;
+    top: -10px;
+    bottom: -10px;
+    width: 1px;
+    opacity: .5;
+    background-color: rgba(212,212,212,0);
+    background-image: -webkit-linear-gradient(bottom,rgba(212,212,212,0) 0,#d4d4d4 30%,#d4d4d4 70%,rgba(212,212,212,0) 100%);
+    background-image: linear-gradient(to top,rgba(212,212,212,0) 0,#d4d4d4 30%,#d4d4d4 70%,rgba(212,212,212,0) 100%);
+  } */
   @media screen and (max-width:1000px){
 
     .login,.register{

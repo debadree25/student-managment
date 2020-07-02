@@ -9,5 +9,5 @@ export interface Student {
     email: string;
     phone: number;
     socials?: string[];
-    image?: any;
+    image?:File;
 }

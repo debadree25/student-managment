@@ -5,6 +5,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { ImageSnippet } from '../models/image.model';
 import { RestService } from '../services/rest.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import {mimType} from './mime-type.validator';
 
 declare var previewFile: any;
 
@@ -34,7 +35,7 @@ export class CreateComponent implements OnInit {
     ngOnInit(): void {
 
         this.form = new FormGroup({
-            _id: new FormControl(null, { validators: [Validators.required] }),
+            _id: new FormControl(null),
             name: new FormControl(null, { validators: [Validators.required] }),
             department: new FormControl(null, { validators: [Validators.required] }),
             address: new FormControl(null, { validators: [Validators.required] }),
@@ -43,8 +44,9 @@ export class CreateComponent implements OnInit {
             passing_year: new FormControl(null, { validators: [Validators.required] }),
             email: new FormControl(null, { validators: [Validators.required] }),
             phone: new FormControl(null, { validators: [Validators.required] }),
-            socials: new FormControl(null, { validators: [Validators.required] }),
-            image: new FormControl(null, { validators: [Validators.required] })
+            image: new FormControl(null, { validators: [Validators.required],
+                asyncValidators:[mimType]})
+                //only accept images
         })
     }
 
@@ -68,7 +70,7 @@ export class CreateComponent implements OnInit {
     async onSubmit() {
         const value = this.form.value;
         console.log(value);
-        const { _id, name, department, address, joining_year, year, passing_year, email, phone } = value;
+        const { _id, name, department, address, joining_year, year, passing_year, email, phone,image} = value;
         const student: Student = {
 
             name, _id,
@@ -78,7 +80,8 @@ export class CreateComponent implements OnInit {
             year: parseInt(year, 10),
             passing_year: parseInt(passing_year, 10),
             email,
-            phone
+            image,
+            phone,
         };
         console.log(student);
         const resp = await this.rest.addStudent(student);
