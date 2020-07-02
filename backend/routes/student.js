@@ -1,6 +1,32 @@
-const express=require('express')
+const express = require('express')
 const router = express.Router();
+const multer = require('multer');
 const mongoose = require("mongoose");
+const MIME_TYPE_MAP={
+    'image/png':'png',
+    'image/jpeg':'jpeg',
+    'image/jpg':'jpg'
+
+}
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      
+        const isValid=MIME_TYPE_MAP[file.mimetype];
+        let error=new Error("Invalid type");
+        if(isValid){
+            error=null;
+        }
+        cb(error, "backend/images");
+        
+    },
+    filename: (req, file, cb) => {
+        const name = file.originalname.toLowerCase().split(' ').join('-'); //gives back mimetype
+        const ext=MIME_TYPE_MAP[file.mimetype];
+        cb(null,name+'-'+Date.now()+'.'+ext)
+    }
+
+
+});
 const Student = require("../models/Student");
 
 router.get("", async (req, res) => {
@@ -69,9 +95,9 @@ router.delete("/:id", async (req, res) => {
     }
 });
 
-router.post("/create", async (req, res) => {
-    //console.log(req.body);
-    const { name, department, address, joining_year, year, passing_year, email, phone, socials } = req.body;
+router.post("/create",multer({storage:storage}).single('image'), async (req, res) => {
+    console.log(req.image);
+    const { name, department, address, joining_year, year, passing_year, email, phone, socials} = req.body;
     const student = Student({
         name,
         department,
@@ -82,8 +108,9 @@ router.post("/create", async (req, res) => {
         email,
         phone,
         socials: socials == null ? [] : socials,
+        image
     });
-    const find = await Student.findOne({ email });
+    const find =  await Student.findOne({ email });
     if (!find) {
         try {
             const save = await student.save();
