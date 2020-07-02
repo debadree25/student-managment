@@ -98,16 +98,10 @@ router.delete("/:id", async (req, res) => {
     }
 });
 
-<<<<<<< HEAD
 router.post("/create",upload.single('student-image') ,async (req, res) => {
     //console.log(req.body);
     //console.log(req.file);
     const { name, department, address, joining_year, year, passing_year, email, phone, socials } = req.body;
-=======
-router.post("/create",multer({storage:storage}).single('image'), async (req, res) => {
-    console.log(req.image);
-    const { name, department, address, joining_year, year, passing_year, email, phone, socials} = req.body;
->>>>>>> 0bd73ed17aef694c9ea3422e514b8ea657b071ca
     const student = Student({
         name,
         department,
