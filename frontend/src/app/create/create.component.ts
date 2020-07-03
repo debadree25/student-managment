@@ -36,7 +36,10 @@ export class CreateComponent implements OnInit {
 
         this.form = new FormGroup({
             _id: new FormControl(null),
-            name: new FormControl(null, { validators: [Validators.required] }),
+            name: new FormGroup({
+                firstname: new FormControl(null, { validators: [Validators.required] }),
+                lastname: new FormControl(null, { validators: [Validators.required] }),
+            }) ,
             department: new FormControl(null, { validators: [Validators.required] }),
             address: new FormControl(null, { validators: [Validators.required] }),
             joining_year: new FormControl(null, { validators: [Validators.required] }),

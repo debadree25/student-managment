@@ -3,9 +3,21 @@ mat-card{
     width:60%;
     margin:15px auto;
 }
-
+.default,.uploaded{
+    /* border-radius: 40%; */
+    display: block;
+    margin:0 auto;
+}
+.uploaded{
+    border-radius: 50%;
+}
 mat-form-field{
     width:100%;
+}
+.example-full-width{
+    width:40%;
+    margin-right:15px;
+    
 }
 
 .newForm{
@@ -17,7 +29,7 @@ input[type="file"]{
 }
 .image-preview{
     height:5rem;
-    margin:1rem 0;
+    cursor: pointer;
 }
 .image-preview img{
     height:100%;

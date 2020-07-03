@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
         if(isValid){
             error=null;
         }
-        cb(error, "backend/images");
+        //cb(error, "backend/images");
         
     },
     filename: (req, file, cb) => {
@@ -28,7 +28,6 @@ const storage = multer.diskStorage({
 
 });
 const Student = require("../models/Student");
-const multer = require('multer');
 
 const upload = multer({ dest: './public/images' });
 
