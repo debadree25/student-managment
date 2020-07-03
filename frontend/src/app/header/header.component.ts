@@ -15,11 +15,34 @@ export class HeaderComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router, public routes: RoutesService) { }
 
   ngOnInit(): void {
+    if(localStorage.getItem("loggedIn")=="true")
+    {
+    var user = JSON.parse(localStorage.getItem('loggedUser'));
+    console.log(user)
+    this.name=user.name
+    this.email=user.email;
+    // console.log(user.name)
+    // console.log(this.name)
+    // console.log(user.email)
+    }
 
     
+  }
+  onLogout(){
+    localStorage.setItem("loggedIn",'false')
+    this.name=""
+    this.email=""
+    localStorage.removeItem("loggedUser")
   }
 
   isActive() {
     this.href = this.router.url;
+  }
+
+  onLogin(){
+    this.router.navigate(["/"])
+  }
+  onRegister(){
+    this.router.navigate(["/"])
   }
 }

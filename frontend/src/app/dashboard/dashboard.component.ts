@@ -24,6 +24,8 @@ export class DashboardComponent implements OnInit {
   // buttonClickd=false;
 
   ngOnInit(): void {
+
+    
     var myChart = new Chart("myChart", {
       type: 'bar',
       data: {

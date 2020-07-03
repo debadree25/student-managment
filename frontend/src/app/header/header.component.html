@@ -2,7 +2,9 @@
     <mat-sidenav #sidenav mode="over">
         <mat-list>
             <div class="details">
-                <mat-list-item>
+                <p *ngIf="name===''">You are not logged in!<br>
+                Login to see details!</p>
+                <mat-list-item  *ngIf="name!==''">
                     <img matListAvatar style="display: block;" src="https://wprdea.org/image/img_avatar.png"
                         alt="img of a man">
                     <div mat-line class="mat-title">{{name}}</div>
@@ -10,7 +12,7 @@
 
 
                 </mat-list-item>
-                <mat-list-item>
+                <mat-list-item *ngIf="name!==''">
                     <button class="manage" mat-stroked-button>
                         <a [routerLink]="['/user']">Manage your profile</a>
                     </button>
@@ -79,10 +81,18 @@
                     <mat-icon>more_vert</mat-icon>
                 </button>
 
-                <mat-menu #menu="matMenu">
-                    <button mat-menu-item>
+                <mat-menu #menu="matMenu" >
+                    <button mat-menu-item *ngIf="name!==''">
                         <mat-icon>login</mat-icon>
-                        <span>Logout</span>
+                        <span><a (click)="onLogout()">Logout</a></span>
+                    </button>
+                    <button mat-menu-item *ngIf="name===''">
+                        <mat-icon>login</mat-icon>
+                        <span><a routerLink="/login" (click)="onLogin()">Login</a></span>
+                    </button>
+                    <button mat-menu-item *ngIf="name===''">
+                        <mat-icon>login</mat-icon>
+                        <span><a routerLink="/register" (click)="onRegister()">Register</a></span>
                     </button>
                 </mat-menu>
             

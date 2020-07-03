@@ -21,6 +21,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthService } from './services/auth.service';
 import { RestService } from './services/rest.service';
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { UserComponent } from './user/user.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     CreateComponent,
     StudentDetailComponent,
     MaterialElevationDirective,
-    LoginComponent
+    LoginComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

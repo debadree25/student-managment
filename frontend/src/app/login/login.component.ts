@@ -19,9 +19,22 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  Login(f){
+  Login(f:NgForm){
     this.login=true;
-    console.log("nav")
+    const value=f.value;
+    this.auth.loginUser(value).subscribe(
+      (res)=>{
+        console.log(res.data)
+        
+        // localStorage.setItem('loggedIn','true')
+        // localStorage.setItem('loggedUser',JSON.stringify(res.data));
+        // //console.log(localStorage.getItem('loggedUser'))
+      },
+      (err)=>{
+        console.log(err);
+      }
+
+    )
     this.router.navigate(['/dashboard'])
     
   }
@@ -31,8 +44,16 @@ export class LoginComponent implements OnInit {
     //console.log(value)
    //console.log("nav")
     this.auth.registerUser(value).subscribe(
-      res=>console.log(res),
-      err=>console.log(err)
+      (res)=>{
+        console.log(res.data)
+        
+        localStorage.setItem('loggedIn','true')
+        localStorage.setItem('loggedUser',JSON.stringify(res.data));
+        //console.log(localStorage.getItem('loggedUser'))
+      },
+      (err)=>{
+        console.log(err);
+      }
 
     )
     this.router.navigate(['/dashboard'])
