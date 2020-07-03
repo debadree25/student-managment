@@ -19,72 +19,81 @@ export class CreateComponent implements OnInit {
     student: Student;
     studentId = null;
     imgPreview: string;
-    form: FormGroup
+    form: FormGroup;
     mode = 'Create';
     selectedFile: ImageSnippet;
+    file: File;
+    dataBlob: Blob;
     constructor(private router: Router,
-        private route: ActivatedRoute,
-        private _snackBar: MatSnackBar,
-        private rest: RestService) {
+                private route: ActivatedRoute,
+                // tslint:disable-next-line: variable-name
+                private _snackBar: MatSnackBar,
+                private rest: RestService) {
+        // tslint:disable-next-line: triple-equals
         if (this.router.getCurrentNavigation().extras.state != undefined) {
             this.student = this.router.getCurrentNavigation().extras.state.data;
         }
+        this.downloadImageStudent();
+        this.form = new FormGroup({
+            _id: new FormControl(null),
+            name: new FormControl(this.student?.name, { validators: [Validators.required] }),
+            department: new FormControl(this.student?.department, { validators: [Validators.required] }),
+            address: new FormControl(this.student?.address, { validators: [Validators.required] }),
+            joining_year: new FormControl(this.student?.joining_year, { validators: [Validators.required] }),
+            year: new FormControl(this.student?.year, { validators: [Validators.required] }),
+            passing_year: new FormControl(this.student?.passing_year, { validators: [Validators.required] }),
+            email: new FormControl(this.student?.email, { validators: [Validators.required] }),
+            phone: new FormControl(this.student?.phone, { validators: [Validators.required] }),
+            image: new FormControl(this.dataBlob, { validators: [Validators.required],
+                asyncValidators: [mimType]})
+                // only accept images
+        });
+        console.log(this.form);
         console.log(this.student);
     }
 
     ngOnInit(): void {
-
-        this.form = new FormGroup({
-            _id: new FormControl(null),
-            name: new FormControl(null, { validators: [Validators.required] }),
-            department: new FormControl(null, { validators: [Validators.required] }),
-            address: new FormControl(null, { validators: [Validators.required] }),
-            joining_year: new FormControl(null, { validators: [Validators.required] }),
-            year: new FormControl(null, { validators: [Validators.required] }),
-            passing_year: new FormControl(null, { validators: [Validators.required] }),
-            email: new FormControl(null, { validators: [Validators.required] }),
-            phone: new FormControl(null, { validators: [Validators.required] }),
-            image: new FormControl(null, { validators: [Validators.required],
-                asyncValidators:[mimType]})
-                //only accept images
-        })
     }
 
+    async downloadImageStudent() {
+        if (this.student) {
+            const resp = await this.rest.downloadImage(this.student.image);
+            this.dataBlob = resp;
+            console.log(this.dataBlob);
+            this.form.patchValue({image: this.dataBlob});
+            this.form.get('image').updateValueAndValidity();
+            this.imgPreview = `${this.rest.baseUrl}images/${this.student.image}`;
+        }
+    }
 
     onImagePicked($event: Event) {
-
-        const file = (event.target as HTMLInputElement).files[0];
-        this.form.patchValue({ image: file }); //for single control
+        this.file = ($event.target as HTMLInputElement).files[0];
+        this.form.patchValue({ image: this.file }); // for single control
         this.form.get('image').updateValueAndValidity();
-        //asks angular to store and update value;
         const reader = new FileReader();
         reader.onload = () => {
             this.imgPreview = reader.result as string;
         };
 
-        reader.readAsDataURL(file);
-
-
+        reader.readAsDataURL(this.file);
     }
 
     async onSubmit() {
         const value = this.form.value;
         console.log(value);
-        const { _id, name, department, address, joining_year, year, passing_year, email, phone,image} = value;
+        const { name, department, address, joining_year, year, passing_year, email, phone} = value;
         const student: Student = {
-
-            name, _id,
+            name,
             department,
             address,
             joining_year: parseInt(joining_year, 10),
             year: parseInt(year, 10),
             passing_year: parseInt(passing_year, 10),
             email,
-            image,
             phone,
         };
         console.log(student);
-        const resp = await this.rest.addStudent(student);
+        const resp = await this.rest.addStudent(student, this.file);
         if (resp.status) {
             alert('New student added');
             // snackbar

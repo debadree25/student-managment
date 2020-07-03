@@ -1,16 +1,16 @@
-<div *ngIf="(route.route=='/') && (login==true)" class="login">
+<div *ngIf="login" class="login">
     <mat-card class="mat-elevation-z6">
         <mat-card-title style="text-align: center;margin-top: 20px;">Login</mat-card-title>
-        <form (ngSubmit)="Login(f)" #f="ngForm">
+        <form (ngSubmit)="loginUser(f)" #f="ngForm">
             <mat-form-field>
             <!-- <i class="fa fa-user  cust" aria-hidden="true"></i> -->
-                <input matInput placeholder="Email" type="email" required name="name" required
+                <input matInput placeholder="Email" type="email" required name="email" required
                 ngModel #email="ngModel"> 
                 
             </mat-form-field>
             <mat-form-field>
                 <!-- <i class="fa fa-lock  cust" aria-hidden="true"></i> -->
-                <input matInput placeholder="Password" type="password" required name="name" required
+                <input matInput placeholder="Password" type="password" required name="password" required
                 ngModel #password="ngModel">
             </mat-form-field>
 
@@ -20,7 +20,7 @@
             </div>
             <mat-card-actions><button [disabled]="!f.valid" mat-raised-button style="margin-top: 10px;" color="primary"
                     type="submit">Login</button></mat-card-actions>
-            <mat-card-actions><button (click)="LogToReg()" color="primary" type="button"
+            <mat-card-actions><button (click)="tab()" color="primary" type="button"
                     style="outline: none;border:none;background-color: transparent;"><a class="signup">New User?Sign
                         Up</a></button></mat-card-actions>
         </form>
@@ -28,10 +28,10 @@
     </mat-card>
 </div>
 
-<div *ngIf="(route.route=='/register') && (login==false) && (register==true)" class="register">
+<div *ngIf="register" class="register">
     <mat-card class="mat-elevation-z6">
         <mat-card-title style="text-align: center;margin-top: 20px;">Register</mat-card-title>
-        <form (ngSubmit)="Register(f)" #f="ngForm">
+        <form (ngSubmit)="registerUser(f)" #f="ngForm">
 
             <mat-form-field>
                 <input matInput placeholder="Name" type="name" name="name" required
@@ -50,7 +50,7 @@
             </div>
             <mat-card-actions style="margin-top: 10px;"><button [disabled]="!f.valid" mat-raised-button color="primary"
                     type="submit">Register</button></mat-card-actions>
-            <mat-card-actions><button (click)="RegToLog()" color="primary" type="button"
+            <mat-card-actions><button (click)="tab()" color="primary" type="button"
                     style="outline: none;border:none;background-color: transparent;margin: none;"><a
                         class="signup">Already have an account?</a></button></mat-card-actions>
         </form>

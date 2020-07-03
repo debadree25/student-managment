@@ -56,7 +56,7 @@ router.post("/login", async (req, res) => {
                     message: "Invalid credentials",
                 });
             } else {
-                const token = jwt.sign(user.toJSON(), "super duper secret!!!", { expiresIn: "7d" });
+                const token = jwt.sign(user.toJSON(), "super duper secret!!!");
                 res.status(200).json({
                     status: true,
                     message: "User signed in",

@@ -15,25 +15,27 @@ export class RestService {
     return this.http.get<ServerResponse<Student[]>>(url).toPromise();
   }
 
-  public addStudent(student: Student): Promise<ServerResponse<Student>> {
-    // const postData = new FormData();
-    // postData.append('name', student.name);
-    // postData.append('department', student.department);
-    // postData.append('year', student.year);
-    // postData.append('passing_year', student.passing_year);
-    // postData.append('address', student.address);
-    // postData.append('joining_year', student.joining_year);
-    // postData.append('phone', student.phone.toString());
+  public addStudent(student: Student, file: File): Promise<ServerResponse<Student>> {
+    const postData = new FormData();
+    Object.keys(student).forEach((key) => {
+      postData.append(key, student[key]);
+    });
+    postData.append('student-image', file, file.name);
     // postData.append('image', student.image,student.name);
     // postData.append('email', student.email);
-    // console.log(postData)
+    console.log(postData);
 
     const url = `${this.baseUrl}students/create`;
-    return this.http.post<ServerResponse<Student>>(url,student).toPromise();
+    return this.http.post<ServerResponse<Student>>(url, postData).toPromise();
   }
 
   public getStudentById(id: string): Promise<ServerResponse<Student>> {
     const url = `${this.baseUrl}students/${id}`;
     return this.http.get<ServerResponse<Student>>(url).toPromise();
+  }
+
+  public downloadImage(imageId: string): Promise<Blob> {
+    const url = `${this.baseUrl}images/${imageId}`;
+    return this.http.get(url, {responseType: 'blob'}).toPromise();
   }
 }

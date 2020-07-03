@@ -11,64 +11,43 @@ import { NgForm } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  login=true;
-  register=false;
-  constructor(public route:RoutesService,
-    private auth:AuthService,
-    public router:Router) { }
+  login = true;
+  register = false;
+  constructor(public route: RoutesService,
+              private auth: AuthService,
+              public router: Router) { }
 
   ngOnInit(): void {
-  }
-  Login(f:NgForm){
-    this.login=true;
-    const value=f.value;
-    this.auth.loginUser(value).subscribe(
-      (res)=>{
-        console.log(res.data)
-        
-        // localStorage.setItem('loggedIn','true')
-        // localStorage.setItem('loggedUser',JSON.stringify(res.data));
-        // //console.log(localStorage.getItem('loggedUser'))
-      },
-      (err)=>{
-        console.log(err);
-      }
-
-    )
-    this.router.navigate(['/dashboard'])
-    
-  }
-  Register(f:NgForm){
-    this.register=true;
-    const value=f.value;
-    //console.log(value)
-   //console.log("nav")
-    this.auth.registerUser(value).subscribe(
-      (res)=>{
-        console.log(res.data)
-        
-        localStorage.setItem('loggedIn','true')
-        localStorage.setItem('loggedUser',JSON.stringify(res.data));
-        //console.log(localStorage.getItem('loggedUser'))
-      },
-      (err)=>{
-        console.log(err);
-      }
-
-    )
-    this.router.navigate(['/dashboard'])
+    if (this.auth.getLogin()) {
+      this.router.navigate(['dashboard']);
+    }
   }
 
-  LogToReg(){
-    this.register=true;
-    this.login=false;
-    this.router.navigate(['/register'])
+  async loginUser(f: NgForm) {
+    const value = f.value;
+    console.log(value);
+    const { email, password } = value;
+    const resp = await this.auth.loginUser(email, password);
+    console.log(resp);
+    if (resp.status) {
+      this.auth.storeLogin(resp.data);
+      this.router.navigate(['dashboard']);
+    }
   }
 
-  RegToLog(){
-    this.register=false;
-    this.login=true;
-    this.router.navigate(['/'])
+  async registerUser(f: NgForm) {
+    const value = f.value;
+    console.log(value);
+    const { name, email, password } = value;
+    const resp = await this.auth.registerUser({ name, email, password });
+    console.log(resp);
+    if (resp.status) {
+      this.tab();
+    }
   }
 
+  tab() {
+    this.login = !this.login;
+    this.register = !this.register;
+  }
 }

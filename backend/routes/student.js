@@ -1,36 +1,35 @@
-const express = require('express')
+const express = require("express");
 const router = express.Router();
-const multer = require('multer');
+const multer = require("multer");
 const mongoose = require("mongoose");
-const MIME_TYPE_MAP={
-    'image/png':'png',
-    'image/jpeg':'jpeg',
-    'image/jpg':'jpg'
+// const MIME_TYPE_MAP={
+//     'image/png':'png',
+//     'image/jpeg':'jpeg',
+//     'image/jpg':'jpg'
 
-}
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-      
-        const isValid=MIME_TYPE_MAP[file.mimetype];
-        let error=new Error("Invalid type");
-        if(isValid){
-            error=null;
-        }
-        cb(error, "backend/images");
-        
-    },
-    filename: (req, file, cb) => {
-        const name = file.originalname.toLowerCase().split(' ').join('-'); //gives back mimetype
-        const ext=MIME_TYPE_MAP[file.mimetype];
-        cb(null,name+'-'+Date.now()+'.'+ext)
-    }
+// }
+// const storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
 
+//         const isValid=MIME_TYPE_MAP[file.mimetype];
+//         let error=new Error("Invalid type");
+//         if(isValid){
+//             error=null;
+//         }
+//         cb(error, "backend/images");
 
-});
+//     },
+//     filename: (req, file, cb) => {
+//         const name = file.originalname.toLowerCase().split(' ').join('-'); //gives back mimetype
+//         const ext=MIME_TYPE_MAP[file.mimetype];
+//         cb(null,name+'-'+Date.now()+'.'+ext)
+//     }
+
+// });
 const Student = require("../models/Student");
-const multer = require('multer');
+// const multer = require('multer');
 
-const upload = multer({ dest: './public/images' });
+const upload = multer({ dest: "./public/images" });
 
 router.get("", async (req, res) => {
     //console.log(req.query);
@@ -51,9 +50,9 @@ router.get("", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-    console.log(req.params.id)
+    console.log(req.params.id);
     const student = await Student.findById(req.params.id);
-    console.log(student)
+    console.log(student);
     if (student) {
         res.status(200).json({
             status: true,
@@ -98,7 +97,7 @@ router.delete("/:id", async (req, res) => {
     }
 });
 
-router.post("/create",upload.single('student-image') ,async (req, res) => {
+router.post("/create", upload.single("student-image"), async (req, res) => {
     //console.log(req.body);
     //console.log(req.file);
     const { name, department, address, joining_year, year, passing_year, email, phone, socials } = req.body;
@@ -111,11 +110,10 @@ router.post("/create",upload.single('student-image') ,async (req, res) => {
         passing_year,
         email,
         phone,
-        image: req.file.filename,
+        image: req.file.filename ? req.file.filename : "",
         socials: socials == null ? [] : socials,
-        image
     });
-    const find =  await Student.findOne({ email });
+    const find = await Student.findOne({ email });
     if (!find) {
         try {
             const save = await student.save();
