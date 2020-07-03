@@ -2,12 +2,32 @@
     <mat-card class="mat-elevation-z8">
         <mat-card-subtitle>*All fields are required</mat-card-subtitle>
         <form [formGroup]="form" name="form" (ngSubmit)="onSubmit()">
+            
+                <!-- <button mat-stroke-button type="button" (click)="filePicker.click()">Pick Image</button> -->
+             <input type="file" #filePicker (change)="onImagePicked($event)">
+            
+            <div class="image-preview" (click)="filePicker.click()">
+                <img matTooltip="Upload Image" class="default" *ngIf="!imgPreview"
+                    src="https://cdn.onlinewebfonts.com/svg/img_508039.png">
+                <img [src]="imgPreview" class="uploaded" *ngIf="imgPreview && form.get('image').valid" [alt]="form.value.name">
+            </div>
 
             <mat-form-field>
                 <input matInput placeholder="Name" formControlName="name" type="text">
                 <mat-error *ngIf="form.get('name').invalid && form.get('name').touched">This field is required!
                 </mat-error>
-            </mat-form-field>
+            </mat-form-field> 
+
+            <!-- <div formGroupName="name" style="display: flex;">
+                <mat-form-field class="example-full-width">
+                <mat-label>First name</mat-label>
+                <input matInput  formControlName="firstname" type="text">
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>Last Name</mat-label>
+                <input matInput  formControlName="lastname" type="text">
+              </mat-form-field>
+            </div> -->
 
             <div style="display: flex;">
                 <mat-form-field style="margin-right:3%;width:20%">
@@ -101,18 +121,12 @@
                 </div>
 
             </div> -->
-            <div>
-                <button mat-stroke-button type="button" (click)="filePicker.click()">Pick Image</button>
-                <input type="file" #filePicker (change)="onImagePicked($event)">
-            </div>
-            <div class="image-preview" *ngIf="imgPreview && form.get('image').valid">
-                <img [src]="imgPreview" [alt]="form.value.name">
-            </div>
+
 
 
             <mat-card-actions align="end">
                 <button type="submit" [disabled]="!form.valid" mat-raised-button color="primary">{{mode}}</button>
-                
+
 
             </mat-card-actions>
         </form>
