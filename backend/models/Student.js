@@ -35,6 +35,9 @@ const StudentSchema = mongoose.Schema({
     },
     socials: {
         type: Array
+    },
+    image: {
+        type: String
     }
 });
 

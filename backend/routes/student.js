@@ -28,6 +28,9 @@ const storage = multer.diskStorage({
 
 });
 const Student = require("../models/Student");
+const multer = require('multer');
+
+const upload = multer({ dest: './public/images' });
 
 router.get("", async (req, res) => {
     //console.log(req.query);
@@ -95,9 +98,10 @@ router.delete("/:id", async (req, res) => {
     }
 });
 
-router.post("/create",multer({storage:storage}).single('image'), async (req, res) => {
-    console.log(req.image);
-    const { name, department, address, joining_year, year, passing_year, email, phone, socials} = req.body;
+router.post("/create",upload.single('student-image') ,async (req, res) => {
+    //console.log(req.body);
+    //console.log(req.file);
+    const { name, department, address, joining_year, year, passing_year, email, phone, socials } = req.body;
     const student = Student({
         name,
         department,
@@ -107,6 +111,7 @@ router.post("/create",multer({storage:storage}).single('image'), async (req, res
         passing_year,
         email,
         phone,
+        image: req.file.filename,
         socials: socials == null ? [] : socials,
         image
     });
