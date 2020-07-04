@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Student } from '../models/student.model';
 import { RestService } from '../services/rest.service';
-import { Chart } from 'node_modules/chart.js'
+import { Chart } from 'node_modules/chart.js';
+import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,11 +12,14 @@ import { Chart } from 'node_modules/chart.js'
 })
 export class DashboardComponent implements OnInit {
   students: Student[];
-  toggle=true;
-  years = ['1st Year', '2nd Year', '3rd Year', '4th Year'];
-  streams = ['IT', 'CSE', 'ME', 'ECE', 'EE'];
-
-  len = 0;
+  toggle = true;
+  years = [1, 2, 3, 4];
+  yearsData = [];
+  streams = ['IT', 'CSE', 'ECE', 'EE', 'ME'];
+  streamsData = [];
+  totalStudents = 0;
+  chart1: any;
+  chart2: any;
   constructor(private rest: RestService) {
     this.fetchData();
   }
@@ -23,23 +27,41 @@ export class DashboardComponent implements OnInit {
   // students:Student[];
   // buttonClickd=false;
 
-  ngOnInit(): void {
+  async ngOnInit() {
+  }
 
-    
-    var myChart = new Chart("myChart", {
+
+
+
+
+  async fetchData() {
+    const resp = await this.rest.getAllStudents();
+    this.students = resp.data;
+    this.totalStudents = this.students.length;
+    this.streams.forEach(async (stream) => {
+      const res = await this.rest.getStudents({ department: stream });
+      this.streamsData.push(res.data.length);
+    });
+    this.years.forEach(async (year) => {
+      const res = await this.rest.getStudents({ year });
+      this.yearsData.push(res.data.length);
+    });
+    console.log(this.streamsData);
+    console.log(this.yearsData);
+    this.chart1 = new Chart('myChart', {
       type: 'bar',
       data: {
-        labels: ['IT', 'CSE', 'EE', 'ME', 'ECE'],
+        labels: this.streams,
         datasets: [{
           label: 'Division wrt Stream',
-          data: [12, 19, 3, 5, 2, 3],
+          data: this.streamsData,
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
             'rgba(54, 162, 235, 0.2)',
             'rgba(255, 206, 86, 0.2)',
             'rgba(75, 192, 192, 0.2)',
             'rgba(153, 102, 255, 0.2)',
-            
+
           ],
           borderColor: [
             'rgba(255, 99, 132, 1)',
@@ -47,7 +69,7 @@ export class DashboardComponent implements OnInit {
             'rgba(255, 206, 86, 1)',
             'rgba(75, 192, 192, 1)',
             'rgba(153, 102, 255, 1)',
-            
+
           ],
           borderWidth: 1
         }]
@@ -63,33 +85,25 @@ export class DashboardComponent implements OnInit {
       }
     });
 
-    var chart1=new Chart("myPChart", {
+    this.chart2 = new Chart('myPChart', {
       type: 'pie',
-    data: {
-      labels: ["1", "2", "3", "4"],
-      datasets: [{
-        label: "Division By Year",
-        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9"],
-        data: [500,300,450,600]
-      }]
-    },
-    options: {
-      title: {
-        display: true,
-        text: 'Division of students wrt year'
+      data: {
+        labels: ['1', '2', '3', '4'],
+        datasets: [{
+          label: 'Division By Year',
+          backgroundColor: ['#3e95cd', '#8e5ea2', '#3cba9f', '#e8c3b9'],
+          data: this.yearsData
+        }]
+      },
+      options: {
+        title: {
+          display: true,
+          text: 'Division of students wrt year'
+        }
       }
-    }
     });
-  }
-
-  
-
- 
-
-  async fetchData() {
-    const resp = await this.rest.getAllStudents();
-    this.students = resp.data;
-    this.len = this.students.length;
+    console.log(this.chart1.data.datasets[0]);
+    console.log(this.chart2.data.datasets[0]);
   }
 
   // onClick(){

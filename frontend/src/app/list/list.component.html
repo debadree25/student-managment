@@ -1,4 +1,28 @@
 <!--For list of students-->
+
+<div style="display: flex;justify-content: center;align-items: center;">
+  <mat-form-field style="margin: 10px;">
+    <mat-label>Year</mat-label>
+    <mat-select [(ngModel)]="filterYear">
+      <mat-option [value]="1">1</mat-option>
+      <mat-option [value]="2">2</mat-option>
+      <mat-option [value]="3">3</mat-option>
+      <mat-option [value]="4">4</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field style="margin: 10px;">
+    <mat-label>Department</mat-label>
+    <mat-select [(ngModel)]="filterDept">
+      <mat-option value="IT">IT</mat-option>
+      <mat-option value="CSE">CSE</mat-option>
+      <mat-option value="ECE">ECE</mat-option>
+      <mat-option value="EE">EE</mat-option>
+      <mat-option value="ME">ME</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-button (click)="filter()">Filter</button>
+  <button mat-button (click)="clearFilter()">Clear</button>
+</div>
 <span class="icon" style="z-index: 5;">
   <button *ngIf="!listView" (click)="listView=!listView">
     <mat-icon appMaterialElevation fontSet="material-icons-outlined">view_list</mat-icon>
@@ -21,24 +45,24 @@
 </div>
 
 <div class="contentGrid">
-<div  fxLayout="row wrap" *ngIf="!listView" fxLayoutGap="10px grid">
-  <div class="grid" fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let student of students;let i=index" >
-  <mat-card  (click)="openDialog(student,i)">
-    <mat-card-content>
-      <mat-list>
-        <mat-list-item>
-          <img matListAvatar src="https://wprdea.org/image/img_avatar.png" alt="img of {{student.name}}">
-          <div mat-line><strong>{{student.name}}</strong></div>
-          <div mat-line> {{student.department | uppercase}} </div>
-          <!-- <div mat-line>{{student.year}}</div> -->
-          <div mat-line> {{student.passing_year +" Batch" }}</div>
-        </mat-list-item>
-      </mat-list>
-    </mat-card-content>
-  </mat-card>
-</div>
+  <div fxLayout="row wrap" *ngIf="!listView" fxLayoutGap="10px grid">
+    <div class="grid" fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let student of students;let i=index">
+      <mat-card (click)="openDialog(student,i)">
+        <mat-card-content>
+          <mat-list>
+            <mat-list-item>
+              <img matListAvatar src="https://wprdea.org/image/img_avatar.png" alt="img of {{student.name}}">
+              <div mat-line><strong>{{student.name}}</strong></div>
+              <div mat-line> {{student.department | uppercase}} </div>
+              <!-- <div mat-line>{{student.year}}</div> -->
+              <div mat-line> {{student.passing_year +" Batch" }}</div>
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+    </div>
 
-</div>
+  </div>
 </div>
 
 <!-- <mat-card-actions align="end">

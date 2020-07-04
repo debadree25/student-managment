@@ -10,17 +10,31 @@ import { StudentDetailComponent } from '../student-detail/student-detail.compone
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-
+  filterDept: string;
+  filterYear: number;
+  students: Student[];
+  listView = true;
   constructor(
     public dialog: MatDialog,
     private rest: RestService) {
     this.fetchData();
   }
 
-  students: Student[];
-  listView = true;
-
   ngOnInit(): void {
+  }
+
+  async filter() {
+    if (this.filterYear || this.filterDept) {
+      const resp = await this.rest.getStudents({year: this.filterYear, department: this.filterDept});
+      this.students = resp.data;
+    }
+  }
+
+  async clearFilter() {
+    this.filterDept = '';
+    this.filterYear = null;
+    const resp = await this.rest.getAllStudents();
+    this.students = resp.data;
   }
 
   async fetchData() {

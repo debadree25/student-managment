@@ -2,12 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User, Login } from '../models/auth.model';
 import { ServerResponse } from '../models/server-response.model';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   login: Login;
+  loginObserver = new Subject<Login>();
+  loginObserver$ = this.loginObserver.asObservable();
   constructor(private http: HttpClient) {
     if (localStorage.getItem('LOGIN')) {
       this.login = JSON.parse(localStorage.getItem('LOGIN'));
@@ -28,9 +31,16 @@ export class AuthService {
   public storeLogin(log: Login) {
     this.login = log;
     localStorage.setItem('LOGIN', JSON.stringify(this.login));
+    this.loginObserver.next(this.login);
   }
 
   public getLogin(): Login {
     return this.login;
+  }
+
+  public logout() {
+    this.login = null;
+    this.loginObserver.next(null);
+    localStorage.clear();
   }
 }

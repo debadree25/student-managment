@@ -1,54 +1,54 @@
-<mat-card class="student-card" appMaterialElevation [routerLink]="['/list']">
+<!-- <mat-card class="student-card" appMaterialElevation [routerLink]="['/list']">
   <mat-card-header style="display: block;margin:0 30%;position: relative;">
-    <mat-card-title>Total Students</mat-card-title>
-    <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
-  </mat-card-header>
-  <button mat-button type="button" (click)="toggle=!toggle" style="float: right;"><mat-icon>toggle_off</mat-icon></button>
-  <!-- <div *ngIf="toggle"> -->
-    <div id="chart"> 
+    <mat-card-title>Total Students</mat-card-title> -->
+<!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+<!-- </mat-card-header>
+  <button mat-button type="button" (click)="toggle=!toggle" style="float: right;"><mat-icon>toggle_off</mat-icon></button> -->
+<!-- <div *ngIf="toggle"> -->
+<!-- <div id="chart"> 
       <canvas id="myChart"></canvas>
-    </div>
+    </div> -->
 
-  <!-- </div>
+<!-- </div>
   <div *ngIf="!toggle"> -->
-    <div id="chart"> 
+<!-- <div id="chart"> 
       <canvas id="myPChart"></canvas>
-    </div>
-  
-  
-  
-  <!-- <img mat-card-image src="" alt=""> -->
-  <mat-card-content style="display: block;margin:0 30%;position: relative;">
+    </div> -->
+
+
+
+<!-- <img mat-card-image src="" alt=""> -->
+<!-- <mat-card-content style="display: block;margin:0 30%;position: relative;">
     <p>
       Count: <span class="mat-display-1">
         {{len}}
       </span>
     </p>
-  </mat-card-content>
-  <!-- <mat-card-actions align="end">
+  </mat-card-content> -->
+<!-- <mat-card-actions align="end">
       <button mat-raised-button color="primary" >View All</button>
     </mat-card-actions> -->
-</mat-card>
+<!-- </mat-card>
 <hr>
 
 <div class="content">
   <mat-card class="stream" *ngFor="let stream of streams" appMaterialElevation [routerLink]="['/list/:stream']">
     <mat-card-header style="display:block;margin:0 2.5%;position: relative;">
-      <mat-card-title>Total Students in {{stream}}</mat-card-title>
-      <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
-    </mat-card-header>
-    <!-- <img mat-card-image src="" alt=""> -->
-    <mat-card-content style="display: block;margin:0 29%;position: relative;">
+      <mat-card-title>Total Students in {{stream}}</mat-card-title> -->
+<!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+<!-- </mat-card-header> -->
+<!-- <img mat-card-image src="" alt=""> -->
+<!-- <mat-card-content style="display: block;margin:0 29%;position: relative;">
       <p>
         Count: <span class="mat-display-1">
           {{len}}
         </span>
       </p>
-    </mat-card-content>
-    <!-- <mat-card-actions align="end">
+    </mat-card-content> -->
+<!-- <mat-card-actions align="end">
       <button mat-raised-button color="primary" >View All</button>
     </mat-card-actions> -->
-  </mat-card>
+<!-- </mat-card>
 </div>
 <hr>
 
@@ -56,19 +56,134 @@
 
   <mat-card class="year" *ngFor="let year of years" appMaterialElevation [routerLink]="['/list/:year']">
     <mat-card-header style="display: block;margin:0 0.4%;position: relative;">
-      <mat-card-title>Total Students in {{year}}</mat-card-title>
-      <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
-    </mat-card-header>
-    <!-- <img mat-card-image src="" alt=""> -->
-    <mat-card-content style="display: block;margin:0 33%;position: relative;">
+      <mat-card-title>Total Students in {{year}}</mat-card-title> -->
+<!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+<!-- </mat-card-header> -->
+<!-- <img mat-card-image src="" alt=""> -->
+<!-- <mat-card-content style="display: block;margin:0 33%;position: relative;">
       <p>
         Count: <span class="mat-display-1">
           {{len}}
         </span>
       </p>
-    </mat-card-content>
-    <!-- <mat-card-actions align="end">
+    </mat-card-content> -->
+<!-- <mat-card-actions align="end">
       <button mat-raised-button color="primary" >View All</button>
     </mat-card-actions> -->
+<!-- </mat-card>
+</div> -->
+
+<!-- <app-header></app-header> -->
+
+<div class="full-grid">
+  <div>
+    <mat-card class="big-card">
+      <mat-card-content class="center-div">
+        <div>
+          <p class="mat-display-3">Total Students</p>
+          <p class="mat-display-1" style="text-align: center;">{{totalStudents}}</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="quad-grid">
+    <mat-card class="card">
+      <mat-card-content class="center-div">
+        <div>
+          <p class="mat-display-2">1st Year</p>
+          <p class="mat-display-1" style="text-align: center;">{{yearsData[0]}}</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="card">
+      <mat-card-content class="center-div">
+        <div>
+          <p class="mat-display-2">2nd Year</p>
+          <p class="mat-display-1" style="text-align: center;">{{yearsData[1]}}</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="card">
+      <mat-card-content class="center-div">
+        <div>
+          <p class="mat-display-2">3rd Year</p>
+          <p class="mat-display-1" style="text-align: center;">{{yearsData[2]}}</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="card">
+      <mat-card-content class="center-div">
+        <div>
+          <p class="mat-display-2">4th Year</p>
+          <p class="mat-display-1" style="text-align: center;">{{yearsData[3]}}</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+<hr>
+<div style="display: flex; justify-content: center; align-items: center;">
+  <mat-card class="card" style="width: 20%;">
+    <mat-card-content class="center-div">
+      <div>
+        <p class="mat-display-2">IT</p>
+        <p class="mat-display-1" style="text-align: center;">{{streamsData[0]}}</p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="card" style="width: 20%;">
+    <mat-card-content class="center-div">
+      <div>
+        <p class="mat-display-2">CSE</p>
+        <p class="mat-display-1" style="text-align: center;">{{streamsData[1]}}</p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="card" style="width: 20%;">
+    <mat-card-content class="center-div">
+      <div>
+        <p class="mat-display-2">ECE</p>
+        <p class="mat-display-1" style="text-align: center;">{{streamsData[2]}}</p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="card" style="width: 20%;">
+    <mat-card-content class="center-div">
+      <div>
+        <p class="mat-display-2">EE</p>
+        <p class="mat-display-1" style="text-align: center;">{{streamsData[3]}}</p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="card" style="width: 20%;">
+    <mat-card-content class="center-div">
+      <div>
+        <p class="mat-display-2">ME</p>
+        <p class="mat-display-1" style="text-align: center;">{{streamsData[4]}}</p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+<hr>
+<div class="full-grid">
+  <mat-card class="big-card">
+    <mat-card-content class="center-div">
+      <div>
+        <p class="mat-display-2" style="text-align: center;">Year Chart</p>
+        <div id="chart">
+          <canvas id="myPChart"></canvas>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="big-card">
+    <mat-card-content class="center-div">
+      <div>
+        <p class="mat-display-2" style="text-align: center;">Department Chart</p>
+        <div id="chart2"> 
+          <canvas id="myChart"></canvas>
+        </div>
+      </div>
+    </mat-card-content>
   </mat-card>
 </div>

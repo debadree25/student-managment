@@ -37,3 +37,39 @@ height:200px;
 /* .student-card:hover{
     box-shadow: 0 0 15px rgba(33,33,33,.2); 
 } */
+
+
+.full-grid {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.quad-grid {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.big-card {
+    height: 87.5%;
+    margin: 20px;
+}
+
+.big-card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.center-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.card {
+    margin: 20px;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}

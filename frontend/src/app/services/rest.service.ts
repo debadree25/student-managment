@@ -10,8 +10,32 @@ export class RestService {
   baseUrl = 'http://localhost:3000/';
   constructor(private http: HttpClient) { }
 
+  formatQParams(paramMap): string {
+    const keys = Object.keys(paramMap);
+    if (keys.length === 0) {
+      return '';
+    }
+
+    let qparam = '';
+    const key0 = keys[0];
+    qparam = '?' + key0 + '=' + paramMap[key0];
+
+    keys.forEach(element => {
+      if (element === key0) {
+        return;
+      }
+      qparam += '&' + element + '=' + paramMap[element];
+    });
+    return qparam;
+  }
+
   public getAllStudents(): Promise<ServerResponse<Student[]>> {
     const url = `${this.baseUrl}students`;
+    return this.http.get<ServerResponse<Student[]>>(url).toPromise();
+  }
+
+  public getStudents(queries): Promise<ServerResponse<Student[]>> {
+    const url = `${this.baseUrl}students${this.formatQParams(queries)}`;
     return this.http.get<ServerResponse<Student[]>>(url).toPromise();
   }
 

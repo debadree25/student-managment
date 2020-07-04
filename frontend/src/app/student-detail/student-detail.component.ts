@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { StudentService } from '../students.service';
+// import { StudentService } from '../students.service';
 // import { Student } from '../student.model';
 import { Student } from '../models/student.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -25,7 +25,7 @@ export class StudentDetailComponent implements OnInit {
     public dialog: MatDialog,
     private dialogRef: MatDialogRef<StudentDetailComponent>,
     private route: Router, private router: ActivatedRoute,
-    private studentService: StudentService,
+    // tslint:disable-next-line: variable-name
     private _snackbar: MatSnackBar,
 
     @Inject(MAT_DIALOG_DATA) public data: any) {
@@ -64,11 +64,11 @@ export class StudentDetailComponent implements OnInit {
   }
 
   onDelete() {
-    //this.studentService.deleteStudent(this.id);
-    //this.openDialog("Delete");
+    // this.studentService.deleteStudent(this.id);
+    // this.openDialog("Delete");
 
-    const message = "Student Deleted";
-    const action = "Undo";
+    const message = 'Student Deleted';
+    const action = 'Undo';
     this._snackbar.open(message, action, {
       duration: 2000,
     });
@@ -78,7 +78,7 @@ export class StudentDetailComponent implements OnInit {
 
   openDialog(message: string) {
 
-    let dialogRef = this.dialog.open(ActionComponent, {
+    const dialogRef = this.dialog.open(ActionComponent, {
       data: {
         message,
         student: this.student
@@ -103,10 +103,10 @@ export class ActionComponent {
   }
 
   onYes() {
-    this.dialogRef.close({ data: "editing" })
+    this.dialogRef.close({ data: 'editing' });
   }
   onDelete() {
-    console.log("deleted")
+    console.log('deleted');
   }
 }
 

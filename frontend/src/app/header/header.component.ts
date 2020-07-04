@@ -13,24 +13,40 @@ export class HeaderComponent implements OnInit {
   href: string;
   name = '';
   email = '';
+  isLogged = false;
   constructor(private route: ActivatedRoute, private router: Router, public routes: RoutesService, public auth: AuthService) {
-    this.name = this.auth.getLogin().user.name;
-    this.email = this.auth.getLogin().user.email;
+    this.auth.loginObserver$.subscribe((login) => {
+      console.log(login);
+      if (login) {
+        this.name = login.user.name;
+        this.email = login.user.email;
+        this.isLogged = true;
+      }
+      else {
+        this.name = '';
+        this.email = '';
+        this.isLogged = false;
+      }
+    });
   }
 
   ngOnInit(): void {
   }
-  onLogout(){
+  onLogout() {
   }
 
   isActive() {
     this.href = this.router.url;
   }
 
-  onLogin(){
+  onLogin() {
     this.router.navigate(['/']);
   }
-  onRegister(){
+  onRegister() {
     this.router.navigate(['/']);
+  }
+  logout() {
+    this.auth.logout();
+    this.router.navigate(['login']);
   }
 }

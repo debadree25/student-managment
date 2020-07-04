@@ -20,7 +20,7 @@ import { MaterialElevationDirective } from './material-elevation.directive';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './services/auth.service';
 import { RestService } from './services/rest.service';
-import { FlexLayoutModule } from "@angular/flex-layout";
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { UserComponent } from './user/user.component';
 
 
@@ -42,7 +42,7 @@ import { UserComponent } from './user/user.component';
     BrowserModule,
     AppRoutingModule, MaterialModule,
     BrowserAnimationsModule, RouterModule, FormsModule, ReactiveFormsModule,
-    HttpClientModule,FlexLayoutModule
+    HttpClientModule, FlexLayoutModule
   ],
   providers: [AuthService, RestService, RoutesService],
   entryComponents: [StudentDetailComponent],

@@ -8,5 +8,5 @@ import { RoutesService } from './services/routes.service';
 })
 export class AppComponent {
   title = 'frontend';
-  constructor(public route:RoutesService){}
+  constructor(public route: RoutesService){}
 }
