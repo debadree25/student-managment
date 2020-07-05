@@ -3,8 +3,8 @@
         <mat-list>
             <div class="details">
                 <p *ngIf="!isLogged">You are not logged in!<br>
-                Login to see details!</p>
-                <mat-list-item  *ngIf="name!==''">
+                    Login to see details!</p>
+                <mat-list-item *ngIf="name!==''">
                     <img matListAvatar style="display: block;" src="https://wprdea.org/image/img_avatar.png"
                         alt="img of a man">
                     <div mat-line class="mat-title">{{name}}</div>
@@ -72,8 +72,8 @@
 
             </mat-form-field>
 
-            
-                <button style="float: right;position:absolute;right:50px" mat-icon-button class="example-icon"
+
+            <!-- <button style="float: right;position:absolute;right:50px" mat-icon-button class="example-icon"
                     aria-label="Example icon-button with notification icon">
                     <mat-icon>notification_important</mat-icon>
                 </button>
@@ -97,7 +97,7 @@
                         <span><a routerLink="/register" (click)="onRegister()">Register</a></span>
                     </button>
                 </mat-menu>
-            
+             -->
         </mat-toolbar>
 
 

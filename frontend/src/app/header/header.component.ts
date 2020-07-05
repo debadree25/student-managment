@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   isLogged = false;
   constructor(private route: ActivatedRoute, private router: Router, public routes: RoutesService, public auth: AuthService) {
     this.auth.loginObserver$.subscribe((login) => {
-      console.log(login);
+      console.log('login event');
       if (login) {
         this.name = login.user.name;
         this.email = login.user.email;
@@ -28,6 +28,7 @@ export class HeaderComponent implements OnInit {
         this.isLogged = false;
       }
     });
+    this.auth.loadLogin();
   }
 
   ngOnInit(): void {
