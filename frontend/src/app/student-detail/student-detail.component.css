@@ -10,21 +10,30 @@ button{
     background: transparent;
     outline: none;
     border:none;
-    margin:1px;
+    margin-left:1px;
 }
 .container{
     width:500px;
-    
 }
-#profile{
-    height:150px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width:50%;
+  
+.options{
+    display: flex;
+    position:relative;
+    right:5px;
+    font-size:30px;
+    float:right;
 }
 .content{
 
     display:block;
-    margin:15px auto;
+    margin:20px auto;
 }
+#profile{
+    display:block;
+    margin:auto;
+   
+   
+}
+img{ border-radius: 50%;
+    height:95px;
+    width:87px;}

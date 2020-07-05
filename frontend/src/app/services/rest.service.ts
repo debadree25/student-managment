@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Student } from '../models/student.model';
 import { ServerResponse } from '../models/server-response.model';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +11,8 @@ import { ServerResponse } from '../models/server-response.model';
 export class RestService {
   baseUrl = 'http://localhost:3000/';
   constructor(private http: HttpClient) { }
+  private students:Student[]=[];
+  private studentsUpdated = new Subject<Student[]>();
 
   formatQParams(paramMap): string {
     const keys = Object.keys(paramMap);
@@ -61,5 +65,16 @@ export class RestService {
   public downloadImage(imageId: string): Promise<Blob> {
     const url = `${this.baseUrl}images/${imageId}`;
     return this.http.get(url, {responseType: 'blob'}).toPromise();
+  }
+  public deleteStudent(id:string){
+
+    const url = `${this.baseUrl}students/${id}`;
+     return this.http.delete<{message:string,status:boolean}>(url).toPromise();
+  }
+
+  public updateStudent(id:string){
+
+    const url = `${this.baseUrl}students/${id}`;
+    return this.http.delete<{message:string,status:boolean}>(url).toPromise();
   }
 }

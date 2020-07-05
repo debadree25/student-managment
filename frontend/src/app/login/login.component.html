@@ -41,7 +41,11 @@
                 <input matInput placeholder="Email" type="email" name="email" required ngModel #email="ngModel">
             </mat-form-field>
             <mat-form-field>
-                <input matInput placeholder="Password" name="password" type="password" ngModel #password="ngModel" required>
+                <mat-label>Password</mat-label>
+                <input [(ngModel)]="registerUserData.password" name="password" matInput [type]="hide ? 'password' : 'text'"  #password="ngModel" required>
+                <button mat-icon-button matSuffix (click)="hide = !hide"  [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
             </mat-form-field>
 
             <div class="options">

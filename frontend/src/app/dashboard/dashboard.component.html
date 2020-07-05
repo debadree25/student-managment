@@ -77,45 +77,45 @@
 
 <div class="full-grid">
   <div>
-    <mat-card class="big-card">
+    <mat-card class="big-card" [routerLink]="['/list']">
       <mat-card-content class="center-div">
         <div>
-          <p class="mat-display-3">Total Students</p>
-          <p class="mat-display-1" style="text-align: center;">{{totalStudents}}</p>
+          <p class="mat-display-2">Total Students</p>
+          <p class="mat-display-3" style="text-align: center;">{{totalStudents}}</p>
         </div>
       </mat-card-content>
     </mat-card>
   </div>
   <div class="quad-grid">
-    <mat-card class="card">
+    <mat-card class="card"  [routerLink]="['/list']">
       <mat-card-content class="center-div">
         <div>
-          <p class="mat-display-2">1st Year</p>
-          <p class="mat-display-1" style="text-align: center;">{{yearsData[0]}}</p>
+          <p class="mat-display-1">1st Year</p>
+          <p class="mat-display-2" style="text-align: center;">{{yearsData[0]}}</p>
         </div>
       </mat-card-content>
     </mat-card>
-    <mat-card class="card">
+    <mat-card class="card"  [routerLink]="['/list']">
       <mat-card-content class="center-div">
         <div>
-          <p class="mat-display-2">2nd Year</p>
-          <p class="mat-display-1" style="text-align: center;">{{yearsData[1]}}</p>
+          <p class="mat-display-1">2nd Year</p>
+          <p class="mat-display-2" style="text-align: center;">{{yearsData[1]}}</p>
         </div>
       </mat-card-content>
     </mat-card>
-    <mat-card class="card">
+    <mat-card class="card"  [routerLink]="['/list']">
       <mat-card-content class="center-div">
         <div>
-          <p class="mat-display-2">3rd Year</p>
-          <p class="mat-display-1" style="text-align: center;">{{yearsData[2]}}</p>
+          <p class="mat-display-1">3rd Year</p>
+          <p class="mat-display-2" style="text-align: center;">{{yearsData[2]}}</p>
         </div>
       </mat-card-content>
     </mat-card>
-    <mat-card class="card">
+    <mat-card class="card"  [routerLink]="['/list']">
       <mat-card-content class="center-div">
         <div>
-          <p class="mat-display-2">4th Year</p>
-          <p class="mat-display-1" style="text-align: center;">{{yearsData[3]}}</p>
+          <p class="mat-display-1">4th Year</p>
+          <p class="mat-display-2" style="text-align: center;">{{yearsData[3]}}</p>
         </div>
       </mat-card-content>
     </mat-card>
@@ -123,50 +123,50 @@
 </div>
 <hr>
 <div style="display: flex; justify-content: center; align-items: center;">
-  <mat-card class="card" style="width: 20%;">
+  <mat-card class="card" style="width: 20%;"  [routerLink]="['/list']">
     <mat-card-content class="center-div">
       <div>
-        <p class="mat-display-2">IT</p>
-        <p class="mat-display-1" style="text-align: center;">{{streamsData[0]}}</p>
+        <p class="mat-h2">IT</p>
+        <p class="mat-display-2" style="text-align: center;">{{streamsData[0]}}</p>
       </div>
     </mat-card-content>
   </mat-card>
-  <mat-card class="card" style="width: 20%;">
+  <mat-card class="card" style="width: 20%;"  [routerLink]="['/list']">
     <mat-card-content class="center-div">
       <div>
-        <p class="mat-display-2">CSE</p>
-        <p class="mat-display-1" style="text-align: center;">{{streamsData[1]}}</p>
+        <p class="mat-h2">CSE</p>
+        <p class="mat-display-2" style="text-align: center;">{{streamsData[1]}}</p>
       </div>
     </mat-card-content>
   </mat-card>
-  <mat-card class="card" style="width: 20%;">
+  <mat-card class="card" style="width: 20%;"  [routerLink]="['/list']">
     <mat-card-content class="center-div">
       <div>
-        <p class="mat-display-2">ECE</p>
-        <p class="mat-display-1" style="text-align: center;">{{streamsData[2]}}</p>
+        <p class="mat-h2">ECE</p>
+        <p class="mat-display-2" style="text-align: center;">{{streamsData[2]}}</p>
       </div>
     </mat-card-content>
   </mat-card>
-  <mat-card class="card" style="width: 20%;">
+  <mat-card class="card" style="width: 20%;"  [routerLink]="['/list']">
     <mat-card-content class="center-div">
       <div>
-        <p class="mat-display-2">EE</p>
-        <p class="mat-display-1" style="text-align: center;">{{streamsData[3]}}</p>
+        <p class="mat-h2">EE</p>
+        <p class="mat-display-2" style="text-align: center;">{{streamsData[3]}}</p>
       </div>
     </mat-card-content>
   </mat-card>
-  <mat-card class="card" style="width: 20%;">
+  <mat-card class="card" style="width: 20%;"  [routerLink]="['/list']">
     <mat-card-content class="center-div">
       <div>
-        <p class="mat-display-2">ME</p>
-        <p class="mat-display-1" style="text-align: center;">{{streamsData[4]}}</p>
+        <p class="mat-h2">ME</p>
+        <p class="mat-display-2" style="text-align: center;">{{streamsData[4]}}</p>
       </div>
     </mat-card-content>
   </mat-card>
 </div>
 <hr>
 <div class="full-grid">
-  <mat-card class="big-card">
+  <mat-card class="big-card"  [routerLink]="['/list']">
     <mat-card-content class="center-div">
       <div>
         <p class="mat-display-2" style="text-align: center;">Year Chart</p>
@@ -176,7 +176,7 @@
       </div>
     </mat-card-content>
   </mat-card>
-  <mat-card class="big-card">
+  <mat-card class="big-card"  [routerLink]="['/list']">
     <mat-card-content class="center-div">
       <div>
         <p class="mat-display-2" style="text-align: center;">Department Chart</p>

@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 // import { Student } from '../student.model';
 import { Student } from '../models/student.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { RestService } from '../services/rest.service';
 
 
 
@@ -19,12 +20,13 @@ export class StudentDetailComponent implements OnInit {
 
   editmode = false;
   student: Student;
-  id: number;
+  id: string;
 
   constructor(
     public dialog: MatDialog,
     private dialogRef: MatDialogRef<StudentDetailComponent>,
     private route: Router, private router: ActivatedRoute,
+    private rest:RestService,
     // tslint:disable-next-line: variable-name
     private _snackbar: MatSnackBar,
 
@@ -63,19 +65,23 @@ export class StudentDetailComponent implements OnInit {
     // this.onClose();
   }
 
-  onDelete() {
+  async onDelete() {
     // this.studentService.deleteStudent(this.id);
     // this.openDialog("Delete");
-
-    const message = 'Student Deleted';
+    console.log(this.student)
+   const resp=await (this.rest.deleteStudent(this.student._id));
+   console.log(resp);
+  
+    if(resp.message=="Data Deleted"){
+    const msg = 'Student Deleted';
     const action = 'Undo';
-    this._snackbar.open(message, action, {
+    this._snackbar.open(msg, action, {
       duration: 2000,
     });
     this.onClose();
-
   }
-
+  }
+  
   openDialog(message: string) {
 
     const dialogRef = this.dialog.open(ActionComponent, {
@@ -88,6 +94,8 @@ export class StudentDetailComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
       this.dialogRef.close();
+      if(message=="Delete")
+      this.onDelete();
     });
   }
 }

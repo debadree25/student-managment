@@ -6,6 +6,7 @@ import { ImageSnippet } from '../models/image.model';
 import { RestService } from '../services/rest.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {mimType} from './mime-type.validator';
+import { RoutesService } from '../services/routes.service';
 
 declare var previewFile: any;
 
@@ -26,6 +27,7 @@ export class CreateComponent implements OnInit {
     dataBlob: Blob;
     constructor(private router: Router,
                 private route: ActivatedRoute,
+                public  routes:RoutesService,
                 // tslint:disable-next-line: variable-name
                 private _snackBar: MatSnackBar,
                 private rest: RestService) {

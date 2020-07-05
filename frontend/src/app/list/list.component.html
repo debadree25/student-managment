@@ -1,6 +1,6 @@
 <!--For list of students-->
 
-<div style="display: flex;justify-content: center;align-items: center;">
+<div class="input" >
   <mat-form-field style="margin: 10px;">
     <mat-label>Year</mat-label>
     <mat-select [(ngModel)]="filterYear">
@@ -23,18 +23,20 @@
   <button mat-button (click)="filter()">Filter</button>
   <button mat-button (click)="clearFilter()">Clear</button>
 </div>
-<span class="icon" style="z-index: 5;">
-  <button *ngIf="!listView" (click)="listView=!listView">
-    <mat-icon appMaterialElevation fontSet="material-icons-outlined">view_list</mat-icon>
-  </button>
-  <button *ngIf="listView" (click)="listView=!listView">
-    <mat-icon appMaterialElevation fontSet="material-icons-outlined">view_module</mat-icon>
-  </button>
-</span>
+
+  <span class="icon" style="z-index: 5;">
+    <button *ngIf="!listView" (click)="listView=!listView">
+      <mat-icon  fontSet="material-icons-outlined">view_list</mat-icon>
+    </button>
+    <button *ngIf="listView" (click)="listView=!listView">
+      <mat-icon  fontSet="material-icons-outlined">view_module</mat-icon>
+    </button>
+  </span>
+
 <div class="content" *ngIf="listView">
   <mat-list *ngFor="let student of students;let i=index" class="list" (click)="openDialog(student,i)">
     <mat-list-item>
-      <img matListAvatar src="https://wprdea.org/image/img_avatar.png" alt="img of {{student.name}}">
+      <img matListAvatar [src]="'http://localhost:3000/images/'+student.image" alt="img of {{student.name}}">
       <div mat-line>{{student.name}}</div>
       <div mat-line> {{student.department | uppercase}} </div>
       <div mat-line> {{student.passing_year +" Batch" }}</div>
@@ -51,7 +53,7 @@
         <mat-card-content>
           <mat-list>
             <mat-list-item>
-              <img matListAvatar src="https://wprdea.org/image/img_avatar.png" alt="img of {{student.name}}">
+              <img matListAvatar [src]="'http://localhost:3000/images/'+student.image" alt="img of {{student.name}}">
               <div mat-line><strong>{{student.name}}</strong></div>
               <div mat-line> {{student.department | uppercase}} </div>
               <!-- <div mat-line>{{student.year}}</div> -->

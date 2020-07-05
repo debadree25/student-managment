@@ -10,6 +10,8 @@ mat-card{
 }
 .uploaded{
     border-radius: 50%;
+    height:95px;
+    width:87px;
 }
 mat-form-field{
     width:100%;

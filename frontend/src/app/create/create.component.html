@@ -126,7 +126,9 @@
 
 
             <mat-card-actions align="end">
-                <button type="submit" [disabled]="!form.valid" mat-raised-button color="primary">{{mode}}</button>
+                <button type="submit" [disabled]="!form.valid" mat-raised-button color="primary" *ngIf="routes.route=='/newStudent'">Create</button>
+                <button type="submit" [disabled]="!form.valid" mat-raised-button color="primary" *ngIf="routes.route=='/editStudent'">Update</button>
+
 
 
             </mat-card-actions>
