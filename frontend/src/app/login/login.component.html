@@ -6,12 +6,16 @@
             <!-- <i class="fa fa-user  cust" aria-hidden="true"></i> -->
                 <input matInput placeholder="Email" type="email" required name="email" required
                 ngModel #email="ngModel"> 
+                <mat-icon matSuffix style="font-size:18px;">email</mat-icon>
                 
             </mat-form-field>
             <mat-form-field>
                 <!-- <i class="fa fa-lock  cust" aria-hidden="true"></i> -->
-                <input matInput placeholder="Password" type="password" required name="password" required
+                <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" required name="password" required
                 ngModel #password="ngModel">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
             </mat-form-field>
 
             <div class="options">
@@ -28,20 +32,24 @@
     </mat-card>
 </div>
 
-<div *ngIf="register" class="register">
+<div *ngIf="register && route.route==='/register'" class="register" >
     <mat-card class="mat-elevation-z6">
         <mat-card-title style="text-align: center;margin-top: 20px;">Register</mat-card-title>
         <form (ngSubmit)="registerUser(f)" #f="ngForm">
 
-            <mat-form-field>
+            <mat-form-field >
                 <input matInput placeholder="Name" type="name" name="name" required
                 ngModel #name="ngModel">
             </mat-form-field>
             <mat-form-field>
                 <input matInput placeholder="Email" type="email" name="email" required ngModel #email="ngModel">
+                <mat-icon matSuffix style="font-size:18px;">email</mat-icon>
             </mat-form-field>
             <mat-form-field>
-                <input matInput placeholder="Password" name="password" type="password" ngModel #password="ngModel" required>
+                <input matInput placeholder="Password" name="password" [type]="hide ? 'password' : 'text'"  ngModel #password="ngModel" required>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
             </mat-form-field>
 
             <div class="options">
