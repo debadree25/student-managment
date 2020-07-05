@@ -47,9 +47,9 @@
 </div>
 
 <div class="contentGrid">
-  <div fxLayout="row wrap" *ngIf="!listView" fxLayoutGap="10px grid">
-    <div class="grid" fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let student of students;let i=index">
-      <mat-card (click)="openDialog(student,i)">
+  <div fxLayout="row wrap" *ngIf="!listView" fxLayoutGap="10px grid" fxLayout.lt-sm="column" >
+    <div class="grid"  *ngFor="let student of students;let i=index">
+      <mat-card fxFlex="25%" fxFlex.xs="100%" fxFlex.md="33%" fxFlex.sm="50%" (click)="openDialog(student,i)">
         <mat-card-content>
           <mat-list>
             <mat-list-item>

@@ -1,21 +1,18 @@
 <div class="container">
     <div class="options">
-        <button>
-            <mat-icon style="cursor:pointer;margin-right: 5px;" matTooltip="Edit Details" matRipple
-                matRippleColor="light-grey" class="ripple" (click)="openDialog('Edit')">create</mat-icon>
+        <button mat-icon-button matTooltip="Edit Details" (click)="openDialog('Edit')">
+            <mat-icon>create</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Copy Details" (click)="onCopy()">
+            <mat-icon>content_copy</mat-icon>
         </button>
         <button>
-            <mat-icon style="cursor:pointer;margin-right: 5px" matTooltip="Copy Details" matRipple
-                matRippleColor="light-grey" (click)="onCopy()">content_copy</mat-icon>
-        </button>
-        <button>
-            <mat-icon style="cursor:pointer;margin-right: 5px" matTooltip="Delete Details" matRipple
-                matRippleColor="light-grey" (click)="openDialog('Delete')">delete</mat-icon>
+            <mat-icon-button matTooltip="Delete Details" (click)="openDialog('Delete')">
+                <mat-icon>delete</mat-icon>
         </button>
 
-        <button>
-            <mat-icon style="cursor:pointer;margin-right: 5px" matTooltip="Close" matRipple matRippleColor="light-grey"
-                (click)="onClose()">close</mat-icon>
+        <button mat-icon-button matTooltip="Close" (click)="onClose()">
+            <mat-icon>close</mat-icon>
         </button>
 
     </div>
@@ -23,7 +20,8 @@
 
     <div class="content">
         <mat-list>
-            <img matListAvatar [src]="'http://localhost:3000/images/'+student.image" alt="Image of {{student.name}}" id="profile">
+            <img matListAvatar [src]="'http://localhost:3000/images/'+student.image" alt="Image of {{student.name}}"
+                id="profile">
             <mat-list-item>
                 <div>
                     <span class="mat-body-strong" style="color:grey;display:inline-block;">Name:</span>
@@ -47,12 +45,12 @@
 
             <mat-list-item style="display: flex;">
                 <div style="margin-right: 25px;">
-                    <span class="mat-body-strong" style="color:grey;display:inline-block;">Expected Year Of
-                        Joining:</span>
+                    <span class="mat-body-strong" style="color:grey;display:inline-block;">Joining
+                        Year:</span>
                     <span class="mat-h3">{{student.joining_year}}</span>
                 </div>
                 <div>
-                    <span class="mat-body-strong" style="color:grey;display:inline-block;">Expected Year Of
+                    <span class="mat-body-strong" style="color:grey;display:inline-block;">Expected Graduation
                         Passing:</span>
                     <span class="mat-h3">{{student.passing_year}}</span>
 
@@ -96,7 +94,4 @@
         </mat-list>
 
     </div>
-</div>
-<!-- <mat-dialog-actions align="center">
-    <button mat-raised-button color="primary" (click)="onClose()" tabindex="1">Close</button>
-</mat-dialog-actions> -->
+    </div>

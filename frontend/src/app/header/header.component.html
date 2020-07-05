@@ -27,26 +27,21 @@
         <mat-divider></mat-divider>
 
         <mat-nav-list *ngIf="isLogged">
-            <!-- <a mat-list-item [routerLink]="['/user']" routerLinkActive="active">
-                <mat-icon matListIcon>account_circle</mat-icon>
-                <div mat-line><button mat-button>User Profile</button></div>
-            </a> -->
-
             <a mat-list-item [routerLink]="['/dashboard']" routerLinkActive="active">
                 <mat-icon matListIcon>dashboard</mat-icon>
-                <div mat-line><button mat-button>Dashboard</button></div>
+                <div mat-line>Dashboard</div>
             </a>
             <a mat-list-item [routerLink]="['/list']" routerLinkActive="active">
                 <mat-icon matListIcon>group</mat-icon>
-                <div mat-line><button mat-button>Students</button></div>
+                <div mat-line>Students</div>
             </a>
             <a mat-list-item [routerLink]="['/settings']" routerLinkActive="active">
                 <mat-icon matListIcon>settings</mat-icon>
-                <div mat-line><button mat-button>Settings</button></div>
+                <div mat-line>Settings</div>
             </a>
             <a mat-list-item [routerLink]="['/help']" routerLinkActive="active">
                 <mat-icon matListIcon>help</mat-icon>
-                <div mat-line><button mat-button>Help</button></div>
+                <div mat-line>Help</div>
             </a>
         </mat-nav-list>
 
