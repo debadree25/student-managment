@@ -80,14 +80,14 @@
     <mat-card class="big-card" [routerLink]="['/list']">
       <mat-card-content class="center-div">
         <div>
-          <p class="mat-display-2">Total Students</p>
-          <p class="mat-display-3" style="text-align: center;">{{totalStudents}}</p>
+          <p class="mat-display-1">Total Students</p>
+          <p class="mat-display-2" style="text-align: center;">{{totalStudents}}</p>
         </div>
       </mat-card-content>
     </mat-card>
   </div>
   <div class="quad-grid">
-    <mat-card class="card"  [routerLink]="['/list']">
+    <mat-card class="card"  [routerLink]="['/list']" (click)="openStudents({{yearsData[0]}})">
       <mat-card-content class="center-div">
         <div>
           <p class="mat-display-1">1st Year</p>

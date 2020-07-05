@@ -21,7 +21,7 @@
             <mat-card-actions><button [disabled]="!f.valid" mat-raised-button style="margin-top: 10px;" color="primary"
                     type="submit">Login</button></mat-card-actions>
             <mat-card-actions><button (click)="tab()" color="primary" type="button"
-                    style="outline: none;border:none;background-color: transparent;"><a class="signup">New User?Sign
+                    style="outline: none;border:none;background-color: transparent;"><a [routerLink]='["/register"]' class="signup">New User?Sign
                         Up</a></button></mat-card-actions>
         </form>
 
@@ -41,11 +41,7 @@
                 <input matInput placeholder="Email" type="email" name="email" required ngModel #email="ngModel">
             </mat-form-field>
             <mat-form-field>
-                <mat-label>Password</mat-label>
-                <input [(ngModel)]="registerUserData.password" name="password" matInput [type]="hide ? 'password' : 'text'"  #password="ngModel" required>
-                <button mat-icon-button matSuffix (click)="hide = !hide"  [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
+                <input matInput placeholder="Password" name="password" type="password" ngModel #password="ngModel" required>
             </mat-form-field>
 
             <div class="options">

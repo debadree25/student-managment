@@ -59,13 +59,14 @@
             </button>
             <div>
                 <span *ngIf="routes.route=='/login'">Login</span>
+                <span *ngIf="routes.route=='/register'">Register</span>
                 <span *ngIf="routes.route=='/editStudent'">Edit Student</span>
                 <span *ngIf="routes.route=='/dashboard'">Dashboard</span>
                 <span *ngIf="routes.route=='/user'">User Profile</span>
                 <span *ngIf="routes.route=='/list'">Students</span>
                 <span *ngIf="routes.route=='/settings'">Settings</span>
                 <span *ngIf="routes.route=='/help'">Help</span>
-                <span *ngIf="routes.route=='/newStudent'">Create/Edit Student</span>
+                <span *ngIf="routes.route=='/newStudent'">Create Student</span>
             </div>
 
             <mat-form-field class="search" *ngIf="isLogged">
@@ -78,7 +79,7 @@
             </mat-form-field>
 
 
-            <!-- <button style="float: right;position:absolute;right:50px" mat-icon-button class="example-icon"
+            <button style="float: right;position:absolute;right:50px" mat-icon-button class="example-icon"
                     aria-label="Example icon-button with notification icon">
                     <mat-icon>notification_important</mat-icon>
                 </button>
@@ -89,9 +90,9 @@
                 </button>
 
                 <mat-menu #menu="matMenu" >
-                    <button mat-menu-item *ngIf="name!==''">
+                    <button (click)="logout()" mat-menu-item *ngIf="name!==''">
                         <mat-icon>login</mat-icon>
-                        <span><a (click)="onLogout()">Logout</a></span>
+                        <span><a >Logout</a></span>
                     </button>
                     <button mat-menu-item *ngIf="name===''">
                         <mat-icon>login</mat-icon>
@@ -102,7 +103,7 @@
                         <span><a routerLink="/register" (click)="onRegister()">Register</a></span>
                     </button>
                 </mat-menu>
-             -->
+            
         </mat-toolbar>
 
 

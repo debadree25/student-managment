@@ -30,7 +30,10 @@ export class DashboardComponent implements OnInit {
   async ngOnInit() {
   }
 
+openStudents(count:number){
+  this.rest.getStudentsByYear(count);
 
+}
 
 
   async fetchData() {
