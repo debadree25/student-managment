@@ -1,5 +1,5 @@
 <mat-sidenav-container class="header">
-    <mat-sidenav #sidenav mode="push">
+    <mat-sidenav #sidenav mode="over">
         <mat-list>
             <div class="details">
                 <p *ngIf="!isLogged">You are not logged in!<br>
@@ -11,6 +11,11 @@
                     <div mat-line>{{email}}</div>
 
 
+                </mat-list-item>
+                <mat-list-item *ngIf="name!==''">
+                    <button class="manage" mat-stroked-button [routerLink]="['/user']">
+                        Manage Your Profile
+                    </button>
                 </mat-list-item>
                 <mat-list-item *ngIf="name!==''">
                     <button class="manage" mat-stroked-button (click)="logout()">
@@ -27,7 +32,7 @@
                 <div mat-line><button mat-button>User Profile</button></div>
             </a> -->
 
-            <a mat-list-item [routerLink]="['/']" routerLinkActive="active">
+            <a mat-list-item [routerLink]="['/dashboard']" routerLinkActive="active">
                 <mat-icon matListIcon>dashboard</mat-icon>
                 <div mat-line><button mat-button>Dashboard</button></div>
             </a>

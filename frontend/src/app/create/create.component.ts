@@ -81,6 +81,7 @@ export class CreateComponent implements OnInit {
     }
 
     async onSubmit() {
+        if (this.routes.route=="/newStudent"){
         const value = this.form.value;
         console.log(value);
         const { name, department, address, joining_year, year, passing_year, email, phone} = value;
@@ -108,6 +109,39 @@ export class CreateComponent implements OnInit {
         else {
             alert('New student not added');
         }
-        this.router.navigate(['/dashboard'], { relativeTo: this.route });
+    }
+    else if(this.routes.route==='/editStudent'){
+        const value = this.form.value;
+        console.log(value);
+        const { name, department, address, joining_year, year, passing_year, email, phone} = value;
+        const student: Student = {
+            name,
+            department,
+            address,
+            joining_year: parseInt(joining_year, 10),
+            year: parseInt(year, 10),
+            passing_year: parseInt(passing_year, 10),
+            email,
+            phone,
+        };
+        console.log(student);
+        const resp = await this.rest.updateStudent(student, this.file);
+        if (resp.status) {
+            alert('Student Data updted');
+            // snackbar
+            const message = 'Student Data Updated';
+            const action = 'Undo';
+            this._snackBar.open(message, action, {
+                duration: 2000,
+            });
+        }
+        else {
+            alert('Data not updated');
+        }
+
+    }
+        
+    
+    this.router.navigate(['/dashboard']);
     }
 }

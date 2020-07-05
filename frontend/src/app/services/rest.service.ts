@@ -30,15 +30,37 @@ export class RestService {
       }
       qparam += '&' + element + '=' + paramMap[element];
     });
+    console.log(qparam)
     return qparam;
   }
+  formatQuery(paramMap): string {
+    const keys = Object.keys(paramMap);
+    if (keys.length === 0) {
+      return '';
+    }
 
+    let qparam = '';
+    const key0 = keys[0];
+    qparam = '?' + key0 + '=' + paramMap[key0];
+
+    // keys.forEach(element => {
+    //   if (element === key0) {
+    //     return;
+    //   }
+    //   qparam += '&' + element + '=' + paramMap[element];
+    // });
+    return qparam;
+  }
   public getAllStudents(): Promise<ServerResponse<Student[]>> {
     const url = `${this.baseUrl}students`;
     return this.http.get<ServerResponse<Student[]>>(url).toPromise();
   }
 
   public getStudents(queries): Promise<ServerResponse<Student[]>> {
+    const url = `${this.baseUrl}students${this.formatQuery(queries)}`;
+    return this.http.get<ServerResponse<Student[]>>(url).toPromise();
+  }
+  public getStudentsByYear(queries):Promise<ServerResponse<Student[]>>{
     const url = `${this.baseUrl}students${this.formatQParams(queries)}`;
     return this.http.get<ServerResponse<Student[]>>(url).toPromise();
   }
@@ -72,9 +94,15 @@ export class RestService {
      return this.http.delete<{message:string,status:boolean}>(url).toPromise();
   }
 
-  public updateStudent(id:string){
+  public updateStudent(student:Student, file: File){
 
-    const url = `${this.baseUrl}students/${id}`;
-    return this.http.delete<{message:string,status:boolean}>(url).toPromise();
+    const postData = new FormData();
+    Object.keys(student).forEach((key) => {
+      postData.append(key, student[key]);
+    });
+    postData.append('student-image', file, file.name);
+    console.log(postData);
+    const url = `${this.baseUrl}students/${student._id}`;
+    return this.http.put<ServerResponse<Student>>(url,student).toPromise();
   }
 }

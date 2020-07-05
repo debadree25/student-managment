@@ -68,6 +68,7 @@ router.get("/:id", async (req, res) => {
 });
 
 router.put("/:id", async (req, res) => {
+    console.log(req.params.id)
     const resp = await Student.updateOne({ _id: mongoose.Types.ObjectId(req.params.id) }, req.body);
     if (resp.n > 0) {
         res.status(200).json({

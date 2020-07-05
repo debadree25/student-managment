@@ -33,7 +33,6 @@ export class DashboardComponent implements OnInit {
 
 
 
-
   async fetchData() {
     const resp = await this.rest.getAllStudents();
     this.students = resp.data;

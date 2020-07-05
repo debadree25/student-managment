@@ -15,7 +15,7 @@ header{
     padding:5px;
   }
   mat-sidenav{
-    width:17%;
+    width:19%;
   }
   mat-form-field.search{
    display:block;
@@ -31,6 +31,12 @@ header{
     text-decoration:none;
     color:black;
     font-weight: normal;
+  }
+  mat-list-item button:hover{
+
+    color:white;
+    background:black;
+
   }
   .manage{
 
@@ -65,7 +71,7 @@ header{
   }
   @media only screen and (max-width: 1200px) {
     mat-sidenav{
-        width:35%;
+        width:50%;
     }
     mat-form-field.search{
       display:block;
