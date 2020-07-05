@@ -14,7 +14,7 @@ export class RestService {
   private students:Student[]=[];
   private studentsUpdated = new Subject<Student[]>();
 
-  formatQParams(paramMap): string {
+  formatQuery(paramMap): string {
     const keys = Object.keys(paramMap);
     if (keys.length === 0) {
       return '';
@@ -30,27 +30,28 @@ export class RestService {
       }
       qparam += '&' + element + '=' + paramMap[element];
     });
-    console.log(qparam)
+    //console.log(qparam)
     return qparam;
   }
-  formatQuery(paramMap): string {
-    const keys = Object.keys(paramMap);
-    if (keys.length === 0) {
-      return '';
-    }
+  // formatQParams(paramMap): string {
+  //   const keys = Object.keys(paramMap);
+  //   if (keys.length === 0) {
+  //     return '';
+  //   }
 
-    let qparam = '';
-    const key0 = keys[0];
-    qparam = '?' + key0 + '=' + paramMap[key0];
+  //   let qparam = '';
+  //   const key0 = keys[0];
+  //   qparam = '?' + key0 + '=' + paramMap[key0];
 
-    // keys.forEach(element => {
-    //   if (element === key0) {
-    //     return;
-    //   }
-    //   qparam += '&' + element + '=' + paramMap[element];
-    // });
-    return qparam;
-  }
+  //   // keys.forEach(element => {
+  //   //   if (element === key0) {
+  //   //     return;
+  //   //   }
+  //   //   qparam += '&' + element + '=' + paramMap[element];
+  //   // });
+  //   console.log(qparam)
+  //   return qparam;
+  // }
   public getAllStudents(): Promise<ServerResponse<Student[]>> {
     const url = `${this.baseUrl}students`;
     return this.http.get<ServerResponse<Student[]>>(url).toPromise();
@@ -60,10 +61,11 @@ export class RestService {
     const url = `${this.baseUrl}students${this.formatQuery(queries)}`;
     return this.http.get<ServerResponse<Student[]>>(url).toPromise();
   }
-  public getStudentsByYear(queries):Promise<ServerResponse<Student[]>>{
-    const url = `${this.baseUrl}students${this.formatQParams(queries)}`;
-    return this.http.get<ServerResponse<Student[]>>(url).toPromise();
-  }
+  // Promise<ServerResponse<Student[]>>
+  // public getStudentsByYear(queries){
+  //   const url = `${this.baseUrl}students${this.formatQParams(queries)}`;
+  //   console.log(this.http.get<ServerResponse<Student[]>>(url).toPromise());
+  // }
 
   public addStudent(student: Student, file: File): Promise<ServerResponse<Student>> {
     const postData = new FormData();
