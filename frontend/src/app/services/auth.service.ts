@@ -8,16 +8,22 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
+  private baseUrl = 'http://localhost:3000/';
   login: Login;
   loginObserver = new Subject<Login>();
   loginObserver$ = this.loginObserver.asObservable();
   constructor(private http: HttpClient) {
+    this.loadLogin();
+  }
+
+  loadLogin() {
     if (localStorage.getItem('LOGIN')) {
       this.login = JSON.parse(localStorage.getItem('LOGIN'));
+      console.log(this.login);
+      this.loginObserver.next(this.login);
     }
   }
 
-  private baseUrl = 'http://localhost:3000/';
   public registerUser(user: User): Promise<ServerResponse<User>> {
     const url = `${this.baseUrl}auth/register`;
     return this.http.post<ServerResponse<User>>(url, user).toPromise();
