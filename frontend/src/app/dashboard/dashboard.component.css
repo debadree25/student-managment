@@ -51,8 +51,9 @@ height:200px;
 }
 
 .big-card {
-    height: 87.5%;
+    height: 85%;
     margin: 20px;
+    margin-left: 25px;
 }
 
 .big-card:hover {
@@ -72,4 +73,17 @@ height:200px;
 
 .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+@media screen and (max-width:1200px){
+  
+/*     
+    .big-card {
+        height: 60%;
+        margin: 20px;
+    } */
+
+}
+mat-display-4{
+    margin: 0;
 }

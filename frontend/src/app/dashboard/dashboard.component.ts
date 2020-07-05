@@ -76,7 +76,8 @@ export class DashboardComponent implements OnInit {
         scales: {
           yAxes: [{
             ticks: {
-              beginAtZero: true
+              min:0,
+              max:50
             }
           }]
         }
