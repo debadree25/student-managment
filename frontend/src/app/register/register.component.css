@@ -7,9 +7,6 @@ mat-form-field,mat-card-actions,.options{
     width:80%;
     margin:0 auto;
 }
-.options{
-    font-size:13px;
-}
 .content{
     width:100vw;
     min-height: 80vh;
@@ -17,13 +14,16 @@ mat-form-field,mat-card-actions,.options{
     justify-content: center;
     align-items: center;
 }
-.login{
-    width:40%;
+.register{
+    width:38%;
+    display:block;
+    margin:30px auto;
 }
 
  button{
      width:100%;
  }
+
   .signup{
       color: blue;
   }
@@ -38,19 +38,10 @@ mat-form-field,mat-card-actions,.options{
       cursor:pointer;
 
   }
-  .forgotPwd{
-    float: right;
-    cursor: pointer;
-    color: blue;
-  }
-
-  .forgotPwd:hover{
-      text-decoration: underline;
-  }
   
   @media screen and (max-width:1000px){
 
-    .login{
+    .login,.register{
         width:80%;
         display:block;
         margin:30px auto;

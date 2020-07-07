@@ -1,5 +1,5 @@
-<div *ngIf="login" class="login">
-    <mat-card class="mat-elevation-z6">
+<div class="content"><div class="login">
+    <mat-card class="mat-elevation-z2">
         <mat-card-title style="text-align: center;margin-top: 20px;">Login</mat-card-title>
         <form (ngSubmit)="loginUser(f)" #f="ngForm">
             <mat-form-field>
@@ -30,38 +30,4 @@
         </form>
 
     </mat-card>
-</div>
-
-<div *ngIf="register && route.route==='/register'" class="register" >
-    <mat-card class="mat-elevation-z6">
-        <mat-card-title style="text-align: center;margin-top: 20px;">Register</mat-card-title>
-        <form (ngSubmit)="registerUser(f)" #f="ngForm">
-
-            <mat-form-field >
-                <input matInput placeholder="Name" type="name" name="name" required
-                ngModel #name="ngModel">
-            </mat-form-field>
-            <mat-form-field>
-                <input matInput placeholder="Email" type="email" name="email" required ngModel #email="ngModel">
-                <mat-icon matSuffix style="font-size:18px;">email</mat-icon>
-            </mat-form-field>
-            <mat-form-field>
-                <input matInput placeholder="Password" name="password" [type]="hide ? 'password' : 'text'"  ngModel #password="ngModel" required>
-                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                    </button>
-            </mat-form-field>
-
-            <div class="options">
-                <mat-checkbox class="example-margin">Remember Me?</mat-checkbox>
-                <!-- <a class="forgotPwd">Forgot your password?</a> -->
-            </div>
-            <mat-card-actions style="margin-top: 10px;"><button [disabled]="!f.valid" mat-raised-button color="primary"
-                    type="submit">Register</button></mat-card-actions>
-            <mat-card-actions><button (click)="tab()" color="primary" type="button"
-                    style="outline: none;border:none;background-color: transparent;margin: none;"><a
-                        class="signup">Already have an account?</a></button></mat-card-actions>
-        </form>
-
-    </mat-card>
-</div>
+</div></div>

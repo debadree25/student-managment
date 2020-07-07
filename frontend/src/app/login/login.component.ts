@@ -37,19 +37,18 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  async registerUser(f: NgForm) {
-    const value = f.value;
-    console.log(value);
-    const { name, email, password } = value;
-    const resp = await this.auth.registerUser({ name, email, password });
-    console.log(resp);
-    if (resp.status) {
-      this.tab();
-    }
-  }
+  // async registerUser(f: NgForm) {
+  //   const value = f.value;
+  //   console.log(value);
+  //   const { name, email, password } = value;
+  //   const resp = await this.auth.registerUser({ name, email, password });
+  //   console.log(resp);
+  //   if (resp.status) {
+  //     this.tab();
+  //   }
+  // }
 
   tab() {
     this.login = !this.login;
-    this.register = !this.register;
   }
 }
