@@ -33,28 +33,17 @@ export class LoginComponent implements OnInit {
     const { email, password } = value;
     const resp = await this.auth.loginUser(email, password);
     console.log(resp);
-    if (resp.status===true) {
+    if (resp.status) {
       this.auth.storeLogin(resp.data);
       this.router.navigate(['dashboard']);
     }
-    else if(resp.status===false){
-
-      const dialogConfig = new MatDialogConfig();
-      this.dialog.open(NotFound,dialogConfig);
-
+    else{
+      console.log("false")
     }
+    
   }
 
   tab() {
     this.login = !this.login;
   }
-}
-
-@Component({
-  selector: 'app-notfound',
-  templateUrl: 'notfound.component.html',
-})
-export class NotFound { 
-  constructor( public dialogRef: MatDialogRef<NotFound>){}
-
 }
