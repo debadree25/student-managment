@@ -3,6 +3,9 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { Student } from '../models/student.model';
 import { RestService } from '../services/rest.service';
 import { StudentDetailComponent } from '../student-detail/student-detail.component';
+// import { timeStamp } from 'console';
+import { ServerResponse } from '../models/server-response.model';
+import { StateService } from '../services/state.service';
 
 @Component({
   selector: 'app-list',
@@ -17,25 +20,37 @@ export class ListComponent implements OnInit {
   listView = true;
   constructor(
     public dialog: MatDialog,
-    private rest: RestService) {
+    private rest: RestService,
+    private state: StateService) {
     this.fetchData();
+    this.state.listUpdates$.subscribe((message) => {
+      if (message === 'update') {
+        this.fetchData();
+      }
+    });
   }
 
   ngOnInit(): void {
   }
 
   async filter() {
-    if (this.filterYear || this.filterDept) {
-      const resp = await this.rest.getStudents({year: this.filterYear, department: this.filterDept});
-      this.students = resp.data;
+    let resp: ServerResponse<Student[]>;
+    if (this.filterYear && this.filterDept) {
+      resp = await this.rest.getStudents({ year: this.filterYear, department: this.filterDept });
     }
+    else if (this.filterYear) {
+      resp = await this.rest.getStudents({ year: this.filterYear });
+    }
+    else if (this.filterDept) {
+      resp = await this.rest.getStudents({ department: this.filterDept });
+    }
+    this.students = resp.data;
   }
 
   async clearFilter() {
     this.filterDept = '';
     this.filterYear = null;
-    const resp = await this.rest.getAllStudents();
-    this.students = resp.data;
+    this.fetchData();
   }
 
   async fetchData() {

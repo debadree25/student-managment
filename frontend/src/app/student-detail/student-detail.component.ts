@@ -7,6 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Student } from '../models/student.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { RestService } from '../services/rest.service';
+import { StateService } from '../services/state.service';
 
 
 
@@ -26,10 +27,10 @@ export class StudentDetailComponent implements OnInit {
     public dialog: MatDialog,
     private dialogRef: MatDialogRef<StudentDetailComponent>,
     private route: Router, private router: ActivatedRoute,
-    private rest:RestService,
+    private rest: RestService,
     // tslint:disable-next-line: variable-name
     private _snackbar: MatSnackBar,
-
+    private state: StateService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.student = data.studentData;
@@ -68,18 +69,18 @@ export class StudentDetailComponent implements OnInit {
   async onDelete() {
     // this.studentService.deleteStudent(this.id);
     // this.openDialog("Delete");
-    console.log(this.student)
-   const resp=await (this.rest.deleteStudent(this.student._id));
-   console.log(resp);
+    console.log(this.student);
+    const resp = await (this.rest.deleteStudent(this.student._id));
+    console.log(resp);
     const msg = 'Student Deleted';
     const action = 'Undo';
     this._snackbar.open(msg, action, {
       duration: 2000,
     });
     this.onClose();
-  
+    this.state.updateList();
   }
-  
+
   openDialog(message: string) {
 
     const dialogRef = this.dialog.open(ActionComponent, {
@@ -91,10 +92,10 @@ export class StudentDetailComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
-      if(message=="Delete")
-      {
+      // tslint:disable-next-line: triple-equals
+      if (message == 'Delete') {
         this.dialogRef.close();
-      this.onDelete();
+        this.onDelete();
       }
     });
   }
