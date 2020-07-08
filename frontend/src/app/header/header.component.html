@@ -13,13 +13,8 @@
 
                 </mat-list-item>
                 <mat-list-item *ngIf="name!==''">
-                    <button class="manage" mat-stroked-button [routerLink]="['/user']">
+                    <button class="manage"  mat-button isRoundButton [routerLink]="['/user']">
                         Manage Your Profile
-                    </button>
-                </mat-list-item>
-                <mat-list-item *ngIf="name!==''">
-                    <button class="manage" mat-stroked-button (click)="logout()">
-                        Logout
                     </button>
                 </mat-list-item>
             </div>
@@ -49,10 +44,14 @@
     <mat-sidenav-content style="padding: 0px;">
 
         <mat-toolbar color="primary" class="mat-elevation-z6">
-            <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+            <button mat-icon-button  *ngIf="routes.route!='/editStudent' && routes.route!='/newStudent'" class="example-icon" aria-label="Example icon-button with menu icon">
                 <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
             </button>
-            <div style="margin-left: 16px;">
+          
+            <button mat-icon-button  *ngIf="routes.route=='/editStudent' || routes.route=='/newStudent'" class="example-icon" aria-label="Example icon-button with menu icon">
+                <mat-icon (click)="goBack()">arrow_back_ios</mat-icon>
+            </button>
+            <div style="margin-left: 5px;">
                 <span *ngIf="routes.route=='/login'">Login</span>
                 <span *ngIf="routes.route=='/register'">Register</span>
                 <span *ngIf="routes.route=='/editStudent'">Edit Student</span>
@@ -61,7 +60,7 @@
                 <span *ngIf="routes.route=='/list'">Students</span>
                 <span *ngIf="routes.route=='/settings'">Settings</span>
                 <span *ngIf="routes.route=='/help'">Help</span>
-                <span *ngIf="routes.route=='/newStudent'">Create Student</span>
+                <span *ngIf="routes.route=='/newStudent'">Add Student</span>
             </div>
 
             <mat-form-field class="search" *ngIf="isLogged">
@@ -74,7 +73,7 @@
             </mat-form-field>
 
 
-            <button mat-icon-button style="float: right;position:absolute;right:50px" mat-icon-button class="example-icon"
+            <button mat-icon-button style="float: right;position:absolute;right:60px" mat-icon-button class="example-icon"
                     aria-label="Example icon-button with notification icon">
                     <mat-icon>notification_important</mat-icon>
                 </button>
@@ -107,3 +106,4 @@
 
     </mat-sidenav-content>
 </mat-sidenav-container>
+

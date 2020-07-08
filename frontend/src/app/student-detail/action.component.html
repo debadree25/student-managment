@@ -4,8 +4,8 @@
 
         <button *ngIf="data.message==='Edit'" mat-button (click)="router.navigate(['/editStudent'],{state: {data: student}})"
             mat-dialog-close>Yes,sure</button>
-        <button *ngIf="data.message==='Delete'" mat-button [routerLink]="['/list']" mat-dialog-close
-            (click)="onDelete()">Yes,sure</button>
+        <button *ngIf="data.message==='Delete'" mat-button type="button" mat-dialog-close
+           >Yes,sure</button>
         <button mat-button mat-dialog-close>Close</button>
 
     </mat-dialog-actions>

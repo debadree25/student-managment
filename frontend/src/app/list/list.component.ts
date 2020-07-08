@@ -11,6 +11,7 @@ import { StudentDetailComponent } from '../student-detail/student-detail.compone
 })
 export class ListComponent implements OnInit {
   filterDept: string;
+  rowHeight;
   filterYear: number;
   students: Student[];
   listView = true;
@@ -56,30 +57,3 @@ export class ListComponent implements OnInit {
     });
   }
 }
-// @Component({
-//   selector: 'app-list-dialog',
-//   templateUrl: 'list-dialog.component.html',
-// })
-// export class AppListDialogComponent {
-//   constructor(public dialogRef: MatDialogRef<AppListDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: Student) {
-//   }
-// }
-
-
-    // const dialogRef = this.dialog.open(StudentDetailComponent, {
-    //   data: {
-    //     name: student.name,
-    //     stream: student.stream,
-    //     year: student.year,
-    //     url: student.imgUrl,
-    //     email: student.email,
-    //     phone: student.contactNo,
-    //     address: student.address,
-    //     graduateYear:student.graduateYear
-    //   },
-
-      // const dialogRef ;
-
-      // dialogRef.afterClosed().subscribe(result => {
-      //   console.log(`Dialog result: ${result}`);
-      // });

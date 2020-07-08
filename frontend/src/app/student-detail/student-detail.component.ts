@@ -71,15 +71,13 @@ export class StudentDetailComponent implements OnInit {
     console.log(this.student)
    const resp=await (this.rest.deleteStudent(this.student._id));
    console.log(resp);
-  
-    if(resp.message=="Data Deleted"){
     const msg = 'Student Deleted';
     const action = 'Undo';
     this._snackbar.open(msg, action, {
       duration: 2000,
     });
     this.onClose();
-  }
+  
   }
   
   openDialog(message: string) {
@@ -93,12 +91,17 @@ export class StudentDetailComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
-      this.dialogRef.close();
       if(message=="Delete")
+      {
+        this.dialogRef.close();
       this.onDelete();
+      }
     });
   }
 }
+
+
+
 @Component({
   selector: 'app-action',
   templateUrl: 'action.component.html',
@@ -112,9 +115,6 @@ export class ActionComponent {
 
   onYes() {
     this.dialogRef.close({ data: 'editing' });
-  }
-  onDelete() {
-    console.log('deleted');
   }
 }
 
