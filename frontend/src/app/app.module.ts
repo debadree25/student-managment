@@ -17,7 +17,7 @@ import { StudentDetailComponent, ActionComponent } from './student-detail/studen
 import { HttpClientModule } from '@angular/common/http';
 import { RoutesService } from './services/routes.service';
 import { MaterialElevationDirective } from './material-elevation.directive';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent, NotFound } from './login/login.component';
 import { AuthService } from './services/auth.service';
 import { RestService } from './services/rest.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -31,7 +31,7 @@ import { RegisterComponent } from './register/register.component';
     HeaderComponent,
     FooterComponent,
     DashboardComponent,
-    ListComponent,
+    ListComponent,NotFound,
     ActionComponent,
     CreateComponent,
     StudentDetailComponent,

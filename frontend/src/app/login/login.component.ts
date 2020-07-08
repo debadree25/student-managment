@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { RoutesService } from '../services/routes.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { NgForm } from '@angular/forms';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-login',
@@ -11,13 +12,14 @@ import { NgForm } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   hide = true;
-  registerUserData =<any>{};
+  registerUserData = <any>{};
 
   login = true;
   register = false;
   constructor(public route: RoutesService,
-              private auth: AuthService,
-              public router: Router) { }
+    private auth: AuthService,
+    public router: Router,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     if (this.auth.getLogin()) {
@@ -31,24 +33,28 @@ export class LoginComponent implements OnInit {
     const { email, password } = value;
     const resp = await this.auth.loginUser(email, password);
     console.log(resp);
-    if (resp.status) {
+    if (resp.status===true) {
       this.auth.storeLogin(resp.data);
       this.router.navigate(['dashboard']);
     }
-  }
+    else if(resp.status===false){
 
-  // async registerUser(f: NgForm) {
-  //   const value = f.value;
-  //   console.log(value);
-  //   const { name, email, password } = value;
-  //   const resp = await this.auth.registerUser({ name, email, password });
-  //   console.log(resp);
-  //   if (resp.status) {
-  //     this.tab();
-  //   }
-  // }
+      const dialogConfig = new MatDialogConfig();
+      this.dialog.open(NotFound,dialogConfig);
+
+    }
+  }
 
   tab() {
     this.login = !this.login;
   }
+}
+
+@Component({
+  selector: 'app-notfound',
+  templateUrl: 'notfound.component.html',
+})
+export class NotFound { 
+  constructor( public dialogRef: MatDialogRef<NotFound>){}
+
 }

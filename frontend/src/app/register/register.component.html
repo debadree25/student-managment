@@ -22,9 +22,12 @@
             
             <mat-card-actions style="margin-top: 10px;"><button [disabled]="!f.valid" mat-raised-button color="primary"
                     type="submit">Register</button></mat-card-actions>
-            <mat-card-actions><button (click)="tab()" color="primary" type="button"
-                    style="outline: none;border:none;background-color: transparent;margin: none;"><a routerLink="/login"
-                        class="signup">Already have an account?</a></button></mat-card-actions>
+            <mat-card-actions style="text-align: center;">
+                <span> Already have an account?</span>
+                <button (click)="router.navigate(['login'])" mat-button type="button"
+                    style="width: 15%;">
+                   Login
+                    </button></mat-card-actions>
         </form>
 
     </mat-card>
