@@ -34,22 +34,22 @@
   </span>
 
 <div class="content" *ngIf="listView">
-  <mat-list *ngFor="let student of students;let i=index" class="list" (click)="openDialog(student,i)">
+  <mat-nav-list *ngFor="let student of students;let i=index" class="list" (click)="openDialog(student,i)">
     <mat-list-item>
       <img matListAvatar [src]="'http://localhost:3000/images/'+student.image" alt="img of {{student.name}}">
       <div mat-line>{{student.name}}</div>
       <div mat-line> {{student.department | uppercase}} </div>
       <div mat-line> {{student.passing_year +" Batch" }}</div>
     </mat-list-item>
-    <mat-divider></mat-divider>
+    <mat-divider></mat-divider> 
 
-  </mat-list>
+  </mat-nav-list>
 </div>
 
-<div class="contentGrid">
-  <div fxLayout="row wrap" *ngIf="!listView" fxLayoutGap="10px grid" fxLayout.lt-sm="column" >
-    <div class="grid"  *ngFor="let student of students;let i=index">
-      <mat-card fxFlex="25%" fxFlex.xs="100%" fxFlex.md="33%" fxFlex.sm="50%" (click)="openDialog(student,i)">
+<div fxLayout="row wrap" fxLayoutGap="16px grid" 
+ class="contentGrid" *ngIf="!listView" >
+    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="50%" *ngFor="let student of students;let i=index">
+      <mat-card class="card" (click)="openDialog(student,i)">
         <mat-card-content>
           <mat-list>
             <mat-list-item>
@@ -63,10 +63,4 @@
         </mat-card-content>
       </mat-card>
     </div>
-
   </div>
-</div>
-
-<!-- <mat-card-actions align="end">
-      <button mat-button color="primary" (click)="openDialog(student,i)" style="position: absolute;bottom: 5px;">Details</button>
-    </mat-card-actions> -->

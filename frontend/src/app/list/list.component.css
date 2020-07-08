@@ -1,27 +1,17 @@
-mat-list {
-  margin-top: 1%;
-  }
-  .list {
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.list {
    
     width:100%;
    
    }
-   
-.content{
-  width:100%;
-  margin-top:2px;
-}
-.contentGrid{
-  margin:2%;
-  width:100%;
-}
-/* .contentGrid{
-  width: 100%; */
-
   .icon{
     float:right;
-    position: relative;
-    top:5px;
+    position:absolute;
+    top:15%;
     right:20px;
   }
 
@@ -38,9 +28,7 @@ mat-list {
     cursor: pointer;
   }
   
-  /* .detail:hover {
-    box-shadow: 0 0 15px rgba(33, 33, 33, 0.2);
-  } */
+  
   .input{
     display: flex;
     justify-content: center;
@@ -48,31 +36,31 @@ mat-list {
   }
   @media only screen and (max-width: 600px) {
     
-    .content{
-      margin-top: 40px;
-    }
-  
-    .contentGrid{
-      width:100%;
+    
+    .icon{
+      float:right;
+      position:absolute;
+      top:14%;
+      right:20px;
     }
   }
 
   @media only screen and (max-width: 800px) {
     
-  .content{
-    margin-top:40px;
+  
+  .icon{
+    float:right;
+    position:absolute;
+    top:13%;
+    right:20px;
   }
-    .contentGrid{
-      width:40%;
-    }
+    
     mat-form-field{
       width:60px;;
     }
     .input{
         display: flex;
         width:100%;
-/* justify-content: center;
-    align-items: center; */
     }
 
   }

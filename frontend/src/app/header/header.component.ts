@@ -11,10 +11,13 @@ import { AuthService } from '../services/auth.service';
 export class HeaderComponent implements OnInit {
 
   href: string;
+  isRoundButton: boolean=true;
   name = '';
   email = '';
   isLogged = false;
-  constructor(private route: ActivatedRoute, private router: Router, public routes: RoutesService, public auth: AuthService) {
+  constructor(private route: ActivatedRoute, public router: Router, 
+    public routes: RoutesService,
+     public auth: AuthService) {
     this.auth.loginObserver$.subscribe((login) => {
       console.log('login event');
       if (login) {
@@ -49,5 +52,9 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.auth.logout();
     this.router.navigate(['login']);
+  }
+
+  goBack(){
+    window.history.back();
   }
 }

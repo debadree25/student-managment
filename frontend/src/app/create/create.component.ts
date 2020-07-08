@@ -30,6 +30,7 @@ export class CreateComponent implements OnInit {
                 public  routes:RoutesService,
                 // tslint:disable-next-line: variable-name
                 private _snackBar: MatSnackBar,
+                //private _location: Location,
                 private rest: RestService) {
         // tslint:disable-next-line: triple-equals
         if (this.router.getCurrentNavigation().extras.state != undefined) {
@@ -143,5 +144,9 @@ export class CreateComponent implements OnInit {
         
     
     this.router.navigate(['/dashboard']);
+    }
+
+    onClose(){
+        window.history.back();
     }
 }

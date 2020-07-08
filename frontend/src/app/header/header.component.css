@@ -40,9 +40,10 @@ header{
   }
   .manage{
 
-    border-radius:15px;
+    /* border-radius:15px; */
     display:block;
-    margin:5px auto;
+    margin: 5px auto;
+    /* margin:5px auto; */
   }
   p{
     height:50px;
