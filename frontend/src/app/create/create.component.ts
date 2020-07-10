@@ -7,6 +7,7 @@ import { RestService } from '../services/rest.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {mimType} from './mime-type.validator';
 import { RoutesService } from '../services/routes.service';
+import { StateService } from '../services/state.service';
 
 declare var previewFile: any;
 
@@ -30,6 +31,7 @@ export class CreateComponent implements OnInit {
                 public  routes:RoutesService,
                 // tslint:disable-next-line: variable-name
                 private _snackBar: MatSnackBar,
+                private state:StateService, 
                 //private _location: Location,
                 private rest: RestService) {
         // tslint:disable-next-line: triple-equals

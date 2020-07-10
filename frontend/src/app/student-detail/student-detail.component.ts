@@ -97,6 +97,11 @@ export class StudentDetailComponent implements OnInit {
         this.dialogRef.close();
         this.onDelete();
       }
+      else if(message=='Edit'){
+        this.dialogRef.close();
+        this.onClose();
+        
+      }
     });
   }
 }
