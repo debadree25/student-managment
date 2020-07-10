@@ -11,6 +11,9 @@ import { NgForm } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
 
+  alert:boolean=false;
+  danger=false;
+
   constructor(public route: RoutesService,
     private auth: AuthService,
     public router: Router) { }
@@ -32,10 +35,22 @@ export class RegisterComponent implements OnInit {
     const { name, email, password } = value;
     const resp = await this.auth.registerUser({ name, email, password });
     console.log(resp);
+    
     if (resp.status) {
-      //this.tab();
-      this.router.navigate(['login'])
-    }
+       //this.tab();
+       this.alert=true;
+       f.resetForm();
+     }
+     else{
+       this.danger=true;
+
+     }
+  }
+
+  onClose(){
+    this.alert=false;
+    this.router.navigate(['login'])
+
   }
 
   tab() {
