@@ -11,7 +11,7 @@ import { Subject } from 'rxjs';
 export class RestService {
   baseUrl = 'http://localhost:3000/';
   constructor(private http: HttpClient) { }
-  private students:Student[]=[];
+  private students: Student[] = [];
   private studentsUpdated = new Subject<Student[]>();
 
   formatQuery(paramMap): string {
@@ -30,7 +30,7 @@ export class RestService {
       }
       qparam += '&' + element + '=' + paramMap[element];
     });
-    //console.log(qparam)
+    // console.log(qparam)
     return qparam;
   }
   // formatQParams(paramMap): string {
@@ -90,21 +90,24 @@ export class RestService {
     const url = `${this.baseUrl}images/${imageId}`;
     return this.http.get(url, {responseType: 'blob'}).toPromise();
   }
-  public deleteStudent(id:string){
+  public deleteStudent(id: string){
 
     const url = `${this.baseUrl}students/${id}`;
-     return this.http.delete<{message:string,status:boolean}>(url).toPromise();
+    return this.http.delete<{message: string, status: boolean}>(url).toPromise();
   }
 
-  public updateStudent(student:Student, file: File){
-
+  public updateStudent(student: Student, file?: File){
+    console.log(student);
     const postData = new FormData();
     Object.keys(student).forEach((key) => {
       postData.append(key, student[key]);
     });
-    postData.append('student-image', file, file.name);
+    if (file) {
+      console.log(file);
+      postData.append('student-image', file, file.name);
+    }
     console.log(postData);
     const url = `${this.baseUrl}students/${student._id}`;
-    return this.http.put<ServerResponse<Student>>(url,student).toPromise();
+    return this.http.put<ServerResponse<Student>>(url, postData).toPromise();
   }
 }
