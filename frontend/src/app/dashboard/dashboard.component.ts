@@ -51,7 +51,6 @@ export class DashboardComponent implements OnInit {
       data: {
         labels: this.streams,
         datasets: [{
-          label: 'Division wrt Stream',
           data: this.streamsData,
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
@@ -73,6 +72,9 @@ export class DashboardComponent implements OnInit {
         }]
       },
       options: {
+        legend:{
+          display:true
+        },
         scales: {
           yAxes: [{
             ticks: {
@@ -89,15 +91,14 @@ export class DashboardComponent implements OnInit {
       data: {
         labels: ['1', '2', '3', '4'],
         datasets: [{
-          label: 'Division By Year',
           backgroundColor: ['#3e95cd', '#8e5ea2', '#3cba9f', '#e8c3b9'],
           data: this.yearsData
         }]
       },
       options: {
-        title: {
-          display: true,
-          text: 'Division of students wrt year'
+        
+        legend:{
+          position:'right',
         }
       }
     });
@@ -105,10 +106,5 @@ export class DashboardComponent implements OnInit {
     console.log(this.chart2.data.datasets[0]);
   }
 
-  // onClick(){
-  //   this.buttonClickd=true;
-  //   this.students=this.studentService.getStudents();
-  //   console.log(this.students);
-  // }
-
+ 
 }
