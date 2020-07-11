@@ -30,28 +30,9 @@ export class RestService {
       }
       qparam += '&' + element + '=' + paramMap[element];
     });
-    // console.log(qparam)
     return qparam;
   }
-  // formatQParams(paramMap): string {
-  //   const keys = Object.keys(paramMap);
-  //   if (keys.length === 0) {
-  //     return '';
-  //   }
-
-  //   let qparam = '';
-  //   const key0 = keys[0];
-  //   qparam = '?' + key0 + '=' + paramMap[key0];
-
-  //   // keys.forEach(element => {
-  //   //   if (element === key0) {
-  //   //     return;
-  //   //   }
-  //   //   qparam += '&' + element + '=' + paramMap[element];
-  //   // });
-  //   console.log(qparam)
-  //   return qparam;
-  // }
+  
   public getAllStudents(): Promise<ServerResponse<Student[]>> {
     const url = `${this.baseUrl}students`;
     return this.http.get<ServerResponse<Student[]>>(url).toPromise();
@@ -61,20 +42,12 @@ export class RestService {
     const url = `${this.baseUrl}students${this.formatQuery(queries)}`;
     return this.http.get<ServerResponse<Student[]>>(url).toPromise();
   }
-  // Promise<ServerResponse<Student[]>>
-  // public getStudentsByYear(queries){
-  //   const url = `${this.baseUrl}students${this.formatQParams(queries)}`;
-  //   console.log(this.http.get<ServerResponse<Student[]>>(url).toPromise());
-  // }
-
   public addStudent(student: Student, file: File): Promise<ServerResponse<Student>> {
     const postData = new FormData();
     Object.keys(student).forEach((key) => {
       postData.append(key, student[key]);
     });
     postData.append('student-image', file, file.name);
-    // postData.append('image', student.image,student.name);
-    // postData.append('email', student.email);
     console.log(postData);
 
     const url = `${this.baseUrl}students/create`;
