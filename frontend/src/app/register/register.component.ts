@@ -26,6 +26,7 @@ export class RegisterComponent implements OnInit {
 
   hide = true;
   registerUserData =<any>{};
+  match=false;
 
   register = false;
   
