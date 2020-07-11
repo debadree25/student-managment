@@ -38,6 +38,7 @@
                         [attr.aria-pressed]="hide">
                         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
+                    <mat-hint>Password must be atleast 6 characters</mat-hint>
                     <mat-error><div *ngIf="password.errors.minlength">Password must be at least 6 characters</div></mat-error>
 
                 </mat-form-field>

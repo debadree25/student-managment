@@ -13,9 +13,9 @@ import { StateService } from '../services/state.service';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  filterDept: string;
+  filterDept: string=history.state.filterDept;
   rowHeight;
-  filterYear: number;
+  filterYear: number=history.state.filterYear;
   students: Student[];
   listView = true;
   constructor(
@@ -31,6 +31,8 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+   
+    this.filter();
   }
 
   async filter() {
@@ -59,7 +61,7 @@ export class ListComponent implements OnInit {
   }
 
   openDialog(student: Student, index: number) {
-    console.log(index);
+    //console.log(index);
     const dialogRef = this.dialog.open(StudentDetailComponent, {
       data: {
         studentData: student,

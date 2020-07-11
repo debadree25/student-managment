@@ -4,6 +4,8 @@ import { Student } from '../models/student.model';
 import { RestService } from '../services/rest.service';
 import { Chart } from 'node_modules/chart.js';
 import { async } from '@angular/core/testing';
+import { Router } from '@angular/router';
+import { state } from '@angular/animations';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,7 +22,7 @@ export class DashboardComponent implements OnInit {
   totalStudents = 0;
   chart1: any;
   chart2: any;
-  constructor(private rest: RestService) {
+  constructor(private rest: RestService,private router:Router) {
     this.fetchData();
   }
 
@@ -49,9 +51,10 @@ export class DashboardComponent implements OnInit {
     this.chart1 = new Chart('myChart', {
       type: 'bar',
       data: {
-        labels: this.streams,
+        labels:this.streams,
         datasets: [{
           data: this.streamsData,
+          
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
             'rgba(54, 162, 235, 0.2)',
@@ -73,7 +76,11 @@ export class DashboardComponent implements OnInit {
       },
       options: {
         legend:{
-          display:true
+          display:false,
+          position:'bottom',
+          labels: {
+            fontColor: "#000080",
+        }
         },
         scales: {
           yAxes: [{
@@ -106,5 +113,17 @@ export class DashboardComponent implements OnInit {
     console.log(this.chart2.data.datasets[0]);
   }
 
+  
+  async onClick(num:number){
+    //const resp = await this.rest.getStudents({ year:num});
+    this.router.navigate(['list'],{state:{filterYear:num}})
+    
+  }
+
+  async onStream(s:string){
+    //const resp = await this.rest.getStudents({ department:s });
+    console.log(s)
+    this.router.navigate(['list'],{state:{filterDept:s}})
+  }
  
 }

@@ -3,6 +3,7 @@ import { MaterialModule } from '../material/material.module';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RoutesService } from '../services/routes.service';
 import { AuthService } from '../services/auth.service';
+import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -56,5 +57,9 @@ export class HeaderComponent implements OnInit {
 
   goBack(){
     window.history.back();
+  }
+
+  search(f:NgForm){
+    console.log(f.value)
   }
 }

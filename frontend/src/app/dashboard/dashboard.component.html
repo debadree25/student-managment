@@ -1,113 +1,149 @@
-<div class="full-grid">
-  <mat-card class="big-card">
-    <mat-card-content class="center-div" style="display: flex;flex-direction: column;">
-      <p style="color: grey;margin-top: 0ex;">Division of Students wrt Year</p>
-      <div id="chart">
-        <canvas id="myPChart"></canvas>
-      </div>
-    </mat-card-content>
-  </mat-card>
-  <mat-card class="big-card">
-    <mat-card-content class="center-div" style="display: flex;flex-direction: column;">
-      <p style="color: grey;position: relative;top: 0ex;">Division of Students wrt Branch</p>
+<div class="full">
+  <mat-card class="graph-card">
+  <div class="full-grid">
 
-      <div id="chart2">
-        <canvas id="myChart"></canvas>
+    <div class="center-div">
+      <div style="text-align: center;">
+        <p style="color: grey;margin-bottom: 20px;">Division of Students wrt Year</p>
+        <div id="chart">
+          <canvas id="myPChart"></canvas>
+        </div>
       </div>
+    </div>
 
-    </mat-card-content>
-  </mat-card>
-</div>
-<div class="full-grid">
-  <div>
-    <mat-card class="big-card" [routerLink]="['/list']">
-      <mat-card-content class="center-div">
-        <div>
-          <p class="mat-h1">Total Students</p>
+
+    <div class="center-div">
+      <div style="text-align: center;padding:5px">
+        <p style="color: grey;margin-bottom: 20px;">Division of Students wrt Branch</p>
+        <div id="chart">
+          <canvas id="myChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div style="display: block;margin: 0 auto;position: relative;width:30%" [routerLink]="['/list']">
+    <mat-card class="card1">
+      <mat-card-content>
+        <div style="text-align: center;">
+          <p class="mat-h4">Total Students</p>
           <br>
-          <p class="mat-display-4" style="text-align: center;">{{totalStudents}}</p>
+          <p class="mat-display-4">{{totalStudents}}</p>
         </div>
       </mat-card-content>
     </mat-card>
   </div>
+</mat-card>
+<div style="display: flex;justify-content: space-evenly;">
+  <p style="width:100%;text-align:center;text-decoration:underline;color:grey;" class="mat-h2">
+    Division of Students by Year
+  </p>
+  <p style="width:100%;text-align:center;text-decoration:underline;color:grey;" class="mat-h2">
+    Division of Students by Branch
+  </p>
 </div>
 
-<p style="margin-left: 25px;text-decoration: underline;color:grey;" class="mat-h2">Division of Students by Year</p>
-<div style="display: flex; justify-content: center; align-items: center;">
-  <mat-card class="card" style="width: 25%;height:10%;" [routerLink]="['/list']">
-    <mat-card-content class="center-div">
-      <div>
-        <p class="mat-h2">1st Year</p>
-        <p class="mat-display-3" style="text-align: center;">{{yearsData[0]}}</p>
-      </div>
-    </mat-card-content>
-  </mat-card>
-  <mat-card class="card" style="width: 25%;height: 10%;" [routerLink]="['/list']">
-    <mat-card-content class="center-div">
-      <div>
-        <p class="mat-h2">2nd Year</p>
-        <p class="mat-display-3" style="text-align: center;">{{yearsData[1]}}</p>
-      </div>
-    </mat-card-content>
-  </mat-card>
-  <mat-card class="card" style="width: 25%;height: 10%;" [routerLink]="['/list']">
-    <mat-card-content class="center-div">
-      <div>
-        <p class="mat-h2">3rd Year</p>
-        <p class="mat-display-3" style="text-align: center;">{{yearsData[2]}}</p>
-      </div>
-    </mat-card-content>
-  </mat-card>
-  <mat-card class="card" style="width: 25%;height: 10%;" [routerLink]="['/list']">
-    <mat-card-content class="center-div">
-      <div>
-        <p class="mat-h2">4th Year</p>
-        <p class="mat-display-3" style="text-align: center;">{{yearsData[3]}}</p>
-      </div>
-    </mat-card-content>
+
+<div class="grid-col">
+
+
+  <mat-card class="grid-col cards">
+
+    <mat-card class="card"   (click)="onClick(1)"  style="margin-bottom: 10px;">
+      <mat-card-content class="center-div">
+        <div>
+          <p class="mat-h4">1st Year</p>
+          <p class="mat-display-3" style="text-align: center;">{{yearsData[0]}}</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+
+    <mat-card class="card"  (click)="onClick(2)" style="margin-bottom: 10px;">
+      <mat-card-content class="center-div">
+        <div>
+          <p class="mat-h4">2nd Year</p>
+          <p class="mat-display-3" style="text-align: center;">{{yearsData[1]}}</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+
+    <mat-card class="card"  (click)="onClick(3)" >
+      <mat-card-content class="center-div">
+        <div>
+          <p class="mat-h4">3rd Year</p>
+          <p class="mat-display-3" style="text-align: center;">{{yearsData[2]}}</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+
+    <mat-card class="card"  (click)="onClick(4)" >
+      <mat-card-content class="center-div">
+        <div>
+          <p class="mat-h4">4th Year</p>
+          <p class="mat-display-3" style="text-align: center;">{{yearsData[3]}}</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+
   </mat-card>
 
+
+  <mat-card class="three-grid">
+
+    <mat-card class="card" [routerLink]="['/list']" style="margin-bottom: 15px;"  (click)="onStream('IT')">
+      <mat-card-content class="center-div">
+        <div>
+          <p class="mat-h4">IT</p>
+          <p class="mat-display-2" style="text-align: center;">{{streamsData[0]}}</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+
+    <mat-card class="card" [routerLink]="['/list']" (click)="onStream('CSE')" style="margin-bottom: 15px;">
+      <mat-card-content class="center-div">
+        <div>
+          <p class="mat-h4">CSE</p>
+          <p class="mat-display-2" style="text-align: center;">{{streamsData[1]}}</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+
+    <mat-card class="card" [routerLink]="['/list']" (click)="onStream('ECE')" style="margin-bottom: 10px;">
+      <mat-card-content class="center-div">
+        <div>
+          <p class="mat-h4">ECE</p>
+          <p class="mat-display-2" style="text-align: center;">{{streamsData[2]}}</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+
+    <mat-card class="card" [routerLink]="['/list']" (click)="onStream('EE')">
+      <mat-card-content class="center-div">
+        <div>
+          <p class="mat-h4">EE</p>
+          <p class="mat-display-2" style="text-align: center;">{{streamsData[3]}}</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+
+    <mat-card class="card" [routerLink]="['/list']" (click)="onStream('ME')">
+      <mat-card-content class="center-div">
+        <div>
+          <p class="mat-h4">ME</p>
+          <p class="mat-display-2" style="text-align: center;">{{streamsData[4]}}</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+
+  </mat-card>
 </div>
-<p style="margin-left: 25px;text-decoration: underline;color:grey;" class="mat-h2">Division of Students by Branch</p>
-<div style="display: flex; justify-content: center; align-items: center;">
-  <mat-card class="card" style="width: 20%;" [routerLink]="['/list']">
-    <mat-card-content class="center-div">
-      <div>
-        <p class="mat-h2">IT</p>
-        <p class="mat-display-2" style="text-align: center;">{{streamsData[0]}}</p>
-      </div>
-    </mat-card-content>
-  </mat-card>
-  <mat-card class="card" style="width: 20%;" [routerLink]="['/list']">
-    <mat-card-content class="center-div">
-      <div>
-        <p class="mat-h2">CSE</p>
-        <p class="mat-display-2" style="text-align: center;">{{streamsData[1]}}</p>
-      </div>
-    </mat-card-content>
-  </mat-card>
-  <mat-card class="card" style="width: 20%;" [routerLink]="['/list']">
-    <mat-card-content class="center-div">
-      <div>
-        <p class="mat-h2">ECE</p>
-        <p class="mat-display-2" style="text-align: center;">{{streamsData[2]}}</p>
-      </div>
-    </mat-card-content>
-  </mat-card>
-  <mat-card class="card" style="width: 20%;" [routerLink]="['/list']">
-    <mat-card-content class="center-div">
-      <div>
-        <p class="mat-h2">EE</p>
-        <p class="mat-display-2" style="text-align: center;">{{streamsData[3]}}</p>
-      </div>
-    </mat-card-content>
-  </mat-card>
-  <mat-card class="card" style="width: 20%;" [routerLink]="['/list']">
-    <mat-card-content class="center-div">
-      <div>
-        <p class="mat-h2">ME</p>
-        <p class="mat-display-2" style="text-align: center;">{{streamsData[4]}}</p>
-      </div>
-    </mat-card-content>
-  </mat-card>
 </div>

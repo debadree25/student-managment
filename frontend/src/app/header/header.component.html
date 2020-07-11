@@ -43,7 +43,7 @@
     </mat-sidenav>
     <mat-sidenav-content style="padding: 0px;">
 
-        <mat-toolbar color="primary" class="mat-elevation-z6 app-toolbar">
+        <mat-toolbar color="primary" class="mat-elevation-z6 app-toolbar" *ngIf="routes.route!=='/login' && routes.route!=='/register'">
             <button mat-icon-button  *ngIf="routes.route!='/editStudent' && routes.route!='/newStudent'" class="example-icon" aria-label="Example icon-button with menu icon">
                 <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
             </button>
@@ -63,14 +63,11 @@
                 <span *ngIf="routes.route=='/newStudent'">Add Student</span>
             </div>
 
-            <mat-form-field class="search" *ngIf="isLogged">
-                <span matPrefix><button mat-icon-button>
-                        <mat-icon>search</mat-icon>
-                    </button>
-                </span>
-                <input matInput placeholder="Search" type="text" class="example-right-align" name="search">
-
-            </mat-form-field>
+            <form class="example" #f="ngForm" (submit)="search(f)" style="margin:0 auto;max-width:350px;">
+            <input type="text" placeholder="Search" name="search2">
+            <button type="submit"><i class="fa fa-search"></i></button>
+          </form>
+          
 
 
             <button mat-icon-button style="float: right;position:absolute;right:60px" mat-icon-button class="example-icon"
