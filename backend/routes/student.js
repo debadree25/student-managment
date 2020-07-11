@@ -67,19 +67,41 @@ router.get("/:id", async (req, res) => {
     }
 });
 
-router.put("/:id", async (req, res) => {
-    console.log(req.params.id)
-    const resp = await Student.updateOne({ _id: mongoose.Types.ObjectId(req.params.id) }, req.body);
-    if (resp.n > 0) {
-        res.status(200).json({
-            status: true,
-            message: "Student data updated",
-        });
+router.put("/:id", upload.single("student-image"), async (req, res) => {
+    // console.log("File here")
+    // console.log(req.file);
+    if (!req.file) {
+        // console.log(req.params.id);
+        const resp = await Student.updateOne({ _id: mongoose.Types.ObjectId(req.params.id) }, req.body);
+        if (resp.n > 0) {
+            res.status(200).json({
+                status: true,
+                message: "Student data updated",
+            });
+        } else {
+            res.status(404).json({
+                status: false,
+                message: "No data updated",
+            });
+        }
     } else {
-        res.status(404).json({
-            status: false,
-            message: "No data updated",
-        });
+        const student = {};
+        Object.keys(req.body).forEach((key) => (student[key] = req.body[key]));
+        student.image = req.file.filename;
+        console.log('File Updation');
+        console.log(student);
+        const resp = await Student.updateOne({ _id: mongoose.Types.ObjectId(req.params.id) }, student);
+        if (resp.n > 0) {
+            res.status(200).json({
+                status: true,
+                message: "Student data updated",
+            });
+        } else {
+            res.status(404).json({
+                status: false,
+                message: "No data updated",
+            });
+        }
     }
 });
 

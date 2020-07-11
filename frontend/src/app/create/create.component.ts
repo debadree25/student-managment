@@ -5,7 +5,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { ImageSnippet } from '../models/image.model';
 import { RestService } from '../services/rest.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import {mimType} from './mime-type.validator';
+import { mimType } from './mime-type.validator';
 import { RoutesService } from '../services/routes.service';
 import { StateService } from '../services/state.service';
 
@@ -26,14 +26,16 @@ export class CreateComponent implements OnInit {
     selectedFile: ImageSnippet;
     file: File;
     dataBlob: Blob;
-    constructor(private router: Router,
-                private route: ActivatedRoute,
-                public  routes:RoutesService,
-                // tslint:disable-next-line: variable-name
-                private _snackBar: MatSnackBar,
-                private state:StateService, 
-                //private _location: Location,
-                private rest: RestService) {
+    fileChanges = false;
+    constructor(
+        private router: Router,
+        private route: ActivatedRoute,
+        public routes: RoutesService,
+        // tslint:disable-next-line: variable-name
+        private _snackBar: MatSnackBar,
+        private state: StateService,
+        // private _location: Location,
+        private rest: RestService) {
         // tslint:disable-next-line: triple-equals
         if (this.router.getCurrentNavigation().extras.state != undefined) {
             this.student = this.router.getCurrentNavigation().extras.state.data;
@@ -49,9 +51,10 @@ export class CreateComponent implements OnInit {
             passing_year: new FormControl(this.student?.passing_year, { validators: [Validators.required] }),
             email: new FormControl(this.student?.email, { validators: [Validators.required] }),
             phone: new FormControl(this.student?.phone, { validators: [Validators.required] }),
-            image: new FormControl(this.dataBlob, { validators: [Validators.required],
-                asyncValidators: [mimType]})
-                // only accept images
+            image: new FormControl(this.dataBlob, {
+                asyncValidators: [mimType]
+            })
+            // only accept images
         });
         console.log(this.form);
         console.log(this.student);
@@ -65,7 +68,7 @@ export class CreateComponent implements OnInit {
             const resp = await this.rest.downloadImage(this.student.image);
             this.dataBlob = resp;
             console.log(this.dataBlob);
-            this.form.patchValue({image: this.dataBlob});
+            this.form.patchValue({ image: this.dataBlob });
             this.form.get('image').updateValueAndValidity();
             this.imgPreview = `${this.rest.baseUrl}images/${this.student.image}`;
         }
@@ -79,76 +82,76 @@ export class CreateComponent implements OnInit {
         reader.onload = () => {
             this.imgPreview = reader.result as string;
         };
-
+        this.fileChanges = true;
         reader.readAsDataURL(this.file);
     }
 
     async onSubmit() {
-        if (this.routes.route=="/newStudent"){
-        const value = this.form.value;
-        console.log(value);
-        const { name, department, address, joining_year, year, passing_year, email, phone} = value;
-        const student: Student = {
-            name,
-            department,
-            address,
-            joining_year: parseInt(joining_year, 10),
-            year: parseInt(year, 10),
-            passing_year: parseInt(passing_year, 10),
-            email,
-            phone,
-        };
-        console.log(student);
-        const resp = await this.rest.addStudent(student, this.file);
-        if (resp.status) {
-            alert('New student added');
-            // snackbar
-            const message = 'Student Added';
-            const action = 'Undo';
-            this._snackBar.open(message, action, {
-                duration: 2000,
-            });
+        // tslint:disable-next-line: triple-equals
+        if (this.routes.route == '/newStudent') {
+            const value = this.form.value;
+            console.log(value);
+            const { name, department, address, joining_year, year, passing_year, email, phone } = value;
+            const student: Student = {
+                name,
+                department,
+                address,
+                joining_year: parseInt(joining_year, 10),
+                year: parseInt(year, 10),
+                passing_year: parseInt(passing_year, 10),
+                email,
+                phone,
+            };
+            console.log(student);
+            const resp = await this.rest.addStudent(student, this.file);
+            if (resp.status) {
+                alert('New student added');
+                // snackbar
+                const message = 'Student Added';
+                const action = 'Undo';
+                this._snackBar.open(message, action, {
+                    duration: 2000,
+                });
+            }
+            else {
+                alert('New student not added');
+            }
         }
-        else {
-            alert('New student not added');
-        }
-    }
-    else if(this.routes.route==='/editStudent'){
-        const value = this.form.value;
-        console.log(value);
-        const { name, department, address, joining_year, year, passing_year, email, phone} = value;
-        const student: Student = {
-            name,
-            department,
-            address,
-            joining_year: parseInt(joining_year, 10),
-            year: parseInt(year, 10),
-            passing_year: parseInt(passing_year, 10),
-            email,
-            phone,
-        };
-        console.log(student);
-        const resp = await this.rest.updateStudent(student, this.file);
-        if (resp.status) {
-            alert('Student Data updted');
-            // snackbar
-            const message = 'Student Data Updated';
-            const action = 'Undo';
-            this._snackBar.open(message, action, {
-                duration: 2000,
-            });
-        }
-        else {
-            alert('Data not updated');
+        else if (this.routes.route === '/editStudent') {
+            const value = this.form.value;
+            const { name, department, address, joining_year, year, passing_year, email, phone } = value;
+            const student: Student = {
+                _id: this.student._id,
+                name,
+                department,
+                address,
+                joining_year: parseInt(joining_year, 10),
+                year: parseInt(year, 10),
+                passing_year: parseInt(passing_year, 10),
+                email,
+                phone,
+            };
+            const resp = await this.rest.updateStudent(student, (this.fileChanges) ? this.file : null);
+            if (resp.status) {
+                alert('Student Data Updated');
+                // snackbar
+                const message = 'Student Data Updated';
+                const action = 'Undo';
+                this._snackBar.open(message, action, {
+                    duration: 2000,
+                });
+            }
+            else {
+                alert('Data not updated');
+            }
+
         }
 
-    }
-        
-    
-    this.router.navigate(['/dashboard']);
+
+        // this.router.navigate(['/dashboard']);
     }
 
-    onClose(){
+    onClose() {
         window.history.back();
     }
 }
