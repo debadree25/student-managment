@@ -4,6 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RoutesService } from '../services/routes.service';
 import { AuthService } from '../services/auth.service';
 import { NgForm } from '@angular/forms';
+import{Notification} from '../models/notification.model';
+import { NotificationService } from '../services/notification.service';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -12,13 +15,18 @@ import { NgForm } from '@angular/forms';
 export class HeaderComponent implements OnInit {
 
   href: string;
-  isRoundButton: boolean=true;
+  isRoundButton: boolean = true;
   name = '';
   email = '';
   isLogged = false;
-  constructor(private route: ActivatedRoute, public router: Router, 
+  notifs: Notification[];
+  notifCount:number=0;
+
+
+  constructor(private route: ActivatedRoute, public router: Router,
     public routes: RoutesService,
-     public auth: AuthService) {
+    public auth: AuthService,
+    private notifService: NotificationService) {
     this.auth.loginObserver$.subscribe((login) => {
       console.log('login event');
       if (login) {
@@ -36,10 +44,10 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  }
-  onLogout() {
-  }
 
+    this.notifs = this.notifService.getAllNotifs();
+    this.notifCount=this.notifs.length;
+  }
   isActive() {
     this.href = this.router.url;
   }
@@ -55,11 +63,11 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['login']);
   }
 
-  goBack(){
+  goBack() {
     window.history.back();
   }
 
-  search(f:NgForm){
+  search(f: NgForm) {
     console.log(f.value)
   }
 }

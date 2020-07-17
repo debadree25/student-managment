@@ -13,7 +13,7 @@
 
                 </mat-list-item>
                 <mat-list-item *ngIf="name!==''">
-                    <button class="manage"  mat-button isRoundButton [routerLink]="['/user']">
+                    <button class="manage" mat-button isRoundButton [routerLink]="['/user']">
                         Manage Your Profile
                     </button>
                 </mat-list-item>
@@ -43,12 +43,15 @@
     </mat-sidenav>
     <mat-sidenav-content style="padding: 0px;">
 
-        <mat-toolbar color="primary" class="mat-elevation-z6 app-toolbar" *ngIf="routes.route!=='/login' && routes.route!=='/register'">
-            <button mat-icon-button  *ngIf="routes.route!='/editStudent' && routes.route!='/newStudent'" class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-toolbar color="primary" class="mat-elevation-z6 app-toolbar"
+            *ngIf="routes.route!=='/login' && routes.route!=='/register'">
+            <button mat-icon-button *ngIf="routes.route!='/editStudent' && routes.route!='/newStudent'"
+                class="example-icon" aria-label="Example icon-button with menu icon">
                 <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
             </button>
-          
-            <button mat-icon-button  *ngIf="routes.route=='/editStudent' || routes.route=='/newStudent'" class="example-icon" aria-label="Example icon-button with menu icon">
+
+            <button mat-icon-button *ngIf="routes.route=='/editStudent' || routes.route=='/newStudent'"
+                class="example-icon" aria-label="Example icon-button with menu icon">
                 <mat-icon (click)="goBack()">arrow_back_ios</mat-icon>
             </button>
             <div style="margin-left: 5px;">
@@ -64,37 +67,42 @@
             </div>
 
             <form class="example" #f="ngForm" (submit)="search(f)" style="margin:0 auto;max-width:350px;">
-            <input type="text" placeholder="Search" name="search2">
-            <button type="submit"><i class="fa fa-search"></i></button>
-          </form>
-          
+                <input type="text" placeholder="Search" name="search2">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
 
 
-            <button mat-icon-button style="float: right;position:absolute;right:60px" mat-icon-button class="example-icon"
-                    aria-label="Example icon-button with notification icon">
-                    <mat-icon>notification_important</mat-icon>
+
+            <button mat-icon-button style="float: right;position:absolute;right:80px"
+                class="example-icon" [matMenuTriggerFor]="menu" 
+                aria-label="Example icon-button with notification icon">
+                <mat-icon [matBadge]="notifCount"  matBadgeColor="warn">notification_important</mat-icon>
+            </button>
+
+            <mat-menu #menu="matMenu" *ngFor="let notif of notifs">
+                <button mat-menu-item>{{notif.detail}}</button>
+            </mat-menu>
+
+            <!-- <button style="float: right;position:absolute;right:20px" class="example-icon2"
+                mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+
+            <mat-menu #menu="matMenu">
+                <button (click)="logout()" mat-menu-item *ngIf="name!==''">
+                    <mat-icon>login</mat-icon>
+                    <span><a>Logout</a></span>
                 </button>
-
-                <button mat-icon-button style="float: right;position:absolute;right:20px" class="example-icon2" mat-icon-button [matMenuTriggerFor]="menu"
-                    aria-label="Example icon-button with a menu">
-                    <mat-icon>more_vert</mat-icon>
+                <button mat-menu-item *ngIf="name===''">
+                    <mat-icon>login</mat-icon>
+                    <span><a routerLink="/login" (click)="onLogin()">Login</a></span>
                 </button>
+                <button mat-menu-item *ngIf="name===''">
+                    <mat-icon>login</mat-icon>
+                    <span><a routerLink="/register" (click)="onRegister()">Register</a></span>
+                </button>
+            </mat-menu> -->
 
-                <mat-menu #menu="matMenu" >
-                    <button (click)="logout()" mat-menu-item *ngIf="name!==''">
-                        <mat-icon>login</mat-icon>
-                        <span><a >Logout</a></span>
-                    </button>
-                    <button mat-menu-item *ngIf="name===''">
-                        <mat-icon>login</mat-icon>
-                        <span><a routerLink="/login" (click)="onLogin()">Login</a></span>
-                    </button>
-                    <button mat-menu-item *ngIf="name===''">
-                        <mat-icon>login</mat-icon>
-                        <span><a routerLink="/register" (click)="onRegister()">Register</a></span>
-                    </button>
-                </mat-menu>
-            
         </mat-toolbar>
 
 
@@ -103,4 +111,3 @@
 
     </mat-sidenav-content>
 </mat-sidenav-container>
-
