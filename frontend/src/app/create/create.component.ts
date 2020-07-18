@@ -8,6 +8,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { mimType } from './mime-type.validator';
 import { RoutesService } from '../services/routes.service';
 import { StateService } from '../services/state.service';
+import { NotificationService } from '../services/notification.service';
 
 declare var previewFile: any;
 
@@ -30,6 +31,7 @@ export class CreateComponent implements OnInit {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
+        private notifService:NotificationService,
         public routes: RoutesService,
         // tslint:disable-next-line: variable-name
         private _snackBar: MatSnackBar,
@@ -112,6 +114,7 @@ export class CreateComponent implements OnInit {
                 this._snackBar.open(message, action, {
                     duration: 2000,
                 });
+                this.notifService.addNotifs("Student has been added");
             }
             else {
                 alert('New student not added');
@@ -141,11 +144,12 @@ export class CreateComponent implements OnInit {
                 this._snackBar.open(message, action, {
                     duration: 2000,
                 });
+                this.notifService.addNotifs("Student has been updated");
             }
             else {
                 alert('Data not updated');
             }
-            //this.router.navigate(['/list']);
+            this.router.navigate(['/list']);
 
         }
 

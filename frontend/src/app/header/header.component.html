@@ -73,18 +73,18 @@
 
 
 
-            <button mat-icon-button style="float: right;position:absolute;right:80px"
-                class="example-icon" [matMenuTriggerFor]="menu" 
-                aria-label="Example icon-button with notification icon">
-                <mat-icon [matBadge]="notifCount"  matBadgeColor="warn">notification_important</mat-icon>
+            <button mat-icon-button style="float: right;position:absolute;right:80px" class="example-icon"
+                [matMenuTriggerFor]="aboveMenu" aria-label="Example icon-button with notification icon">
+                <mat-icon [matBadge]="notifCount" matBadgeColor="warn">notification_important</mat-icon>
             </button>
-
-            <mat-menu #menu="matMenu" *ngFor="let notif of notifs">
-                <button mat-menu-item>{{notif.detail}}</button>
+            <mat-menu #aboveMenu="matMenu" xPosition="before">
+                <button mat-menu-item *ngFor="let notif of notifs">
+                    <span>{{notif.detail}}</span></button>
             </mat-menu>
 
-            <!-- <button style="float: right;position:absolute;right:20px" class="example-icon2"
-                mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+
+            <button style="float: right;position:absolute;right:20px" class="example-icon2" mat-icon-button
+                [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
                 <mat-icon>more_vert</mat-icon>
             </button>
 
@@ -101,7 +101,7 @@
                     <mat-icon>login</mat-icon>
                     <span><a routerLink="/register" (click)="onRegister()">Register</a></span>
                 </button>
-            </mat-menu> -->
+            </mat-menu>
 
         </mat-toolbar>
 

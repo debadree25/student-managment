@@ -9,19 +9,21 @@ export class NotificationService {
 
   constructor() { }
 
-  notifs:Notification[]=[{detail:"Hello"}];
+  notifs:Notification[]=[{detail:"Hello"},{detail:"Hi"}];
   notifsUpdated=new Subject<Notification[]>();
 
   getAllNotifs(){
-    return this.notifs;
-
+    console.log(this.notifs);
+    this.notifsUpdated.next([...this.notifs]);
+    return (this.notifs);
   }
   addNotifs(message:string){
     
     let notif:Notification;
     notif.detail=message;
     this.notifs.push(notif);
-    this.notifsUpdated.next(this.notifs);
+    console.log(this.notifs.length)
+    this.notifsUpdated.next([...this.notifs]);
   }
 
 

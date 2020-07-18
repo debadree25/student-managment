@@ -90,7 +90,10 @@ form.example button {
 form.example button:hover {
   background: lightslategrey;
 }
-
+button{
+  outline:none;
+  border:none;
+}
 form.example::after {
   content: "";
   clear: both;

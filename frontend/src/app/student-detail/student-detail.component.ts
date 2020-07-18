@@ -8,6 +8,7 @@ import { Student } from '../models/student.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { RestService } from '../services/rest.service';
 import { StateService } from '../services/state.service';
+import { NotificationService } from '../services/notification.service';
 
 
 
@@ -27,7 +28,7 @@ export class StudentDetailComponent implements OnInit {
     public dialog: MatDialog,
     private dialogRef: MatDialogRef<StudentDetailComponent>,
     private route: Router, private router: ActivatedRoute,
-    private rest: RestService,
+    private rest: RestService,private notifService:NotificationService,
     // tslint:disable-next-line: variable-name
     private _snackbar: MatSnackBar,
     private state: StateService,
@@ -77,6 +78,7 @@ export class StudentDetailComponent implements OnInit {
     this._snackbar.open(msg, action, {
       duration: 2000,
     });
+    this.notifService.addNotifs("Student has been deleted");
     this.onClose();
     this.state.updateList();
   }
