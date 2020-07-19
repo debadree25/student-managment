@@ -148,7 +148,7 @@ export class CreateComponent implements OnInit {
         }
 
 
-        // this.router.navigate(['/dashboard']);
+        this.router.navigate(['/list']);
     }
 
     onClose() {
