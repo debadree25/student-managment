@@ -18,6 +18,7 @@ export class ListComponent implements OnInit {
   filterYear: number=history.state.filterYear;
   students: Student[];
   listView = true;
+
   constructor(
     public dialog: MatDialog,
     private rest: RestService,

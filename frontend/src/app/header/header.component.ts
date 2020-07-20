@@ -20,7 +20,8 @@ export class HeaderComponent implements OnInit {
   email = '';
   isLogged = false;
   notifs: Notification[];
-  notifCount:number=0;
+  searchText;
+  notifCount:number;
 
 
   constructor(private route: ActivatedRoute, public router: Router,
@@ -41,10 +42,14 @@ export class HeaderComponent implements OnInit {
       }
     });
     this.auth.loadLogin();
+    this.fetchNotif();
   }
 
   ngOnInit(): void {
 
+   
+  }
+  fetchNotif(){
     this.notifs = this.notifService.getAllNotifs();
     this.notifCount=this.notifs.length;
   }
@@ -54,12 +59,14 @@ export class HeaderComponent implements OnInit {
 
   onLogin() {
     this.router.navigate(['/']);
+    
   }
   onRegister() {
     this.router.navigate(['/']);
   }
   logout() {
     this.auth.logout();
+    this.notifCount=0;
     this.router.navigate(['login']);
   }
 
@@ -68,6 +75,7 @@ export class HeaderComponent implements OnInit {
   }
 
   search(f: NgForm) {
+  
     console.log(f.value)
   }
 }

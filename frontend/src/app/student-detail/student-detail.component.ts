@@ -79,6 +79,7 @@ export class StudentDetailComponent implements OnInit {
       duration: 2000,
     });
     this.notifService.addNotifs("Student has been deleted");
+    //console.log(this.notifService.getAllNotifs)
     this.onClose();
     this.state.updateList();
   }

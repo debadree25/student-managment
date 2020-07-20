@@ -67,7 +67,7 @@
             </div>
 
             <form class="example" #f="ngForm" (submit)="search(f)" style="margin:0 auto;max-width:350px;">
-                <input type="text" placeholder="Search" name="search2">
+                <input type="text" placeholder="Search" name="search2" [ngModel]="searchText">
                 <button type="submit"><i class="fa fa-search"></i></button>
             </form>
 

@@ -19,9 +19,7 @@ export class NotificationService {
   }
   addNotifs(message:string){
     
-    let notif:Notification;
-    notif.detail=message;
-    this.notifs.push(notif);
+    this.notifs.push({detail:message});
     console.log(this.notifs.length)
     this.notifsUpdated.next([...this.notifs]);
   }
