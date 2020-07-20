@@ -17,7 +17,7 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCheckboxModule } from '@angular/material/checkbox'
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
+import {MatBadgeModule} from '@angular/material/badge';
 
 const materialComponents = [
   MatButtonModule,
@@ -25,6 +25,7 @@ const materialComponents = [
   MatCheckboxModule,
   MatTooltipModule,
   MatRippleModule,
+  MatBadgeModule,
   MatButtonToggleModule,
   MatIconModule,
   MatDialogModule,

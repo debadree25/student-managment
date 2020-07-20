@@ -116,6 +116,7 @@ export class CreateComponent implements OnInit {
             else {
                 alert('New student not added');
             }
+            this.router.navigate(['/list']);
         }
         else if (this.routes.route === '/editStudent') {
             const value = this.form.value;
@@ -144,6 +145,7 @@ export class CreateComponent implements OnInit {
             else {
                 alert('Data not updated');
             }
+            // this.router.navigate(['/list']);
 
         }
 
