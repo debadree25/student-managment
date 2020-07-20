@@ -27,6 +27,7 @@ app.use(morgan("dev"));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use("/students", require("./routes/student"));
 app.use("/auth", require("./routes/auth"));
+app.use("/notif",require("./routes/notif"));
 
 const PORT = process.env.PORT || 3000;
 
