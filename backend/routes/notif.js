@@ -15,7 +15,7 @@ router.post("", (req, res) => {
         })
     }).catch(()=> {
         res.status(400).json({
-            message: "not Saved"
+            message: "Not Saved"
         })
     })
 })
