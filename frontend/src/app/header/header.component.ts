@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RoutesService } from '../services/routes.service';
 import { AuthService } from '../services/auth.service';
 import { NgForm } from '@angular/forms';
-import{Notification} from '../models/notification.model';
+import { Notification } from '../models/notification.model';
 import { NotificationService } from '../services/notification.service';
 
 @Component({
@@ -15,15 +15,18 @@ import { NotificationService } from '../services/notification.service';
 export class HeaderComponent implements OnInit {
 
   href: string;
-  isRoundButton: boolean = true;
+  isRoundButton = true;
   name = '';
   email = '';
   isLogged = false;
   notifs: Notification[];
-  notifCount:number=0;
+  searchText;
+  notifCount: number;
 
 
-  constructor(private route: ActivatedRoute, public router: Router,
+  constructor(
+    private route: ActivatedRoute,
+    public router: Router,
     public routes: RoutesService,
     public auth: AuthService,
     private notifService: NotificationService) {
@@ -41,12 +44,18 @@ export class HeaderComponent implements OnInit {
       }
     });
     this.auth.loadLogin();
+    this.notifService.notifsObserver$.subscribe(notifs => this.notifs = notifs);
+    this.notifService.notifsCountObserver$.subscribe(count => this.notifCount = count);
+    // this.fetchNotif();
   }
 
   ngOnInit(): void {
 
+
+  }
+  fetchNotif() {
     this.notifs = this.notifService.getAllNotifs();
-    this.notifCount=this.notifs.length;
+    this.notifCount = this.notifs.length;
   }
   isActive() {
     this.href = this.router.url;
@@ -54,12 +63,14 @@ export class HeaderComponent implements OnInit {
 
   onLogin() {
     this.router.navigate(['/']);
+
   }
   onRegister() {
     this.router.navigate(['/']);
   }
   logout() {
     this.auth.logout();
+    this.notifCount = 0;
     this.router.navigate(['login']);
   }
 
@@ -68,6 +79,7 @@ export class HeaderComponent implements OnInit {
   }
 
   search(f: NgForm) {
-    console.log(f.value)
+
+    console.log(f.value);
   }
 }
