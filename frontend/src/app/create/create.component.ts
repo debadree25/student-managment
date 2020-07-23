@@ -9,6 +9,7 @@ import { mimType } from './mime-type.validator';
 import { RoutesService } from '../services/routes.service';
 import { StateService } from '../services/state.service';
 import { NotificationService } from '../services/notification.service';
+import { async } from '@angular/core/testing';
 
 declare var previewFile: any;
 
@@ -31,7 +32,7 @@ export class CreateComponent implements OnInit {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private notifService:NotificationService,
+        private notifService: NotificationService,
         public routes: RoutesService,
         // tslint:disable-next-line: variable-name
         private _snackBar: MatSnackBar,
@@ -105,21 +106,32 @@ export class CreateComponent implements OnInit {
                 phone,
             };
             console.log(student);
-            const resp = await this.rest.addStudent(student, this.file);
-            if (resp.status) {
-                alert('New student added');
-                // snackbar
-                const message = 'Student Added';
-                const action = 'Undo';
-                this._snackBar.open(message, action, {
-                    duration: 2000,
-                });
-                this.notifService.addNotifs("Student has been added");
-            }
-            else {
-                alert('New student not added');
-            }
+            const message = `Adding new Student: ${name}`;
+            const action = 'Undo';
+            let undo = false;
+            const ref = this._snackBar.open(message, action, {
+                duration: 2000,
+            });
             this.router.navigate(['/list']);
+            ref.onAction().subscribe(() => undo = true);
+            ref.afterDismissed().subscribe(async () => {
+                if (!undo) {
+                    this.notifService.addNotifs(message);
+                    const resp = await this.rest.addStudent(student, this.file);
+                    if (resp.status) {
+                        alert(`New student ${name} added`);
+                        this.notifService.addNotifs(`New student ${name} added`);
+                    }
+                    else {
+                        alert(`New student ${name} not added`);
+                        this.notifService.addNotifs(`New student ${name} not added`);
+                    }
+                }
+                else {
+                    alert('New student was not created');
+                }
+                this.state.updateList();
+            });
         }
         else if (this.routes.route === '/editStudent') {
             const value = this.form.value;
@@ -135,26 +147,39 @@ export class CreateComponent implements OnInit {
                 email,
                 phone,
             };
-            const resp = await this.rest.updateStudent(student, (this.fileChanges) ? this.file : null);
-            if (resp.status) {
-                alert('Student Data Updated');
-                // snackbar
-                const message = 'Student Data Updated';
-                const action = 'Undo';
-                this._snackBar.open(message, action, {
-                    duration: 2000,
-                });
-                this.notifService.addNotifs("Student has been updated");
-            }
-            else {
-                alert('Data not updated');
-            }
+            const message = `Updating student: ${name}`;
+            const action = 'Undo';
+            let undo = false;
+            const ref = this._snackBar.open(message, action, {
+                duration: 2000,
+            });
             this.router.navigate(['/list']);
+            ref.onAction().subscribe(() => undo = true);
+            ref.afterDismissed().subscribe(async () => {
+                // console.log(undo);
+                if (!undo) {
+                    this.notifService.addNotifs(message);
+                    const resp = await this.rest.updateStudent(student, (this.fileChanges) ? this.file : null);
+                    if (resp.status) {
+                        alert(`Student ${name} updated`);
+                        this.notifService.addNotifs(`Student ${name} updated`);
+                    }
+                    else {
+                        alert(`Student ${name} not updated`);
+                        this.notifService.addNotifs(`Student ${name} updated`);
+                    }
+                }
+                else {
+                    alert('Updation cancelled');
+                }
+                this.state.updateList();
+            });
 
+            // this.router.navigate(['/list']);
         }
 
 
-         
+        // this.router.navigate(['/list']);
     }
 
     onClose() {

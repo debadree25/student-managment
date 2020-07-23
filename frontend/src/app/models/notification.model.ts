@@ -1,3 +1,4 @@
 export interface Notification{
-    detail:string;
+    message: string;
+    date: Date;
 }

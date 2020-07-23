@@ -1,39 +1,31 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { Notification } from '../models/notification.model'
-import { HttpClient } from '@angular/common/http';
+import { Notification } from '../models/notification.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotificationService {
-
-  constructor(private http: HttpClient) { }
-
-  notifs: Notification[] = [{ detail: "Hello" }, { detail: "Hi" }];
-  notifsUpdated = new Subject<Notification[]>();
-  baseUrl = 'http://localhost:3000/';
+  notifs: Notification[] = [];
+  count = 0;
+  notifsObserver = new Subject<Notification[]>();
+  notifsObserver$ = this.notifsObserver.asObservable();
+  notifsCountObserver = new Subject<number>();
+  notifsCountObserver$ = this.notifsCountObserver.asObservable();
+  constructor() { }
 
   getAllNotifs() {
-    console.log(this.notifs);
-    this.notifsUpdated.next([...this.notifs]);
-    return (this.notifs);
+    return this.notifs;
   }
+
   addNotifs(message: string) {
-
-    const data:Notification={
-      detail:message
-    }
-    this.notifs.push({ detail: message });
-    console.log(this.notifs.length);
-    const url = `${this.baseUrl}notif`;
-    this.http.post<{ message: string }>(url, data).subscribe(
-      (resp) => {
-        console.log(resp.message);
-      }
-    )
-    this.notifsUpdated.next([...this.notifs]);
+    const notif: Notification = {
+      message,
+      date: new Date()
+    };
+    this.notifs = [notif].concat(this.notifs);
+    this.notifsObserver.next(this.notifs);
+    this.count += 1;
+    this.notifsCountObserver.next(this.count);
   }
-
-
 }

@@ -31,7 +31,7 @@ export class RestService {
     });
     return qparam;
   }
-  
+
   public getAllStudents(): Promise<ServerResponse<Student[]>> {
     const url = `${this.baseUrl}students`;
     return this.http.get<ServerResponse<Student[]>>(url).toPromise();
@@ -60,15 +60,15 @@ export class RestService {
 
   public downloadImage(imageId: string): Promise<Blob> {
     const url = `${this.baseUrl}images/${imageId}`;
-    return this.http.get(url, {responseType: 'blob'}).toPromise();
+    return this.http.get(url, { responseType: 'blob' }).toPromise();
   }
-  public deleteStudent(id: string){
+  public deleteStudent(id: string) {
 
     const url = `${this.baseUrl}students/${id}`;
-    return this.http.delete<{message: string, status: boolean}>(url).toPromise();
+    return this.http.delete<{ message: string, status: boolean }>(url).toPromise();
   }
 
-  public updateStudent(student: Student, file?: File){
+  public updateStudent(student: Student, file?: File) {
     console.log(student);
     const postData = new FormData();
     Object.keys(student).forEach((key) => {

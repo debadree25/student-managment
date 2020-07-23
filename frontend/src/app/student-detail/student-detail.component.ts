@@ -9,6 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { RestService } from '../services/rest.service';
 import { StateService } from '../services/state.service';
 import { NotificationService } from '../services/notification.service';
+import { async } from '@angular/core/testing';
 
 
 
@@ -28,7 +29,7 @@ export class StudentDetailComponent implements OnInit {
     public dialog: MatDialog,
     private dialogRef: MatDialogRef<StudentDetailComponent>,
     private route: Router, private router: ActivatedRoute,
-    private rest: RestService,private notifService:NotificationService,
+    private rest: RestService, private notifService: NotificationService,
     // tslint:disable-next-line: variable-name
     private _snackbar: MatSnackBar,
     private state: StateService,
@@ -71,17 +72,30 @@ export class StudentDetailComponent implements OnInit {
     // this.studentService.deleteStudent(this.id);
     // this.openDialog("Delete");
     console.log(this.student);
-    const resp = await (this.rest.deleteStudent(this.student._id));
-    console.log(resp);
     const msg = 'Student Deleted';
     const action = 'Undo';
-    this._snackbar.open(msg, action, {
+    let undo = false;
+    const ref = this._snackbar.open(msg, action, {
       duration: 2000,
     });
-    this.notifService.addNotifs("Student has been deleted");
-    //console.log(this.notifService.getAllNotifs)
+    this.notifService.addNotifs('Deleting student');
+    ref.onAction().subscribe(() => undo = true);
+    ref.afterDismissed().subscribe(async () => {
+      if (!undo) {
+        const resp = await (this.rest.deleteStudent(this.student._id));
+        if (resp.status) {
+          alert('Student deleted');
+          this.notifService.addNotifs('Deleted student');
+        }
+      }
+      else {
+        alert('Student not deleted');
+        this.notifService.addNotifs('Data Deletion cancelled');
+      }
+      this.state.updateList();
+    });
+    // console.log(this.notifService.getAllNotifs)
     this.onClose();
-    this.state.updateList();
   }
 
   openDialog(message: string) {
@@ -100,10 +114,11 @@ export class StudentDetailComponent implements OnInit {
         this.dialogRef.close();
         this.onDelete();
       }
-      else if(message=='Edit'){
+      // tslint:disable-next-line: triple-equals
+      else if (message == 'Edit') {
         this.dialogRef.close();
         this.onClose();
-        
+
       }
     });
   }
