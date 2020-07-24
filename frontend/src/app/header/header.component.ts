@@ -6,6 +6,7 @@ import { AuthService } from '../services/auth.service';
 import { NgForm } from '@angular/forms';
 import { Notification } from '../models/notification.model';
 import { NotificationService } from '../services/notification.service';
+import { state } from '@angular/animations';
 
 @Component({
   selector: 'app-header',
@@ -81,5 +82,8 @@ export class HeaderComponent implements OnInit {
   search(f: NgForm) {
 
     console.log(f.value);
+  }
+  manage(){
+    this.router.navigate(['/user'],{state:{username:this.name,useremail:this.email}})
   }
 }

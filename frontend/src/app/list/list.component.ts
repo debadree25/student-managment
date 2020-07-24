@@ -58,7 +58,9 @@ export class ListComponent implements OnInit {
 
   async fetchData() {
     const resp = await this.rest.getAllStudents();
+    
     this.students = resp.data;
+    this.students.sort((a, b) => a.name.localeCompare(b.name))
   }
 
   openDialog(student: Student, index: number) {

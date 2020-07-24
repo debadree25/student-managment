@@ -9,7 +9,10 @@
     bottom:20px;
     z-index: 15;
   }
-
+  button{
+    outline: none;
+    border: none;
+}
   @media screen and (max-width:800px){
 
     .button-container {

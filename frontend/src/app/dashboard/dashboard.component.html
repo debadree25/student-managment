@@ -22,7 +22,7 @@
     </div>
 
   </div>
-  <div style="display: block;margin: 0 auto;position: relative;width:30%" [routerLink]="['/list']">
+  <div class="total" [routerLink]="['/list']">
     <mat-card class="card1">
       <mat-card-content>
         <div style="text-align: center;">
@@ -35,10 +35,10 @@
   </div>
 </mat-card>
 <div style="display: flex;justify-content: space-evenly;">
-  <p style="width:100%;text-align:center;text-decoration:underline;color:grey;" class="mat-h2">
+  <p style="width:100%;text-align:center;text-decoration:underline;color:grey;" class="mat-h2 heading">
     Division of Students by Year
   </p>
-  <p style="width:100%;text-align:center;text-decoration:underline;color:grey;" class="mat-h2">
+  <p style="width:100%;text-align:center;text-decoration:underline;color:grey;" class="mat-h2 heading">
     Division of Students by Branch
   </p>
 </div>
@@ -56,6 +56,7 @@
           <p class="mat-display-3" style="text-align: center;">{{yearsData[0]}}</p>
         </div>
       </mat-card-content>
+      
     </mat-card>
 
 

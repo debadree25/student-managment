@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-user',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit {
 
-  constructor() { }
+  name: string ;
+  email:string;
+  constructor() {}
 
   ngOnInit(): void {
+    this.name=history.state.username;
+    this.email=history.state.useremail;
+    this.details();
   }
-
+details(){
+console.log(history.state.name,history.state.email)
+}
 }

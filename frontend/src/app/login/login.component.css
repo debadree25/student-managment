@@ -22,7 +22,10 @@ mat-form-field,mat-card-actions,.options{
 }
 
  button{
-     width:100%;
+
+        outline: none;
+        border: none;
+        width:100%;
  }
   .signup{
       color: blue;

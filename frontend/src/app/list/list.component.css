@@ -14,7 +14,10 @@
     top:15%;
     right:20px;
   }
-
+  button{
+    outline: none;
+    border: none;
+}
   .icon button{
     outline: none;
     cursor: pointer;

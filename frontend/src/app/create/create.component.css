@@ -36,7 +36,10 @@ input[type="file"]{
 .image-preview img{
     height:100%;
 }
-
+button{
+    outline: none;
+    border: none;
+}
 @media screen and (max-width:600px){
     mat-card{
         display:block;

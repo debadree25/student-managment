@@ -13,7 +13,7 @@
 
                 </mat-list-item>
                 <mat-list-item *ngIf="name!==''">
-                    <button class="manage" mat-button isRoundButton [routerLink]="['/user']">
+                    <button class="manage" mat-button isRoundButton (click)="manage()">
                         Manage Your Profile
                     </button>
                 </mat-list-item>
@@ -75,7 +75,7 @@
 
             <button mat-icon-button style="float: right;position:absolute;right:80px" class="example-icon"
                 [matMenuTriggerFor]="aboveMenu" aria-label="Example icon-button with notification icon">
-                <mat-icon [matBadge]="notifCount" matBadgeColor="warn">notification_important</mat-icon>
+                <mat-icon [matBadge]="notifCount" matBadgeColor="warn">notifications</mat-icon>
             </button>
             <mat-menu #aboveMenu="matMenu" xPosition="before">
                 <button mat-menu-item *ngFor="let notif of notifs">

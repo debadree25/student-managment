@@ -37,11 +37,11 @@
   <mat-nav-list *ngFor="let student of students;let i=index" class="list" (click)="openDialog(student,i)">
     <mat-list-item>
       <img matListAvatar [src]="'http://localhost:3000/images/'+student.image" alt="img of {{student.name}}">
-      <div mat-line>{{student.name}}</div>
-      <div mat-line> {{student.department | uppercase}} </div>
-      <div mat-line> {{student.passing_year +" Batch" }}</div>
+      <div mat-line style="margin-left: 7px;">{{student.name}}</div>
+      <div mat-line style="margin-left: 7px;"> {{student.department | uppercase}} </div>
+      <div mat-line style="margin-left: 7px;"> {{student.passing_year +" Batch" }}</div>
     </mat-list-item>
-    <mat-divider></mat-divider> 
+    <mat-divider [inset]="true"></mat-divider> 
 
   </mat-nav-list>
 </div>
