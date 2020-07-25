@@ -76,7 +76,6 @@ export class DashboardComponent implements OnInit {
       },
       options: {
         legend:{
-          display:false,
           position:'bottom',
           labels: {
             fontColor: "#000080",

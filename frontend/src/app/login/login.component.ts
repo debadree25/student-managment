@@ -29,16 +29,12 @@ export class LoginComponent implements OnInit {
 
   async loginUser(f: NgForm) {
     const value = f.value;
-    console.log(value);
+    //console.log(value);
     const { email, password } = value;
     const resp = await this.auth.loginUser(email, password);
-    console.log(resp);
-    if (resp.status) {
-      this.auth.storeLogin(resp.data);
-      this.router.navigate(['dashboard']);
-    }
-    else{
-      console.log("false")
+    console.log(resp.message)
+    if (resp.status===true){
+    this.router.navigate(["/dashboard"])
     }
     
   }

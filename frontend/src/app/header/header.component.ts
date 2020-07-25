@@ -79,9 +79,10 @@ export class HeaderComponent implements OnInit {
     window.history.back();
   }
 
-  search(f: NgForm) {
+  search(searchText: NgForm) {
 
-    console.log(f.value);
+    console.log(searchText.value)
+    this.router.navigate(['/list'],{state:{text:searchText.value}})
   }
   manage(){
     this.router.navigate(['/user'],{state:{username:this.name,useremail:this.email}})
