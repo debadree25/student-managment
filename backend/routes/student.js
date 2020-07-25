@@ -26,9 +26,9 @@ router.get("", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-    console.log(req.params.id);
+    // console.log(req.params.id);
     const student = await Student.findById(req.params.id);
-    console.log(student);
+    // console.log(student);
     if (student) {
         res.status(200).json({
             status: true,
@@ -41,6 +41,22 @@ router.get("/:id", async (req, res) => {
             message: "Student Not found",
         });
     }
+});
+
+router.post("/search", async (req, res) => {
+    const { query } = req.body;
+    const students = await Student.find();
+    const results = [];
+    students.forEach((student) => {
+        if(student.name.includes(query)) {
+            results.push(student)
+        }
+    });
+    res.status(200).json({
+        status: true,
+        message: "Data found",
+        data: results
+    });
 });
 
 router.put("/:id", upload.single("student-image"), async (req, res) => {
@@ -64,7 +80,7 @@ router.put("/:id", upload.single("student-image"), async (req, res) => {
         const student = {};
         Object.keys(req.body).forEach((key) => (student[key] = req.body[key]));
         student.image = req.file.filename;
-        console.log('File Updation');
+        console.log("File Updation");
         console.log(student);
         const resp = await Student.updateOne({ _id: mongoose.Types.ObjectId(req.params.id) }, student);
         if (resp.n > 0) {
