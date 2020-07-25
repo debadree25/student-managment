@@ -22,7 +22,7 @@ import { AuthService } from './services/auth.service';
 import { RestService } from './services/rest.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { UserComponent } from './user/user.component';
-import {ErrorInterceptor} from './error-interceptor';
+// import {ErrorInterceptor} from './error-interceptor';
 import { RegisterComponent } from './register/register.component';
 
 
@@ -48,7 +48,8 @@ import { RegisterComponent } from './register/register.component';
     HttpClientModule, FlexLayoutModule
   ],
   providers: [AuthService, RestService, RoutesService,
-    {provide:HTTP_INTERCEPTORS,useClass: ErrorInterceptor,multi:true}],
+    // {provide:HTTP_INTERCEPTORS,useClass: ErrorInterceptor,multi:true}
+  ],
   entryComponents: [StudentDetailComponent],
   bootstrap: [AppComponent]
 })
