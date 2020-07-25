@@ -14,7 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListComponent } from './list/list.component';
 import { CreateComponent } from './create/create.component';
 import { StudentDetailComponent, ActionComponent } from './student-detail/student-detail.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RoutesService } from './services/routes.service';
 import { MaterialElevationDirective } from './material-elevation.directive';
 import { LoginComponent} from './login/login.component';
@@ -22,6 +22,7 @@ import { AuthService } from './services/auth.service';
 import { RestService } from './services/rest.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { UserComponent } from './user/user.component';
+import {ErrorInterceptor} from './error-interceptor';
 import { RegisterComponent } from './register/register.component';
 
 
@@ -46,7 +47,8 @@ import { RegisterComponent } from './register/register.component';
     BrowserAnimationsModule, RouterModule, FormsModule, ReactiveFormsModule,
     HttpClientModule, FlexLayoutModule
   ],
-  providers: [AuthService, RestService, RoutesService],
+  providers: [AuthService, RestService, RoutesService,
+    {provide:HTTP_INTERCEPTORS,useClass: ErrorInterceptor,multi:true}],
   entryComponents: [StudentDetailComponent],
   bootstrap: [AppComponent]
 })
