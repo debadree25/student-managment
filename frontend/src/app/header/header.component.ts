@@ -90,7 +90,9 @@ export class HeaderComponent implements OnInit {
 
   console.log(this.searchText)
    const resp= await this.rest.getStudentonSearch(this.searchText);
-   console.log(resp.data.length);
+   console.log(resp.data);
+   this.students=resp.data;
+   this.router.navigate(['/list'],{state:{student:this.students}})
    
   }
   manage(){

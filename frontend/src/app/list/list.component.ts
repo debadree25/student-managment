@@ -18,7 +18,7 @@ export class ListComponent implements OnInit {
   //searchText:string= history.state.text;
   
   filterYear: number = history.state.filterYear;
-  students: Student[];
+  students: Student[]=history.state.students;
   listView = true;
 
   constructor(
