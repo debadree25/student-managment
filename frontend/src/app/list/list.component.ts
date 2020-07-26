@@ -15,10 +15,10 @@ import { StateService } from '../services/state.service';
 export class ListComponent implements OnInit {
   filterDept: string = history.state.filterDept;
   rowHeight;
-  // searchText:string= history.state.text;
+ 
 
   filterYear: number = history.state.filterYear;
-  students: Student[];
+  students: Student[]=history.state.students;
   listView = true;
 
   constructor(
@@ -36,16 +36,8 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.onSearch();
     this.filter();
   }
-  // async onSearch() {
-
-  //   console.log(this.searchText)
-  //   const resp=await this.rest.getStudentsonSearch(this.searchText);
-  //   this.students=resp.data;
-  // }
-  //
   async filter() {
     let resp: ServerResponse<Student[]>;
     if (this.filterYear && this.filterDept) {
