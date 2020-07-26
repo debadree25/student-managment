@@ -22,8 +22,9 @@ import { AuthService } from './services/auth.service';
 import { RestService } from './services/rest.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { UserComponent } from './user/user.component';
-// import {ErrorInterceptor} from './error-interceptor';
+import {ErrorInterceptor} from './error-interceptor';
 import { RegisterComponent } from './register/register.component';
+import { ErrorComponent } from './error/error.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { RegisterComponent } from './register/register.component';
     ActionComponent,
     CreateComponent,
     StudentDetailComponent,
+    ErrorComponent,
     MaterialElevationDirective,
     LoginComponent,
     UserComponent,
@@ -48,9 +50,9 @@ import { RegisterComponent } from './register/register.component';
     HttpClientModule, FlexLayoutModule
   ],
   providers: [AuthService, RestService, RoutesService,
-    // {provide:HTTP_INTERCEPTORS,useClass: ErrorInterceptor,multi:true}
+    {provide:HTTP_INTERCEPTORS,useClass: ErrorInterceptor,multi:true}
   ],
-  entryComponents: [StudentDetailComponent],
+  entryComponents: [StudentDetailComponent,ErrorComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

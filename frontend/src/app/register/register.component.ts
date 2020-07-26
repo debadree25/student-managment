@@ -37,13 +37,13 @@ export class RegisterComponent implements OnInit {
     const resp = await this.auth.registerUser({ name, email, password });
     console.log(resp);
     
-    if (resp.status===true) {
+    if (resp.status) {
        //this.tab();
-      
+       this.alert=true;
        f.resetForm();
      }
      else{
-      console.log("Error")
+       this.danger=true;
 
      }
   }

@@ -45,18 +45,29 @@ router.get("/:id", async (req, res) => {
 
 router.post("/search", async (req, res) => {
     const { query } = req.body;
+    console.log(req.body)
     const students = await Student.find();
     const results = [];
     students.forEach((student) => {
-        if(student.name.includes(query)) {
+        if (student.name.includes(query)) {
             results.push(student)
         }
     });
-    res.status(200).json({
-        status: true,
-        message: "Data found",
-        data: results
-    });
+    if (results) {
+        console.log(results)
+        res.status(200).json({
+            status: true,
+            message: "Data found",
+            data: results
+        })
+    }
+    else {
+        res.status(200).json({
+            status: false,
+            message: "Data not found",
+            data: ""
+        })
+    }
 });
 
 router.put("/:id", upload.single("student-image"), async (req, res) => {

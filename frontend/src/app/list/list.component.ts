@@ -15,7 +15,7 @@ import { StateService } from '../services/state.service';
 export class ListComponent implements OnInit {
   filterDept: string = history.state.filterDept;
   rowHeight;
-  searchText:string= history.state.text;
+  //searchText:string= history.state.text;
   
   filterYear: number = history.state.filterYear;
   students: Student[];
@@ -35,16 +35,17 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   this.onSearch();
+   //this.onSearch();
    this.filter();
   }
-  async onSearch() {
+  // async onSearch() {
    
-    console.log(this.searchText)
-    const resp=await this.rest.getStudentsonSearch(this.searchText);
-    this.students=resp.data;
-  }
-  async filter() {
+  //   console.log(this.searchText)
+  //   const resp=await this.rest.getStudentsonSearch(this.searchText);
+  //   this.students=resp.data;
+  // }
+  //
+   async filter() {
     let resp: ServerResponse<Student[]>;
     if (this.filterYear && this.filterDept) {
       resp = await this.rest.getStudents({ year: this.filterYear, department: this.filterDept });

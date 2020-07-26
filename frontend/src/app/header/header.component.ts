@@ -7,6 +7,9 @@ import { NgForm } from '@angular/forms';
 import { Notification } from '../models/notification.model';
 import { NotificationService } from '../services/notification.service';
 import { state } from '@angular/animations';
+import { HttpClient } from '@angular/common/http';
+import { Student } from '../models/student.model';
+import { RestService } from '../services/rest.service';
 
 @Component({
   selector: 'app-header',
@@ -19,16 +22,19 @@ export class HeaderComponent implements OnInit {
   isRoundButton = true;
   name = '';
   email = '';
-  isLogged = false;
+  isLogged =false;
   notifs: Notification[];
-  searchText;
+  searchText="";
   notifCount: number;
+  students:Student[]=[]
 
 
   constructor(
     private route: ActivatedRoute,
     public router: Router,
+    private http:HttpClient,
     public routes: RoutesService,
+    public rest:RestService,
     public auth: AuthService,
     private notifService: NotificationService) {
     this.auth.loginObserver$.subscribe((login) => {
@@ -63,6 +69,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onLogin() {
+  
     this.router.navigate(['/']);
 
   }
@@ -79,10 +86,11 @@ export class HeaderComponent implements OnInit {
     window.history.back();
   }
 
-  search(searchText: NgForm) {
+ async search() {
 
-    console.log(searchText.value)
-    this.router.navigate(['/list'],{state:{text:searchText.value}})
+  console.log(this.searchText)
+   const resp= await this.rest.getStudentonSearch(this.searchText);
+   console.log(resp.data.length);
   }
   manage(){
     this.router.navigate(['/user'],{state:{username:this.name,useremail:this.email}})

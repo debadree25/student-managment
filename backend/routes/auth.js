@@ -12,7 +12,7 @@ router.post("/register", async (req, res) => {
     const hash = await bcrypt.hash(password, 10);
     const user = await User.findOne({ email });
     if (user) {
-        res.status(400).json({
+        res.status(200).json({
             status: false,
             message: "User exists",
         });
@@ -51,7 +51,7 @@ router.post("/login", async (req, res) => {
         } else {
             const pass = await bcrypt.compare(password, user.password);
             if (!pass) {
-                res.status(400).json({
+                res.status(200).json({
                     status: false,
                     message: "Invalid credentials",
                 });
