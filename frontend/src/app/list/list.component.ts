@@ -15,8 +15,8 @@ import { StateService } from '../services/state.service';
 export class ListComponent implements OnInit {
   filterDept: string = history.state.filterDept;
   rowHeight;
-  //searchText:string= history.state.text;
-  
+  // searchText:string= history.state.text;
+
   filterYear: number = history.state.filterYear;
   students: Student[];
   listView = true;
@@ -25,27 +25,28 @@ export class ListComponent implements OnInit {
     public dialog: MatDialog,
     private rest: RestService,
     private state: StateService) {
-    
+
     this.fetchData();
     this.state.listUpdates$.subscribe((message) => {
       if (message === 'update') {
         this.fetchData();
       }
     });
+    this.state.searchUpdates$.subscribe(results => this.students = results);
   }
 
   ngOnInit(): void {
-   //this.onSearch();
-   this.filter();
+    // this.onSearch();
+    this.filter();
   }
   // async onSearch() {
-   
+
   //   console.log(this.searchText)
   //   const resp=await this.rest.getStudentsonSearch(this.searchText);
   //   this.students=resp.data;
   // }
   //
-   async filter() {
+  async filter() {
     let resp: ServerResponse<Student[]>;
     if (this.filterYear && this.filterDept) {
       resp = await this.rest.getStudents({ year: this.filterYear, department: this.filterDept });
@@ -66,13 +67,13 @@ export class ListComponent implements OnInit {
   }
 
   async fetchData() {
-    
+
     const resp = await this.rest.getAllStudents();
 
     this.students = resp.data;
-    this.students.sort((a, b) => a.name.localeCompare(b.name))
-  
-}
+    this.students.sort((a, b) => a.name.localeCompare(b.name));
+
+  }
 
   openDialog(student: Student, index: number) {
     // console.log(index);
