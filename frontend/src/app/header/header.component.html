@@ -66,7 +66,7 @@
                 <span *ngIf="routes.route=='/newStudent'">Add Student</span>
             </div>
 
-            <form class="example" style="margin:0 auto;max-width:350px;">
+            <form *ngIf="routes.route=='/list'" class="example" style="margin:0 auto;max-width:350px;">
                 <input type="text" placeholder="Search" name="search" [(ngModel)]="searchText" (change)="search()" >
                 <button type="submit"><i class="fa fa-search"></i></button>
             </form>
