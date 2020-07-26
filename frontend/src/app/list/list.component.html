@@ -38,7 +38,7 @@
 
 <div class="content" *ngIf="listView">
   <mat-nav-list *ngFor="let student of students;let i=index" class="list" (click)="openDialog(student,i)">
-    <mat-list-item>
+    <mat-list-item matRipple>
       <img matListAvatar [src]="'http://localhost:3000/images/'+student.image" alt="img of {{student.name}}">
       <div mat-line style="margin-left: 7px;">{{student.name}}</div>
       <div mat-line style="margin-left: 7px;"> {{student.department | uppercase}} </div>
@@ -52,7 +52,7 @@
 <div fxLayout="row wrap" fxLayoutGap="10px grid" 
  class="contentGrid" *ngIf="!listView" style="display:block;width:90%;">
     <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="50%" *ngFor="let student of students;let i=index" style="padding: 10px;">
-      <mat-card class="card" (click)="openDialog(student,i)">
+      <mat-card matRipple class="card" (click)="openDialog(student,i)">
         <mat-card-content>
           <mat-list>
             <mat-list-item>

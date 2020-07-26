@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
   totalStudents = 0;
   chart1: any;
   chart2: any;
-  constructor(private rest: RestService,private router:Router) {
+  constructor(private rest: RestService, private router: Router) {
     this.fetchData();
   }
 
@@ -51,10 +51,10 @@ export class DashboardComponent implements OnInit {
     this.chart1 = new Chart('myChart', {
       type: 'bar',
       data: {
-        labels:this.streams,
+        labels: this.streams,
         datasets: [{
           data: this.streamsData,
-          
+
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
             'rgba(54, 162, 235, 0.2)',
@@ -75,17 +75,11 @@ export class DashboardComponent implements OnInit {
         }]
       },
       options: {
-        legend:{
-          position:'bottom',
-          labels: {
-            fontColor: "#000080",
-        }
-        },
         scales: {
           yAxes: [{
             ticks: {
-              min:0,
-              max:50
+              min: 0,
+              max: 50
             }
           }]
         }
@@ -102,9 +96,9 @@ export class DashboardComponent implements OnInit {
         }]
       },
       options: {
-        
-        legend:{
-          position:'right',
+
+        legend: {
+          position: 'right',
         }
       }
     });
@@ -112,17 +106,17 @@ export class DashboardComponent implements OnInit {
     console.log(this.chart2.data.datasets[0]);
   }
 
-  
-  async onClick(num:number){
-    //const resp = await this.rest.getStudents({ year:num});
-    this.router.navigate(['list'],{state:{filterYear:num}})
-    
+
+  async onClick(num: number) {
+    // const resp = await this.rest.getStudents({ year:num});
+    this.router.navigate(['list'], { state: { filterYear: num } });
+
   }
 
-  async onStream(s:string){
-    //const resp = await this.rest.getStudents({ department:s });
-    console.log(s)
-    this.router.navigate(['list'],{state:{filterDept:s}})
+  async onStream(s: string) {
+    // const resp = await this.rest.getStudents({ department:s });
+    console.log(s);
+    this.router.navigate(['list'], { state: { filterDept: s } });
   }
- 
+
 }

@@ -119,16 +119,17 @@ export class CreateComponent implements OnInit {
                     this.notifService.addNotifs(message);
                     const resp = await this.rest.addStudent(student, this.file);
                     if (resp.status) {
-                        alert(`New student ${name} added`);
+                        // alert(`New student ${name} added`);
                         this.notifService.addNotifs(`New student ${name} added`);
                     }
                     else {
-                        alert(`New student ${name} not added`);
+                        // alert(`New student ${name} not added`);
                         this.notifService.addNotifs(`New student ${name} not added`);
                     }
                 }
                 else {
-                    alert('New student was not created');
+                    // alert('New student was not created');
+                    this.notifService.addNotifs('New student was not created');
                 }
                 this.state.updateList();
             });

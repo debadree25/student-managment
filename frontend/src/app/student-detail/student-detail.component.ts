@@ -84,12 +84,12 @@ export class StudentDetailComponent implements OnInit {
       if (!undo) {
         const resp = await (this.rest.deleteStudent(this.student._id));
         if (resp.status) {
-          alert('Student deleted');
+          // alert('Student deleted');
           this.notifService.addNotifs('Deleted student');
         }
       }
       else {
-        alert('Student not deleted');
+        // alert('Student not deleted');
         this.notifService.addNotifs('Data Deletion cancelled');
       }
       this.state.updateList();
