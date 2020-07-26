@@ -32,9 +32,9 @@ export class RestService {
     return qparam;
   }
 
-  public getStudentonSearch(query:string): Promise<ServerResponse<Student[]>>{
+  public getStudentonSearch(query: string){
     const url = `${this.baseUrl}students/search`;
-    return this.http.post<ServerResponse<Student[]>>(url,{query}).toPromise();
+    return this.http.post<ServerResponse<Student[]>>(url, { query }).toPromise();
 
   }
   public getAllStudents(): Promise<ServerResponse<Student[]>> {

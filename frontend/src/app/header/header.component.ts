@@ -10,6 +10,7 @@ import { state } from '@angular/animations';
 import { HttpClient } from '@angular/common/http';
 import { Student } from '../models/student.model';
 import { RestService } from '../services/rest.service';
+import { StateService } from '../services/state.service';
 
 @Component({
   selector: 'app-header',
@@ -22,19 +23,20 @@ export class HeaderComponent implements OnInit {
   isRoundButton = true;
   name = '';
   email = '';
-  isLogged =false;
+  isLogged = false;
   notifs: Notification[];
-  searchText="";
+  searchText = '';
   notifCount: number;
-  students:Student[]=[]
+  students: Student[] = [];
 
 
   constructor(
     private route: ActivatedRoute,
     public router: Router,
-    private http:HttpClient,
+    private http: HttpClient,
     public routes: RoutesService,
-    public rest:RestService,
+    private stateServ: StateService,
+    public rest: RestService,
     public auth: AuthService,
     private notifService: NotificationService) {
     this.auth.loginObserver$.subscribe((login) => {
@@ -69,7 +71,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onLogin() {
-  
+
     this.router.navigate(['/']);
 
   }
@@ -86,16 +88,14 @@ export class HeaderComponent implements OnInit {
     window.history.back();
   }
 
- async search() {
-
-  console.log(this.searchText)
-   const resp= await this.rest.getStudentonSearch(this.searchText);
-   console.log(resp.data);
-   this.students=resp.data;
-   this.router.navigate(['/list'],{state:{student:this.students}})
-   
+  async search() {
+    console.log(this.searchText);
+    const resp = await this.rest.getStudentonSearch(this.searchText);
+    console.log(resp.data.length);
+    this.stateServ.search(resp.data);
   }
-  manage(){
-    this.router.navigate(['/user'],{state:{username:this.name,useremail:this.email}})
+  
+  manage() {
+    this.router.navigate(['/user'], { state: { username: this.name, useremail: this.email } });
   }
 }
