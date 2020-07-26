@@ -94,7 +94,7 @@ export class HeaderComponent implements OnInit {
     console.log(resp.data.length);
     this.stateServ.search(resp.data);
   }
-  
+
   manage() {
     this.router.navigate(['/user'], { state: { username: this.name, useremail: this.email } });
   }

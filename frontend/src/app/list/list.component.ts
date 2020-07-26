@@ -15,10 +15,10 @@ import { StateService } from '../services/state.service';
 export class ListComponent implements OnInit {
   filterDept: string = history.state.filterDept;
   rowHeight;
- 
+
 
   filterYear: number = history.state.filterYear;
-  students: Student[]=history.state.students;
+  students: Student[] = history.state.students;
   listView = true;
 
   constructor(
