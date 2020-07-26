@@ -91,6 +91,7 @@ export class HeaderComponent implements OnInit {
   console.log(this.searchText)
    const resp= await this.rest.getStudentonSearch(this.searchText);
    console.log(resp.data.length);
+   
   }
   manage(){
     this.router.navigate(['/user'],{state:{username:this.name,useremail:this.email}})
