@@ -25,6 +25,7 @@ import { UserComponent } from './user/user.component';
 import {ErrorInterceptor} from './error-interceptor';
 import { RegisterComponent } from './register/register.component';
 import { ErrorComponent } from './error/error.component';
+import { StateService } from './services/state.service';
 
 
 @NgModule({
@@ -49,7 +50,7 @@ import { ErrorComponent } from './error/error.component';
     BrowserAnimationsModule, RouterModule, FormsModule, ReactiveFormsModule,
     HttpClientModule, FlexLayoutModule
   ],
-  providers: [AuthService, RestService, RoutesService,
+  providers: [AuthService, RestService, RoutesService,StateService,
     {provide:HTTP_INTERCEPTORS,useClass: ErrorInterceptor,multi:true}
   ],
   entryComponents: [StudentDetailComponent,ErrorComponent],
